@@ -9,7 +9,7 @@ import api.Token;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Search {
+public class SearchTrack {
     private static final String API_URL = "https://api.spotify.com/v1/search";
     // Read token from token.txt
     private static String API_TOKEN;
@@ -44,7 +44,7 @@ public class Search {
     }
 
     public static void main(String[] args) throws IOException {
-        Search db = new Search();
+        SearchTrack db = new SearchTrack();
         ArrayList result = db.searchTrack("Evangeline", "track");
         try {
             for (Object x : result) {
