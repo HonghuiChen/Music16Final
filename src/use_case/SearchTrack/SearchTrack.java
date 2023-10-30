@@ -1,10 +1,9 @@
-package use_cases;
-
+package use_case.SearchTrack;
 import okhttp3.*;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import api.Token;
+import app.api.Token;
 
 import java.io.IOException;
 import java.util.ArrayList;
