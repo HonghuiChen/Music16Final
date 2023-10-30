@@ -7,7 +7,7 @@ public class SignupController {
 
     final SignupInputBoundary userSignupUseCaseInteractor;
     public SignupController(SignupInputBoundary userSignupUseCaseInteractor) {
-        this.userSignupUseCaseInteractor = userSignupUseCaseInteractor;
+        this.userSignupUseCaseInteractor= userSignupUseCaseInteractor;
     }
 
     public void execute(String username, String password1, String password2) {

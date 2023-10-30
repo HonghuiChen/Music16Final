@@ -19,7 +19,7 @@ public class SignupPresenter implements SignupOutputBoundary {
                            LoginViewModel loginViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.signupViewModel = signupViewModel;
-        this.loginViewModel = loginViewModel;
+        this.loginViewModel= loginViewModel;
     }
 
     @Override

@@ -10,7 +10,7 @@ public class SignupState {
 
     public SignupState(SignupState copy) {
         username = copy.username;
-        usernameError = copy.usernameError;
+        usernameError= copy.usernameError;
         password = copy.password;
         passwordError = copy.passwordError;
         repeatPassword = copy.repeatPassword;
