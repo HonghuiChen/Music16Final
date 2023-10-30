@@ -41,3 +41,10 @@ users would be able to follow and connect with their friends.
 - Finished our UML Class Diagram
 - Made a rough sketch on the UML sequence diagram for SearchTrack
 
+## Individual Responsibility:
+- Albert: Log in use cases
+- Will: Log out use cases
+- Son: Search Track use cases
+- Naura: Sign up use cases
+- Vanessa: Keep the readme files updated
+
