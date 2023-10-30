@@ -1,4 +1,4 @@
-package interface_adapter.signup;
+package src.interface_adapter.signup;
 
 import main.java.use_case.signup.SignupInputBoundary;
 import main.java.use_case.signup.SignupInputData;

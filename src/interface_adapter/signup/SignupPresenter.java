@@ -1,4 +1,4 @@
-package interface_adapter.signup;
+package src.interface_adapter.signup;
 
 import interface_adapter.login.LoginState;
 import interface_adapter.login.LoginViewModel;

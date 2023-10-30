@@ -1,4 +1,4 @@
-package use_case.SearchTrack;
+package src.use_case.SearchTrack;
 
 public interface SearchTrackOutputBoundary {
     void prepareSuccessView(SearchTrackOutputData results);
