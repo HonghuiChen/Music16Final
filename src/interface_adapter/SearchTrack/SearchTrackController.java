@@ -1,7 +1,7 @@
-package interface_adapter.SearchTrack;
+package src.interface_adapter.SearchTrack;
 
-import use_case.SearchTrack.SearchTrackInputBoundary;
-import use_case.SearchTrack.SearchTrackInputData;
+import src.use_case.SearchTrack.SearchTrackInputBoundary;
+import src.use_case.SearchTrack.SearchTrackInputData;
 
 import java.io.IOException;
 

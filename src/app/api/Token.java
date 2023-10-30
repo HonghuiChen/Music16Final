@@ -41,7 +41,7 @@ public class Token {
                 String token = (String) map.get("access_token");
 
                 // Save the token to a file
-                try (FileWriter writer = new FileWriter("src/app/app/api/token.txt")) {
+                try (FileWriter writer = new FileWriter("src/app/api/token.txt")) {
                     writer.write(token);
                 } catch (IOException e) {
                     System.err.println("Error writing token to file: " + e.getMessage());
@@ -55,7 +55,7 @@ public class Token {
 
     //Return token authorization for API call
     public static String get_auth() throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("src/app/app/api/token.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("src/app/api/token.txt"));
         String token = br.readLine();
         br.close();
         return "Bearer " + token;
