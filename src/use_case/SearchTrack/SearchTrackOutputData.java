@@ -1,4 +1,4 @@
-package src.use_case.SearchTrack;
+package use_case.SearchTrack;
 
 import java.util.ArrayList;
 
