@@ -15,9 +15,10 @@ public class User {
     private ArrayList<User> Follow;
 
 
-    public User(String name, String password) {
+    public User(String name, String password, LocalDateTime ltd) {
         this.username = name;
         this.password = password;
+        this.creationTime = ltd;
 }
 
     public String getUsername() {
