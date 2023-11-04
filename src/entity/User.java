@@ -29,7 +29,7 @@ public class User {
         return creationTime;
     }
 
-    public String getName() {
+    public String getUsername() {
         return username;
     }
 }

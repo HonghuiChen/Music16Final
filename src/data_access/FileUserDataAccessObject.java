@@ -2,6 +2,7 @@ package data_access;
 
 import entity.User;
 import entity.UserFactory;
+import use_case.login.LoginUserDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
 
 import java.io.*;
@@ -13,7 +14,7 @@ import java.util.Map;
 // Data Access Object for primary user data: username, password, creation time.
 // Most of this is from CACoding.
 
-public class FileUserDataAccessObject implements SignupUserDataAccessInterface {
+public class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface {
 
     private final File csvFile;
 
