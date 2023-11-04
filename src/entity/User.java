@@ -21,15 +21,15 @@ public class User {
         this.creationTime = ltd;
 }
 
-    public String getUsername() {
-        return username;
-    }
-
     public String getPassword() {
         return password;
     }
 
     public Object getCreationTime() {
         return creationTime;
+    }
+
+    public String getName() {
+        return username;
     }
 }
