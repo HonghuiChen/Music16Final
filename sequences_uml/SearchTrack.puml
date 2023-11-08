@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+mainframe sd SearchTrack (input : String) : SearchTrackOutputData
+
+autonumber 1.1
+actor User
+participant SearchTrackView
+participant SearchTrackController
+participant SearchTrackInputData
+participant SearchTrackInputBoundary
+participant SearchTrackInteractor
+
+User -> SearchTrackView: : SearchTrack;
+SearchTrackView -> SearchTrackController: : execute;
+SearchTrackController -> SearchTrackInputData: : <<create>>;
+SearchTrackController -> SearchTrackInputBoundary: : execute
+
+autonumber2.1
+User -> SearchTrackInteractor: : execute
+SearchTrackInteractor -> SearchTrackOutputData: : <<create>>
+SearchTrackInteractor -> SearchTrackOutbutBoundary: : prepSuccessView
+
+
+@enduml
