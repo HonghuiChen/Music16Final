@@ -28,4 +28,8 @@ public class User {
     public String getPassword() {
         return password;
     }
+
+    public LocalDateTime getCreationTime() {
+        return creationTime;
+    }
 }
