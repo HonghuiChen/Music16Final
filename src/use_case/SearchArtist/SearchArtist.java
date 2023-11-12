@@ -1,4 +1,4 @@
-package use_case.SearchAritist;
+package use_case.SearchArtist;
 
 import app.api.Token;
 import okhttp3.OkHttpClient;
@@ -6,10 +6,8 @@ import okhttp3.Request;
 import okhttp3.Response;
 import org.json.JSONException;
 import org.json.JSONObject;
-import use_case.SearchTrack.SearchTrack;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class SearchArtist {
     private static final String API_URL = "https://api.spotify.com/v1/search";
