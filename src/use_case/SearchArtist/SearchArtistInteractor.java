@@ -30,6 +30,7 @@ public class SearchArtistInteractor implements SearchArtistInputBoundary{
     public void searchArtist(SearchArtistInputData searchArtistInputData) throws IOException, JSONException {
         OkHttpClient searchClient = new OkHttpClient().newBuilder()
                 .build();
+        //MAKE MARKET CA?
         Request searchRequest = new Request.Builder()
                 .url(String.format("%s?q=%s&type=%s", API_URL_Search, searchArtistInputData.getQuery(), "artist"))
                 .addHeader("Authorization", API_TOKEN)
@@ -39,30 +40,36 @@ public class SearchArtistInteractor implements SearchArtistInputBoundary{
         // System.out.println(response);
         JSONObject searchResponseBody = new JSONObject(searchResponse.body().string());
 
-        String artistID = searchResponseBody.getJSONObject("artists").getJSONArray("items")
-                .getJSONObject(0).getString("id");
-
-        // get artist API call to get Artist's name, genre, followers.
-
-        OkHttpClient GetArtistClient = new OkHttpClient().newBuilder()
-                .build();
-        Request GetArtistRequest = new Request.Builder()
-                .url(String.format("%s/%s", API_URL_Get_Artist, artistID))
-                .addHeader("Authorization", API_TOKEN)
-                .addHeader("Content-Type", "application/json")
-                .build();
-        Response GetArtistResponse = searchClient.newCall(searchRequest).execute();
-        JSONObject GetArtistResponseBody = new JSONObject(searchResponse.body().string());
-
-        String artistName = GetArtistResponseBody.getString("name");
-        JSONArray genresArray = GetArtistResponseBody.getJSONArray("genres");
-
-        ArrayList<String> artistGenres = new ArrayList<>();
-        for (int i = 0; i < genresArray.length(); i++) {
-            artistGenres.add(genresArray.getString(i));
+        if (searchResponseBody.getJSONObject("artists").getJSONArray("items").isEmpty()) {
+            //PrepareFailView
         }
+        else {
+            String artistID = searchResponseBody.getJSONObject("artists").getJSONArray("items")
+                    .getJSONObject(0).getString("id");
 
-        String ArtistNumFollowers = GetArtistResponseBody.getJSONObject("followers").getString("total");
+            // get artist API call to get Artist's name, genre, followers.
+
+            OkHttpClient GetArtistClient = new OkHttpClient().newBuilder()
+                    .build();
+            Request GetArtistRequest = new Request.Builder()
+                    .url(String.format("%s/%s", API_URL_Get_Artist, artistID))
+                    .addHeader("Authorization", API_TOKEN)
+                    .addHeader("Content-Type", "application/json")
+                    .build();
+            Response GetArtistResponse = searchClient.newCall(searchRequest).execute();
+            JSONObject GetArtistResponseBody = new JSONObject(searchResponse.body().string());
+
+            String artistName = GetArtistResponseBody.getString("name");
+            JSONArray genresArray = GetArtistResponseBody.getJSONArray("genres");
+
+            ArrayList<String> artistGenres = new ArrayList<>();
+            for (int i = 0; i < genresArray.length(); i++) {
+                artistGenres.add(genresArray.getString(i));
+            }
+
+            String ArtistNumFollowers = GetArtistResponseBody.getJSONObject("followers").getString("total");
+
+        }
 
 
     }
