@@ -27,5 +27,4 @@ public class SearchArtistOutputData {
         return followers;
     }
 
-
 }
