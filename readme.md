@@ -41,10 +41,26 @@ users would be able to follow and connect with their friends.
 - Finished our UML Class Diagram
 - Made a rough sketch on the UML sequence diagram for SearchTrack
 
-## Individual Responsibility:
-- Albert: Log in use cases
-- Will: Log out use cases
-- Son: Search Track use cases
-- Naura: Sign up use cases
-- Vanessa: Keep the readme files updated
+## Few updates on Week 9:
+- remove the follow/unfollow attributes of the User entity
+- made changes in the FavoriteArtist and FavoriteSongs attributes of the User entity
+- refractored getusername() method name
+- added getTrack helper class to retrieve track information when given the id of the track
+- create SearchArtist class and implement the  searchArtist method
 
+## Individual Responsibility:
+- Albert: Log in use cases, getTracks method
+- Will: Log out use cases, Search Artist use cases
+- Son: Search Track use cases, Implement the Search interface
+- Naura: Sign up use cases, add/delete genre use cases
+- Vanessa: Keep the readme files updated, like/dislike tracks use cases, like/dislike artist use cases
+
+## Tasks that needs to get done:
+- add & delete favorite genre
+- like/dislike artists
+- like/dislike songs
+- No Comments
+- Check Logged_in view
+- Search API call
+- Fetch Spotify ID from API calls
+- Store data (songs, artists) in User as list of IDs
