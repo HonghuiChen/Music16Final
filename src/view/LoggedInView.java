@@ -19,8 +19,10 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
 
     final JButton logOut;
 
+    final JButton search;
+
     /**
-     * A window with a title and a JButton.
+     * A window with a title and a JButton logout and search.
      */
     public LoggedInView(LoggedInViewModel loggedInViewModel) {
         this.loggedInViewModel = loggedInViewModel;
@@ -35,6 +37,8 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
         JPanel buttons = new JPanel();
         logOut = new JButton(loggedInViewModel.LOGOUT_BUTTON_LABEL);
         buttons.add(logOut);
+        search = new JButton(loggedInViewModel.SEARCH_BUTTON_LABEL);
+        buttons.add(search);
 
         logOut.addActionListener(this);
 
