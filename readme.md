@@ -41,7 +41,7 @@ users would be able to follow and connect with their friends.
 - Finished our UML Class Diagram
 - Made a rough sketch on the UML sequence diagram for SearchTrack
 
-## Few updates on Week 9 (Reading week):
+## Few updates on Week 9:
 - remove the follow/unfollow attributes of the User entity
 - made changes in the FavoriteArtist and FavoriteSongs attributes of the User entity
 - refractored getusername() method name
