@@ -45,7 +45,7 @@ users would be able to follow and connect with their friends.
 - remove the follow/unfollow attributes of the User entity
 - made changes in the FavoriteArtist and FavoriteSongs attributes of the User entity
 - refractored getusername() method name
-- added getTrack helper class to retrieve track information when given the id of the track
+- added getTrack helper class to retrieve track information when given the ID of the track
 - create SearchArtist class and implement the  searchArtist method
 
 ## Individual Responsibility:
