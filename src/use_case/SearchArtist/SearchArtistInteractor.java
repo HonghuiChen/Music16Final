@@ -41,7 +41,7 @@ public class SearchArtistInteractor implements SearchArtistInputBoundary{
         JSONObject searchResponseBody = new JSONObject(searchResponse.body().string());
 
         if (searchResponseBody.getJSONObject("artists").getJSONArray("items").isEmpty()) {
-            //PrepareFailView
+            //Presenter.prepareFailView
         }
         else {
             String artistID = searchResponseBody.getJSONObject("artists").getJSONArray("items")
@@ -60,15 +60,19 @@ public class SearchArtistInteractor implements SearchArtistInputBoundary{
             JSONObject GetArtistResponseBody = new JSONObject(searchResponse.body().string());
 
             String artistName = GetArtistResponseBody.getString("name");
-            JSONArray genresArray = GetArtistResponseBody.getJSONArray("genres");
 
+            JSONArray genresArray = GetArtistResponseBody.getJSONArray("genres");
             ArrayList<String> artistGenres = new ArrayList<>();
             for (int i = 0; i < genresArray.length(); i++) {
                 artistGenres.add(genresArray.getString(i));
             }
 
-            String ArtistNumFollowers = GetArtistResponseBody.getJSONObject("followers").getString("total");
+            String artistNumFollowers = GetArtistResponseBody.getJSONObject("followers").getString("total");
 
+            SearchArtistOutputData searchArtistOutputData =
+                    new SearchArtistOutputData(artistName, artistGenres, artistNumFollowers);
+
+            // Presenter.prepareSuccessView(SearchArtistOutputData);
         }
 
 
