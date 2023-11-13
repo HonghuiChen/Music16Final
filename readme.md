@@ -64,3 +64,4 @@ users would be able to follow and connect with their friends.
 - Search API call
 - Fetch Spotify ID from API calls
 - Store data (songs, artists) in User as list of IDs
+
