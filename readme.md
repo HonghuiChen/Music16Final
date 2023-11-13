@@ -47,3 +47,6 @@ users would be able to follow and connect with their friends.
 - Son: Search Track use cases
 - Naura: Sign up use cases
 - Vanessa: Keep the readme files updated
+
+## Criteria for final project
+- Albert: Log in view (basic)
