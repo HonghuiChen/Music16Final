@@ -41,13 +41,6 @@ users would be able to follow and connect with their friends.
 - Finished our UML Class Diagram
 - Made a rough sketch on the UML sequence diagram for SearchTrack
 
-## Few updates on Week 9:
-- remove the follow/unfollow attributes of the User entity
-- made changes in the FavoriteArtist and FavoriteSongs attributes of the User entity
-- refractored getusername() method name
-- added getTrack helper class to retrieve track information when given the ID of the track
-- create SearchArtist class and implement the  searchArtist method
-
 ## Individual Responsibility:
 - Albert: Log in use cases, getTracks method
 - Will: Log out use cases, Search Artist use cases
@@ -64,4 +57,11 @@ users would be able to follow and connect with their friends.
 - Search API call
 - Fetch Spotify ID from API calls
 - Store data (songs, artists) in User as list of IDs
+
+## Few updates on Week 9:
+- remove the follow/unfollow attributes of the User entity
+- made changes in the FavoriteArtist and FavoriteSongs attributes of the User entity
+- refractored getusername() method name
+- added getTrack helper class to retrieve track information when given the ID of the track
+- create SearchArtist class and implement the  searchArtist method
 
