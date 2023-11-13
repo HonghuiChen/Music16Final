@@ -21,7 +21,7 @@ public class SearchTrackInteractor implements SearchTrackInputBoundary{
         }
     }
 
-    public void searchTrack(SearchTrackInputData inputData) throws IOException, JSONException {
+    public void search(SearchTrackInputData inputData) throws IOException, JSONException {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         Request request = new Request.Builder()
