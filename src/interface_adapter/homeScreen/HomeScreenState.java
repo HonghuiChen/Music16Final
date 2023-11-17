@@ -1,14 +1,14 @@
-package interface_adapter.logged_in;
+package interface_adapter.homeScreen;
 
-public class LoggedInState {
+public class HomeScreenState {
     private String username = "";
 
-    public LoggedInState(LoggedInState copy) {
+    public HomeScreenState(HomeScreenState copy) {
         username = copy.username;
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
-    public LoggedInState() {}
+    public HomeScreenState() {}
 
     public String getUsername() {
         return username;

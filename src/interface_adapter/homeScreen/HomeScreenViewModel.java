@@ -1,23 +1,23 @@
-package interface_adapter.logged_in;
+package interface_adapter.homeScreen;
 
 import interface_adapter.ViewModel;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class LoggedInViewModel extends ViewModel {
+public class HomeScreenViewModel extends ViewModel {
     public final String TITLE_LABEL = "Logged In View";
 
-    private LoggedInState state = new LoggedInState();
+    private HomeScreenState state = new HomeScreenState();
 
     public static final String LOGOUT_BUTTON_LABEL = "Log out";
     private String loggedInUser;
 
-    public LoggedInViewModel() {
+    public HomeScreenViewModel() {
         super("logged in");
     }
 
-    public void setState(LoggedInState state) {
+    public void setState(HomeScreenState state) {
         this.state = state;
     }
 
@@ -33,7 +33,7 @@ public class LoggedInViewModel extends ViewModel {
         support.addPropertyChangeListener(listener);
     }
 
-    public LoggedInState getState() {
+    public HomeScreenState getState() {
         return state;
     }
 
