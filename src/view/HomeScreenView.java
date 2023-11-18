@@ -2,6 +2,8 @@ package view;
 
 import interface_adapter.homeScreen.HomeScreenState;
 import interface_adapter.homeScreen.HomeScreenViewModel;
+import interface_adapter.SearchTrack.SearchTrackController;
+//import interface_adapter.SearchArtist.SearchArtistController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,11 +11,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.IOException;
 
 public class HomeScreenView extends JFrame implements ActionListener, PropertyChangeListener {
 
     public final String viewName = "logged in";
     private final HomeScreenViewModel homeScreenViewModel;
+
+    // All the controllers
+    private final SearchTrackController searchTrackController;
+    private final
 
     JLabel username;
 
@@ -26,19 +33,19 @@ public class HomeScreenView extends JFrame implements ActionListener, PropertyCh
     /**
      * A window with a title and a JButton.
      */
-    public HomeScreenView(HomeScreenViewModel homeScreenViewModel) {
+
+    // TODO: Add all the controllers here, and to the constructors, along with Main.java and
+    public HomeScreenView(HomeScreenViewModel homeScreenViewModel, SearchTrackController searchTrackController) {
         this.homeScreenViewModel = homeScreenViewModel;
         this.homeScreenViewModel.addPropertyChangeListener(this);
+        this.searchTrackController = searchTrackController;
 
         JLabel title = new JLabel("Logged In Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JLabel usernameInfo = new JLabel("Currently logged in: ");
         username = new JLabel();
-
-        JPanel buttons = new JPanel();
         logOut = new JButton(homeScreenViewModel.LOGOUT_BUTTON_LABEL);
-        buttons.add(logOut);
 
         // Initialize components
         searchInputField = new JTextField(20);
@@ -53,9 +60,16 @@ public class HomeScreenView extends JFrame implements ActionListener, PropertyCh
         this.add(searchTypeDropdown);
         this.add(searchButton);
         this.add(new JScrollPane(outputArea));
+        this.add(logOut);
 
         // Action listeners
-        searchButton.addActionListener(e -> performSearch());
+        searchButton.addActionListener(e -> {
+            try {
+                performSearch();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
 
         // Frame settings
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -63,11 +77,14 @@ public class HomeScreenView extends JFrame implements ActionListener, PropertyCh
         this.setVisible(true);
     }
 
-    private void performSearch() {
+    private void performSearch() throws IOException {
         String query = searchInputField.getText();
         String searchType = (String) searchTypeDropdown.getSelectedItem();
-        // Call interactor here with query and searchType
-        // For example: String result = interactor.search(query, searchType);
+        if (searchType.equals("Search Tracks")){
+            searchTrackController.execute(query);
+        }
+        //TODO other search cases
+        // Call controller here with query and searchType
         // Then display the result
         String result = "Mock result for " + query + " with type " + searchType; // Replace with actual call
         outputArea.setText(result);
