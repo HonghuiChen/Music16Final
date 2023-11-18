@@ -4,13 +4,16 @@ import app.api.Token;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class SearchArtistInteractor implements SearchArtistInputBoundary{
-    private static final String API_URL = "https://api.spotify.com/v1/search";
+    private static final String API_URL_Search = "https://api.spotify.com/v1/search";
+    private static final String API_URL_Get_Artist = "https://api.spotify.com/v1/artists";
     // Read token from token.txt
     private static String API_TOKEN;
 
@@ -25,23 +28,56 @@ public class SearchArtistInteractor implements SearchArtistInputBoundary{
 
     // Design to return the Artist spotify ID.
     public void searchArtist(SearchArtistInputData searchArtistInputData) throws IOException, JSONException {
-        OkHttpClient client = new OkHttpClient().newBuilder()
+        OkHttpClient searchClient = new OkHttpClient().newBuilder()
                 .build();
-        Request request = new Request.Builder()
-                .url(String.format("%s?q=%s&type=%s", API_URL, searchArtistInputData.getQuery(), "artist"))
+        //MAKE MARKET CA?
+        Request searchRequest = new Request.Builder()
+                .url(String.format("%s?q=%s&type=%s", API_URL_Search, searchArtistInputData.getQuery(), "artist"))
                 .addHeader("Authorization", API_TOKEN)
                 .addHeader("Content-Type", "application/json")
                 .build();
-        Response response = client.newCall(request).execute();
+        Response searchResponse = searchClient.newCall(searchRequest).execute();
         // System.out.println(response);
-        JSONObject responseBody = new JSONObject(response.body().string());
+        JSONObject searchResponseBody = new JSONObject(searchResponse.body().string());
 
-        String aritistId = responseBody.getJSONObject("artists").getJSONArray("items")
-                .getJSONObject(0).getString("id");
+        if (searchResponseBody.getJSONObject("artists").getJSONArray("items").isEmpty()) {
+            //Presenter.prepareFailView
+        }
+        else {
+            String artistID = searchResponseBody.getJSONObject("artists").getJSONArray("items")
+                    .getJSONObject(0).getString("id");
 
-        // return aritistId;
-        //TODO: decide what artist data to return then write code for another API call with the aritistId.
+            // get artist API call to get Artist's name, genre, followers.
+
+            OkHttpClient GetArtistClient = new OkHttpClient().newBuilder()
+                    .build();
+            Request GetArtistRequest = new Request.Builder()
+                    .url(String.format("%s/%s", API_URL_Get_Artist, artistID))
+                    .addHeader("Authorization", API_TOKEN)
+                    .addHeader("Content-Type", "application/json")
+                    .build();
+            Response GetArtistResponse = searchClient.newCall(searchRequest).execute();
+            JSONObject GetArtistResponseBody = new JSONObject(searchResponse.body().string());
+
+            String artistName = GetArtistResponseBody.getString("name");
+
+            JSONArray genresArray = GetArtistResponseBody.getJSONArray("genres");
+            ArrayList<String> artistGenres = new ArrayList<>();
+            for (int i = 0; i < genresArray.length(); i++) {
+                artistGenres.add(genresArray.getString(i));
+            }
+
+            String artistNumFollowers = GetArtistResponseBody.getJSONObject("followers").getString("total");
+
+            SearchArtistOutputData searchArtistOutputData =
+                    new SearchArtistOutputData(artistName, artistGenres, artistNumFollowers);
+
+            // Presenter.prepareSuccessView(SearchArtistOutputData);
+        }
+
 
     }
+
+
 
 }
