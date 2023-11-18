@@ -2,6 +2,7 @@ package view;
 
 import interface_adapter.logged_in.LoggedInState;
 import interface_adapter.logged_in.LoggedInViewModel;
+import interface_adapter.logged_in.LogoutController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,6 +16,8 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
     public final String viewName = "logged in";
     private final LoggedInViewModel loggedInViewModel;
 
+    private final LogoutController logoutController;
+
     JLabel username;
 
     final JButton logOut;
@@ -24,8 +27,9 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
     /**
      * A window with a title and a JButton logout and search.
      */
-    public LoggedInView(LoggedInViewModel loggedInViewModel) {
+    public LoggedInView(LoggedInViewModel loggedInViewModel, LogoutController logoutController) {
         this.loggedInViewModel = loggedInViewModel;
+        this.logoutController = logoutController;
         this.loggedInViewModel.addPropertyChangeListener(this);
 
         JLabel title = new JLabel("Logged In Screen");
@@ -41,6 +45,7 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
         buttons.add(search);
 
         logOut.addActionListener(this);
+        search.addActionListener(this);
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
