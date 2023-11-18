@@ -45,7 +45,15 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
         search = new JButton(loggedInViewModel.SEARCH_BUTTON_LABEL);
         buttons.add(search);
 
-        logOut.addActionListener(this);
+        logOut.addActionListener(
+            new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                if (Objects.equals(evt.getActionCommand(), "Log out")) {
+                    logoutController.execute();
+                }
+            }
+        }
+        );
         search.addActionListener(this);
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -60,9 +68,7 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
      * React to a button click that results in evt.
      */
     public void actionPerformed(ActionEvent evt) {
-        if (Objects.equals(evt.getActionCommand(), "Log out")) {
-            this.logoutController.execute();
-        }
+        System.out.println("Click " + evt.getActionCommand());
     }
 
     @Override
