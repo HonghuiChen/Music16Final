@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.Objects;
 
 public class LoggedInView extends JPanel implements ActionListener, PropertyChangeListener {
 
@@ -59,7 +60,9 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
      * React to a button click that results in evt.
      */
     public void actionPerformed(ActionEvent evt) {
-        System.out.println("Click " + evt.getActionCommand());
+        if (Objects.equals(evt.getActionCommand(), "Log out")) {
+            this.logoutController.execute();
+        }
     }
 
     @Override
