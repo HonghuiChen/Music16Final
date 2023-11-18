@@ -2,6 +2,7 @@ package view;
 
 import interface_adapter.logged_in.LoggedInState;
 import interface_adapter.logged_in.LoggedInViewModel;
+import interface_adapter.logged_in.LogoutController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,21 +10,27 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.Objects;
 
 public class LoggedInView extends JPanel implements ActionListener, PropertyChangeListener {
 
     public final String viewName = "logged in";
     private final LoggedInViewModel loggedInViewModel;
 
+    private final LogoutController logoutController;
+
     JLabel username;
 
     final JButton logOut;
 
+    final JButton search;
+
     /**
-     * A window with a title and a JButton.
+     * A window with a title and a JButton logout and search.
      */
-    public LoggedInView(LoggedInViewModel loggedInViewModel) {
+    public LoggedInView(LoggedInViewModel loggedInViewModel, LogoutController logoutController) {
         this.loggedInViewModel = loggedInViewModel;
+        this.logoutController = logoutController;
         this.loggedInViewModel.addPropertyChangeListener(this);
 
         JLabel title = new JLabel("Logged In Screen");
@@ -35,8 +42,19 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
         JPanel buttons = new JPanel();
         logOut = new JButton(loggedInViewModel.LOGOUT_BUTTON_LABEL);
         buttons.add(logOut);
+        search = new JButton(loggedInViewModel.SEARCH_BUTTON_LABEL);
+        buttons.add(search);
 
-        logOut.addActionListener(this);
+        logOut.addActionListener(
+            new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                if (Objects.equals(evt.getActionCommand(), "Log out")) {
+                    logoutController.execute();
+                }
+            }
+        }
+        );
+        search.addActionListener(this);
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
