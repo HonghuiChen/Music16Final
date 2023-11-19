@@ -15,7 +15,7 @@ public class SearchArtistController {
     public void execute(String query) throws IOException {
         SearchArtistInputData searchArtistInputData = new SearchArtistInputData(query);
 
-        searchArtistInteractor.searchArtist(searchArtistInputData);
+        searchArtistInteractor.execute(searchArtistInputData);
     }
 
 }

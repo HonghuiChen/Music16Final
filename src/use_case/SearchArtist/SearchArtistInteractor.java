@@ -26,11 +26,11 @@ public class SearchArtistInteractor implements SearchArtistInputBoundary{
     }
 
 
-    // Design to return the Artist spotify ID.
-    public void searchArtist(SearchArtistInputData searchArtistInputData) throws IOException, JSONException {
+    public void execute(SearchArtistInputData searchArtistInputData) throws IOException, JSONException {
+        // API call to get Artist ID.
         OkHttpClient searchClient = new OkHttpClient().newBuilder()
                 .build();
-        //MAKE MARKET CA?
+        // MAKE MARKET CA?
         Request searchRequest = new Request.Builder()
                 .url(String.format("%s?q=%s&type=%s", API_URL_Search, searchArtistInputData.getQuery(), "artist"))
                 .addHeader("Authorization", API_TOKEN)
@@ -48,36 +48,48 @@ public class SearchArtistInteractor implements SearchArtistInputBoundary{
                     .getJSONObject(0).getString("id");
 
             // get artist API call to get Artist's name, genre, followers.
-
-            OkHttpClient GetArtistClient = new OkHttpClient().newBuilder()
+            OkHttpClient getArtistClient = new OkHttpClient().newBuilder()
                     .build();
-            Request GetArtistRequest = new Request.Builder()
+            Request getArtistRequest = new Request.Builder()
                     .url(String.format("%s/%s", API_URL_Get_Artist, artistID))
                     .addHeader("Authorization", API_TOKEN)
                     .addHeader("Content-Type", "application/json")
                     .build();
-            Response GetArtistResponse = searchClient.newCall(searchRequest).execute();
-            JSONObject GetArtistResponseBody = new JSONObject(searchResponse.body().string());
+            Response getArtistResponse = getArtistClient.newCall(getArtistRequest).execute();
+            JSONObject getArtistResponseBody = new JSONObject(getArtistResponse.body().string());
 
-            String artistName = GetArtistResponseBody.getString("name");
+            String artistName = getArtistResponseBody.getString("name");
 
-            JSONArray genresArray = GetArtistResponseBody.getJSONArray("genres");
+            JSONArray genresArray = getArtistResponseBody.getJSONArray("genres");
             ArrayList<String> artistGenres = new ArrayList<>();
             for (int i = 0; i < genresArray.length(); i++) {
                 artistGenres.add(genresArray.getString(i));
             }
 
-            String artistNumFollowers = GetArtistResponseBody.getJSONObject("followers").getString("total");
+            Integer intArtistNumFollowers = getArtistResponseBody.getJSONObject("followers").getInt("total");
+
+            String artistNumFollowers = intArtistNumFollowers.toString();
+
+            // For Testing
+            System.out.println(artistName);
+            for (String genre: artistGenres) {
+                System.out.println(genre);
+            }
+            System.out.println(artistNumFollowers);
 
             SearchArtistOutputData searchArtistOutputData =
                     new SearchArtistOutputData(artistName, artistGenres, artistNumFollowers);
 
             // Presenter.prepareSuccessView(SearchArtistOutputData);
         }
-
-
+        // Search then stored data in a searchedArtist data file
+        // So User can then like the artist with the data
     }
 
-
+    public static void main(String[] args) throws IOException {
+        SearchArtistInteractor sa = new SearchArtistInteractor();
+        sa.execute(new SearchArtistInputData("Eminem"));
+    }
 
 }
+
