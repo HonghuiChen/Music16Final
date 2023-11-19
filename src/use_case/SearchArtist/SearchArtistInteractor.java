@@ -17,12 +17,18 @@ public class SearchArtistInteractor implements SearchArtistInputBoundary{
     // Read token from token.txt
     private static String API_TOKEN;
 
+    final SearchArtistOutputBoundary searchArtistPresenter;
+
     static {
         try {
             API_TOKEN = Token.get_auth();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public SearchArtistInteractor(SearchArtistOutputBoundary searchArtistOutputBoundary) {
+        this.searchArtistPresenter = searchArtistOutputBoundary;
     }
 
 
@@ -41,7 +47,7 @@ public class SearchArtistInteractor implements SearchArtistInputBoundary{
         JSONObject searchResponseBody = new JSONObject(searchResponse.body().string());
 
         if (searchResponseBody.getJSONObject("artists").getJSONArray("items").isEmpty()) {
-            //Presenter.prepareFailView
+            searchArtistPresenter.prepareFailView("Artist not exist.");
         }
         else {
             String artistID = searchResponseBody.getJSONObject("artists").getJSONArray("items")
@@ -80,15 +86,16 @@ public class SearchArtistInteractor implements SearchArtistInputBoundary{
             SearchArtistOutputData searchArtistOutputData =
                     new SearchArtistOutputData(artistName, artistGenres, artistNumFollowers);
 
-            // Presenter.prepareSuccessView(SearchArtistOutputData);
+            searchArtistPresenter.prepareSuccessView(searchArtistOutputData);
         }
         // Search then stored data in a searchedArtist data file
         // So User can then like the artist with the data
     }
 
+    // For testing
     public static void main(String[] args) throws IOException {
-        SearchArtistInteractor sa = new SearchArtistInteractor();
-        sa.execute(new SearchArtistInputData("Eminem"));
+        //SearchArtistInteractor sa = new SearchArtistInteractor();
+        //sa.execute(new SearchArtistInputData("Eminem"));
     }
 
 }
