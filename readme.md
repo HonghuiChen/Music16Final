@@ -70,8 +70,8 @@ users would be able to follow and connect with their friends.
 - finished log out use case
 - allowing user to switch between the signup view and login view, without having to signup everytime they open the app
 
-## Tasks need to be done on Week 10:
-- start outlining for the presentation 
+## Tasks need to be done in Week 10:
+- prepare presentation -> outline
 - finish all current use case
 - search track and search artist need to be finalized
 - write test case
