@@ -60,7 +60,6 @@ public class SearchTrackInteractor implements SearchTrackInputBoundary{
             }
             SearchTrackOutputData outputData = new SearchTrackOutputData(result);
 
-            // TODO create a presenter and pass the output data to it
             homeScreenPresenter.prepareSuccessView(outputData);
         } catch (IOException e) {
             e.printStackTrace();
