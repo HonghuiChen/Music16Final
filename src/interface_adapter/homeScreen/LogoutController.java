@@ -1,4 +1,4 @@
-package interface_adapter.logged_in;
+package interface_adapter.homeScreen;
 
 import use_case.logout.LogoutInputBoundary;
 

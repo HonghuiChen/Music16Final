@@ -1,6 +1,8 @@
 package interface_adapter.logged_in;
 
 import interface_adapter.ViewManagerModel;
+import interface_adapter.homeScreen.HomeScreenState;
+import interface_adapter.homeScreen.HomeScreenViewModel;
 import interface_adapter.login.LoginState;
 import interface_adapter.login.LoginViewModel;
 import use_case.logout.LogoutOutputBoundary;
@@ -8,12 +10,12 @@ import use_case.logout.LogoutOutputBoundary;
 public class LogoutPresenter implements LogoutOutputBoundary {
 
     private final LoginViewModel loginViewModel;
-    private final LoggedInViewModel loggedInViewModel;
+    private final HomeScreenViewModel homeScreenViewModel;
     private ViewManagerModel viewManagerModel;
 
-    public LogoutPresenter(LoginViewModel loginViewModel, LoggedInViewModel loggedInViewModel, ViewManagerModel viewManagerModel) {
+    public LogoutPresenter(LoginViewModel loginViewModel, HomeScreenViewModel loggedInViewModel, ViewManagerModel viewManagerModel) {
         this.loginViewModel = loginViewModel;
-        this.loggedInViewModel = loggedInViewModel;
+        this.homeScreenViewModel = loggedInViewModel;
         this.viewManagerModel = viewManagerModel;
     }
 
@@ -23,10 +25,10 @@ public class LogoutPresenter implements LogoutOutputBoundary {
         loginState.setPassword("");
         this.loginViewModel.setState(loginState);
         this.loginViewModel.firePropertyChanged();
-        LoggedInState loggedInState = loggedInViewModel.getState();
-        loggedInState.setUsername("");
-        this.loggedInViewModel.setState(loggedInState);
-        this.loggedInViewModel.firePropertyChanged();
+        HomeScreenState homeScreenState = homeScreenViewModel.getState();
+        homeScreenState.setUsername("");
+        this.homeScreenViewModel.setState(homeScreenState);
+        this.homeScreenViewModel.firePropertyChanged();
         //switch to log in view
         this.viewManagerModel.setActiveView(loginViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();

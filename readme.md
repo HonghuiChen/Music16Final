@@ -73,3 +73,5 @@ users would be able to follow and connect with their friends.
 
 
 
+## Criteria for final project
+- Albert: Log in view (basic)

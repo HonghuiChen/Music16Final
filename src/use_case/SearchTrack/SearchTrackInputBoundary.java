@@ -5,5 +5,5 @@ import org.json.JSONException;
 import java.io.IOException;
 
 public interface SearchTrackInputBoundary {
-    void searchTrack(SearchTrackInputData query) throws IOException, JSONException;
+    void search(SearchTrackInputData query) throws IOException, JSONException;
 }

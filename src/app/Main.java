@@ -3,13 +3,14 @@ package app;
 import data_access.FileUserDataAccessObject;
 import entity.UserFactory;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.logged_in.LoggedInViewModel;
+import interface_adapter.homeScreen.HomeScreenViewModel;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.signup.SignupViewModel;
-import view.LoggedInView;
+import view.HomeScreenView;
 import view.LoginView;
 import view.SignupView;
 import view.ViewManager;
+import app.api.Token;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,6 +21,8 @@ public class Main {
         // Build the main program window, the main panel containing the
         // various cards, and the layout, and stitch them together.
 
+        // Create Token
+        Token.main(new String[]{""});
         // The main application window.
         JFrame application = new JFrame("Login Example");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -39,7 +42,7 @@ public class Main {
         // results from the use case. The ViewModels are observable, and will
         // be observed by the Views.
         LoginViewModel loginViewModel = new LoginViewModel();
-        LoggedInViewModel loggedInViewModel = new LoggedInViewModel();
+        HomeScreenViewModel homeScreenViewModel = new HomeScreenViewModel();
         SignupViewModel signupViewModel = new SignupViewModel();
 
         FileUserDataAccessObject userDataAccessObject;
@@ -52,13 +55,18 @@ public class Main {
         SignupView signupView = SignupUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, userDataAccessObject);
         views.add(signupView, signupView.viewName);
 
-        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel, userDataAccessObject);
+        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, homeScreenViewModel, userDataAccessObject);
         views.add(loginView, loginView.viewName);
 
-        LoggedInView loggedInView = LogoutUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel);
-        views.add(loggedInView, loggedInView.viewName);
+        HomeScreenView homeScreenView = HomeScreenUseCaseFactory.create(viewManagerModel, loginViewModel, homeScreenViewModel);
+        views.add(homeScreenView, homeScreenView.viewName);
+//=======
+//        HomeScreenView loggedInView = LogoutUseCaseFactory.create(viewManagerModel, loginViewModel, homeScreenViewModel);
+//        views.add(loggedInView, loggedInView.viewName);
+//>>>>>>> main
 
-        viewManagerModel.setActiveView(signupView.viewName);
+        //TODO Need to change back to loginView.viewName
+        viewManagerModel.setActiveView(homeScreenView.viewName);
         viewManagerModel.firePropertyChanged();
 
         application.pack();
