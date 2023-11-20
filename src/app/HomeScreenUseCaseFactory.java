@@ -6,6 +6,7 @@ import interface_adapter.ViewManagerModel;
 import interface_adapter.homeScreen.HomeScreenPresenter;
 import interface_adapter.homeScreen.HomeScreenViewModel;
 import interface_adapter.homeScreen.LogoutController;
+import interface_adapter.homeScreen.LogoutPresenter;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginPresenter;
 import interface_adapter.login.LoginViewModel;
@@ -66,7 +67,7 @@ public class HomeScreenUseCaseFactory {
             HomeScreenViewModel loggedInViewModel) {
 
         // Notice how we pass this method's parameters to the Presenter.
-        LogoutOutputBoundary logoutOutputBoundary = new interface_adapter.logged_in.LogoutPresenter(loginViewModel, loggedInViewModel, viewManagerModel);
+        LogoutOutputBoundary logoutOutputBoundary = new LogoutPresenter(loginViewModel, loggedInViewModel, viewManagerModel);
 
         LogoutInputBoundary logoutInteractor = new LogoutInteractor(
                 logoutOutputBoundary);
