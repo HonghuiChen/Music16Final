@@ -6,7 +6,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class HomeScreenViewModel extends ViewModel {
-    public final String TITLE_LABEL = "Logged In View";
+    public final String TITLE_LABEL = "Home ScreenView";
 
     private HomeScreenState state = new HomeScreenState();
 
@@ -14,7 +14,7 @@ public class HomeScreenViewModel extends ViewModel {
     private String loggedInUser;
 
     public HomeScreenViewModel() {
-        super("logged in");
+        super("Home Screen");
     }
 
     public void setState(HomeScreenState state) {

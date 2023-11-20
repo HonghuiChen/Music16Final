@@ -10,6 +10,7 @@ import view.HomeScreenView;
 import view.LoginView;
 import view.SignupView;
 import view.ViewManager;
+import app.api.Token;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,6 +21,8 @@ public class Main {
         // Build the main program window, the main panel containing the
         // various cards, and the layout, and stitch them together.
 
+        // Create Token
+        Token.main(new String[]{""});
         // The main application window.
         JFrame application = new JFrame("Login Example");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -55,8 +58,9 @@ public class Main {
         LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, homeScreenViewModel, userDataAccessObject);
         views.add(loginView, loginView.viewName);
 
-        HomeScreenView homeScreenView = new HomeScreenView(homeScreenViewModel);
-        views.add(homeScreenView, homeScreenView.viewName);
+        // Needs to be updated to use the new HomeScreenViewModel
+        //HomeScreenView homeScreenView = new HomeScreenView(homeScreenViewModel);
+        //views.add(homeScreenView, homeScreenView.viewName);
 
         viewManagerModel.setActiveView(signupView.viewName);
         viewManagerModel.firePropertyChanged();

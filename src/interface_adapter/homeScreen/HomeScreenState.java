@@ -1,5 +1,7 @@
 package interface_adapter.homeScreen;
 
+import java.util.ArrayList;
+
 public class HomeScreenState {
     private String username = "";
 
@@ -15,5 +17,10 @@ public class HomeScreenState {
     }
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    //TODO Implement to send the output result to the view model
+    public void setOutput(ArrayList output) {
+
     }
 }
