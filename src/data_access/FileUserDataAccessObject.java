@@ -20,6 +20,8 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
 
     private final File csvFile;
 
+    private final File currUserFile;
+
     private final Map<String, Integer> headers = new LinkedHashMap<>();
 
     private final Map<String, User> accounts = new HashMap<>();
@@ -30,6 +32,7 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         this.userFactory = userFactory;
 
         csvFile = new File(csvPath);
+        currUserFile = new File("./currentUser.txt");
         headers.put("username", 0);
         headers.put("password", 1);
         headers.put("creation_time", 2);
@@ -87,6 +90,19 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
     // get user by username
     public User get(String username) {
         return accounts.get(username);
+    }
+
+    @Override
+    public void storeCurrUser(String username) {
+        BufferedWriter writer;
+        try {
+            writer = new BufferedWriter(new FileWriter(currUserFile));
+            writer.flush();
+            writer.write(username);
+            writer.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
