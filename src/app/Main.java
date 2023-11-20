@@ -60,6 +60,10 @@ public class Main {
 
         HomeScreenView homeScreenView = HomeScreenUseCaseFactory.create(viewManagerModel, loginViewModel, homeScreenViewModel);
         views.add(homeScreenView, homeScreenView.viewName);
+//=======
+//        HomeScreenView loggedInView = LogoutUseCaseFactory.create(viewManagerModel, loginViewModel, homeScreenViewModel);
+//        views.add(loggedInView, loggedInView.viewName);
+//>>>>>>> main
 
         //TODO Need to change back to loginView.viewName
         viewManagerModel.setActiveView(homeScreenView.viewName);

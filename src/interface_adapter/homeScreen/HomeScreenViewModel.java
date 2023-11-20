@@ -11,6 +11,9 @@ public class HomeScreenViewModel extends ViewModel {
     private HomeScreenState state = new HomeScreenState();
 
     public static final String LOGOUT_BUTTON_LABEL = "Log out";
+
+    public static final String SEARCH_BUTTON_LABEL = "Search";
+
     private String loggedInUser;
 
     public HomeScreenViewModel() {

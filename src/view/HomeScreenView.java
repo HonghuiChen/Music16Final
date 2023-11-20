@@ -3,6 +3,7 @@ package view;
 import interface_adapter.homeScreen.HomeScreenState;
 import interface_adapter.homeScreen.HomeScreenViewModel;
 import interface_adapter.SearchTrack.SearchTrackController;
+import interface_adapter.homeScreen.LogoutController;
 //import interface_adapter.SearchArtist.SearchArtistController;
 
 import javax.swing.*;
@@ -12,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
+import java.util.Objects;
 
 public class HomeScreenView extends JPanel implements ActionListener, PropertyChangeListener {
 
@@ -20,9 +22,9 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
 
     // All the controllers
     private final SearchTrackController searchTrackController;
-    private final
 
-    JLabel username;
+    private final LogoutController logoutController;
+    private final JLabel username;
 
     final JButton logOut;
     private JTextField searchInputField;
@@ -35,12 +37,14 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
      */
 
     // TODO: Add all the controllers here, and to the constructors, along with Main.java and
-    public HomeScreenView(HomeScreenViewModel homeScreenViewModel, SearchTrackController searchTrackController) {
+    public HomeScreenView(HomeScreenViewModel homeScreenViewModel, SearchTrackController searchTrackController,
+                          LogoutController logoutController) {
         this.homeScreenViewModel = homeScreenViewModel;
         this.homeScreenViewModel.addPropertyChangeListener(this);
         this.searchTrackController = searchTrackController;
+        this.logoutController = logoutController;
 
-        JLabel title = new JLabel("Logged In Screen");
+        JLabel title = new JLabel("Home Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JLabel usernameInfo = new JLabel("Currently logged in: ");
@@ -53,6 +57,17 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
         outputArea = new JTextArea(10, 30);
         outputArea.setEditable(false);
         searchButton = new JButton("Search");
+
+        // LOGOUT BUTTON
+        logOut.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (Objects.equals(evt.getActionCommand(), "Log out")) {
+                            logoutController.execute();
+                        }
+                    }
+                }
+        );
 
         // Layout
         this.setLayout(new FlowLayout());

@@ -5,6 +5,7 @@ import interface_adapter.SearchTrack.SearchTrackController;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.homeScreen.HomeScreenPresenter;
 import interface_adapter.homeScreen.HomeScreenViewModel;
+import interface_adapter.homeScreen.LogoutController;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginPresenter;
 import interface_adapter.login.LoginViewModel;
@@ -15,6 +16,9 @@ import use_case.login.LoginInputBoundary;
 import use_case.login.LoginInteractor;
 import use_case.login.LoginOutputBoundary;
 import use_case.login.LoginUserDataAccessInterface;
+import use_case.logout.LogoutInputBoundary;
+import use_case.logout.LogoutInteractor;
+import use_case.logout.LogoutOutputBoundary;
 import view.HomeScreenView;
 import view.LoginView;
 
@@ -33,7 +37,8 @@ public class HomeScreenUseCaseFactory {
 
         try {
             SearchTrackController searchTrackController = createSearchTrackController(viewManagerModel, loginViewModel, homeScreenViewModel);
-            return new HomeScreenView(homeScreenViewModel, searchTrackController);
+            LogoutController logoutController = createLogoutController(viewManagerModel, loginViewModel, homeScreenViewModel);
+            return new HomeScreenView(homeScreenViewModel, searchTrackController, logoutController);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "HS Factory Error: " + e.getMessage());
         }
@@ -53,5 +58,19 @@ public class HomeScreenUseCaseFactory {
         SearchTrackInputBoundary searchTrackInteractor = new SearchTrackInteractor(searchTrackOutputBoundary);
 
         return new SearchTrackController(searchTrackInteractor);
+    }
+
+    private static LogoutController createLogoutController(
+            ViewManagerModel viewManagerModel,
+            LoginViewModel loginViewModel,
+            HomeScreenViewModel loggedInViewModel) {
+
+        // Notice how we pass this method's parameters to the Presenter.
+        LogoutOutputBoundary logoutOutputBoundary = new interface_adapter.logged_in.LogoutPresenter(loginViewModel, loggedInViewModel, viewManagerModel);
+
+        LogoutInputBoundary logoutInteractor = new LogoutInteractor(
+                logoutOutputBoundary);
+
+        return new LogoutController(logoutInteractor);
     }
 }

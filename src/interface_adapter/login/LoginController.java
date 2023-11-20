@@ -10,11 +10,13 @@ public class LoginController {
         this.loginUseCaseInteractor = loginUseCaseInteractor;
     }
 
-
+    public void cancel() {
+        loginUseCaseInteractor.switchView();
+    }
     public void execute(String username, String password) {
         LoginInputData loginInputData = new LoginInputData(
                 username, password);
-
+        loginUseCaseInteractor.storeCurrUser(username);
         loginUseCaseInteractor.execute(loginInputData);
     }
 }

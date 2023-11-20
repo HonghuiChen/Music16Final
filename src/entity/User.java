@@ -25,7 +25,7 @@ public class User {
         return password;
     }
 
-    public Object getCreationTime() {
+    public LocalDateTime getCreationTime() {
         return creationTime;
     }
 
