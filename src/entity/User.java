@@ -32,4 +32,8 @@ public class User {
     public String getUsername() {
         return username;
     }
+
+    public ArrayList<Song> getFavoriteSongs(){ return FavoriteSongs;}
+
+    public ArrayList<String> getFavoriteArist(){ return FavoriteArist;}
 }
