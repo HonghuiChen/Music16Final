@@ -7,6 +7,7 @@ import use_case.signup.SignupUserDataAccessInterface;
 
 import java.io.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -96,5 +97,9 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         return accounts.containsKey(identifier);
     }
 
-
+    public boolean haveGenre(String username, String genre) {
+        User user = get(username);
+        ArrayList<String> genres = user.getGenrePreference();
+        return genres.contains(genre);
+    }
 }
