@@ -1,2 +1,4 @@
-package interface_adapter.LikeTracks;public class LikeTracksPresenter {
+package interface_adapter.LikeTracks;
+
+public class LikeTracksPresenter {
 }

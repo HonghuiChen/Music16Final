@@ -1,2 +1,4 @@
-package interface_adapter.LikeArtists;public class LikeArtistsState {
+package interface_adapter.LikeArtists;
+
+public class LikeArtistsState {
 }

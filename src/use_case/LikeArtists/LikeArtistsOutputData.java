@@ -7,8 +7,5 @@ public class LikeArtistsOutputData {
         this.artist = artist;
         this.useCaseFailed = useCaseFailed;
     }
-    public String getUsername() {
-        return artist;
-    } // ?
 
 }

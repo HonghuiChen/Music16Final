@@ -14,20 +14,22 @@ public class LikeArtistsInteractor implements LikeArtistsInputBoundary {
 
     @Override
     public void like(LikeArtistsInputData likeArtistsInputData) {
-        if (likeArtistsDataAccessObject.existsByArtists(user.getUsername(), likeArtistsInputData.getArtist())) {
+        String username = likeArtistsDataAccessObject.readCurrUser("currentUser.txt");
+        if (likeArtistsDataAccessObject.existsByArtists(username, likeArtistsInputData.getArtist())) {
             likePresenter.prepareFailView("You already liked this artist");
         } else {
             User user = likeArtistsDataAccessObject.get(likeArtistsInputData.getArtist());
-            LikeArtistsOutputData likeArtistsOutputData = new LikeArtistsOutputData(user.getUsername(), false);
-            likePresenter.prepareSuccessView(likeArtistsOutputData);
+            LikeArtistsOutputData likeArtistsOutputData = new LikeArtistsOutputData(username, false);
+            likePresenter.prepareLikeSuccessView(likeArtistsOutputData);
         }
     }
 
     @Override
     public void unlike(LikeArtistsInputData likeArtistsInputData) {
+        String username = likeArtistsDataAccessObject.readCurrUser("currentUser.txt");
         User user = likeArtistsDataAccessObject.get(likeArtistsInputData.getArtist());
-        LikeArtistsOutputData likeArtistsOutputData = new LikeArtistsOutputData(user.getUsername(), false);
-        likePresenter.prepareSuccessView(likeArtistsOutputData);
+        LikeArtistsOutputData likeArtistsOutputData = new LikeArtistsOutputData(username, false);
+        likePresenter.prepareUnlikeSuccessView(likeArtistsOutputData);
     }
 }
 
