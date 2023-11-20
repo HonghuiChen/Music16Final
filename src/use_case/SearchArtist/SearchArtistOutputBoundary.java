@@ -1,8 +1,8 @@
 package use_case.SearchArtist;
 
 public interface SearchArtistOutputBoundary {
-    void prepareSuccessView();
+    void prepareSuccessView(SearchArtistOutputData artistInfo);
 
-    void prepareFailView();
+    void prepareFailView(String error);
 
 }
