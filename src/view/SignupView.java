@@ -65,13 +65,14 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
 
         cancel.addActionListener(
             new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                if (evt.getSource().equals(cancel)) {
-                    signupController.cancel();
-                }
+                public void actionPerformed(ActionEvent evt) {
+                    if (evt.getSource().equals(cancel)) {
+                        signupController.cancel();
+                    }
 
+                }
             }
-        });
+        );
 
         // This makes a new KeyListener implementing class, instantiates it, and
         // makes it listen to keystrokes in the usernameInputField.
