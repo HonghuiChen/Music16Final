@@ -18,6 +18,7 @@ public class SearchTrackInteractor implements SearchTrackInputBoundary{
 
     static {
         try {
+            System.out.println("Getting token");
             API_TOKEN = Token.get_auth();
         } catch (IOException e) {
             throw new RuntimeException(e);

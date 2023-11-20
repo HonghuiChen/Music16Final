@@ -58,11 +58,11 @@ public class Main {
         LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, homeScreenViewModel, userDataAccessObject);
         views.add(loginView, loginView.viewName);
 
-        // Needs to be updated to use the new HomeScreenViewModel
-        //HomeScreenView homeScreenView = new HomeScreenView(homeScreenViewModel);
-        //views.add(homeScreenView, homeScreenView.viewName);
+        HomeScreenView homeScreenView = HomeScreenUseCaseFactory.create(viewManagerModel, loginViewModel, homeScreenViewModel);
+        views.add(homeScreenView, homeScreenView.viewName);
 
-        viewManagerModel.setActiveView(signupView.viewName);
+        //TODO Need to change back to loginView.viewName
+        viewManagerModel.setActiveView(homeScreenView.viewName);
         viewManagerModel.firePropertyChanged();
 
         application.pack();

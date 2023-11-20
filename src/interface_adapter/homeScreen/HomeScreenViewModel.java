@@ -25,6 +25,11 @@ public class HomeScreenViewModel extends ViewModel {
 
     // This is what the Login Presenter will call to let the ViewModel know
     // to alert the View
+    public void firePropertyChanged(String propertyName) {
+        support.firePropertyChange(propertyName, null, this.state);
+    }
+
+    @Override
     public void firePropertyChanged() {
         support.firePropertyChange("state", null, this.state);
     }

@@ -11,7 +11,6 @@ public class LoginPresenter implements LoginOutputBoundary {
     private final LoginViewModel loginViewModel;
     private final HomeScreenViewModel homeScreenViewModel;
     private ViewManagerModel viewManagerModel;
-    private HomeScreenState homeScreenState;
 
     public LoginPresenter(ViewManagerModel viewManagerModel,
                           HomeScreenViewModel homeScreenViewModel,
@@ -21,10 +20,11 @@ public class LoginPresenter implements LoginOutputBoundary {
         this.loginViewModel = loginViewModel;
     }
 
+    //TODO DEBUG THIS, NOT SWITCHING TO HOME SCREEN
     @Override
     public void prepareSuccessView(LoginOutputData response) {
-        // On success, switch to the logged in view.
-
+        // On success, switch to Home Screen view.
+        System.out.println("Switching to Home Screen view");
         HomeScreenState homeScreenState = homeScreenViewModel.getState();
         homeScreenState.setUsername(response.getUsername());
         this.homeScreenViewModel.setState(homeScreenState);

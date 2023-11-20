@@ -27,7 +27,7 @@ public class HomeScreenPresenter implements SearchTrackOutputBoundary {
         HomeScreenState homeScreenState = homeScreenViewModel.getState();
         homeScreenState.setOutput(results.getResults());
         this.homeScreenViewModel.setState(homeScreenState);
-        this.homeScreenViewModel.firePropertyChanged();
+        this.homeScreenViewModel.firePropertyChanged("searchTracks");
 
         this.viewManagerModel.setActiveView(homeScreenViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();

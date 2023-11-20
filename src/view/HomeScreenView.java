@@ -13,7 +13,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
 
-public class HomeScreenView extends JFrame implements ActionListener, PropertyChangeListener {
+public class HomeScreenView extends JPanel implements ActionListener, PropertyChangeListener {
 
     public final String viewName = "logged in";
     private final HomeScreenViewModel homeScreenViewModel;
@@ -70,10 +70,6 @@ public class HomeScreenView extends JFrame implements ActionListener, PropertyCh
                 throw new RuntimeException(ex);
             }
         });
-
-        // Frame settings
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.pack();
         this.setVisible(true);
     }
 
@@ -83,11 +79,6 @@ public class HomeScreenView extends JFrame implements ActionListener, PropertyCh
         if (searchType.equals("Search Tracks")){
             searchTrackController.execute(query);
         }
-        //TODO other search cases
-        // Call controller here with query and searchType
-        // Then display the result
-        String result = "Mock result for " + query + " with type " + searchType; // Replace with actual call
-        outputArea.setText(result);
     }
 
     /**
@@ -101,5 +92,9 @@ public class HomeScreenView extends JFrame implements ActionListener, PropertyCh
     public void propertyChange(PropertyChangeEvent evt) {
         HomeScreenState state = (HomeScreenState) evt.getNewValue();
         username.setText(state.getUsername());
+        if ("searchTracks".equals(evt.getPropertyName())) {
+//            outputArea.setText("");
+            outputArea.setText(state.getOutput());
+        }
     }
 }
