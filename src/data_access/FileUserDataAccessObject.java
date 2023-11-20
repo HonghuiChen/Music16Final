@@ -1,12 +1,14 @@
 package data_access;
 
 import entity.User;
+import entity.Song;
 import entity.UserFactory;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
 
 import java.io.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -95,6 +97,19 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
     public boolean existsByName(String identifier) {
         return accounts.containsKey(identifier);
     }
+
+    public boolean existsByTracks(String username, String song){
+        User user = get(username);
+        ArrayList<Song> songs = user.getFavoriteSongs();
+        return songs.contains(song);
+    }
+
+    public boolean existsByArtists(String username, String artist){
+        User user = get(username);
+        ArrayList<String> artists = user.getFavoriteArist();
+        return artists.contains(artist);
+    }
+
 
 
 }
