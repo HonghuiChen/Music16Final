@@ -27,5 +27,6 @@ public class SearchArtistOutputData {
         return followers;
     }
 
+    //Searched Time?
 
 }

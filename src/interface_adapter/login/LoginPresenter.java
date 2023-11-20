@@ -1,8 +1,8 @@
 package interface_adapter.login;
 
 import interface_adapter.ViewManagerModel;
-import interface_adapter.logged_in.LoggedInState;
-import interface_adapter.logged_in.LoggedInViewModel;
+import interface_adapter.homeScreen.HomeScreenState;
+import interface_adapter.homeScreen.HomeScreenViewModel;
 import interface_adapter.signup.SignupViewModel;
 import use_case.login.LoginOutputBoundary;
 import use_case.login.LoginOutputData;
@@ -10,28 +10,29 @@ import use_case.login.LoginOutputData;
 public class LoginPresenter implements LoginOutputBoundary {
 
     private final LoginViewModel loginViewModel;
-    private final LoggedInViewModel loggedInViewModel;
+    private final HomeScreenViewModel homeScreenViewModel;
     private ViewManagerModel viewManagerModel;
     private SignupViewModel signupViewModel;
 
     public LoginPresenter(ViewManagerModel viewManagerModel,
-                          LoggedInViewModel loggedInViewModel,
+                          HomeScreenViewModel homeScreenViewModel,
                           LoginViewModel loginViewModel) {
         this.viewManagerModel = viewManagerModel;
-        this.loggedInViewModel = loggedInViewModel;
+        this.homeScreenViewModel = homeScreenViewModel;
         this.loginViewModel = loginViewModel;
     }
 
+    //TODO DEBUG THIS, NOT SWITCHING TO HOME SCREEN
     @Override
     public void prepareSuccessView(LoginOutputData response) {
-        // On success, switch to the logged in view.
+        // On success, switch to Home Screen view.
+        System.out.println("Switching to Home Screen view");
+        HomeScreenState homeScreenState = homeScreenViewModel.getState();
+        homeScreenState.setUsername(response.getUsername());
+        this.homeScreenViewModel.setState(homeScreenState);
+        this.homeScreenViewModel.firePropertyChanged();
 
-        LoggedInState loggedInState = loggedInViewModel.getState();
-        loggedInState.setUsername(response.getUsername());
-        this.loggedInViewModel.setState(loggedInState);
-        this.loggedInViewModel.firePropertyChanged();
-
-        this.viewManagerModel.setActiveView(loggedInViewModel.getViewName());
+        this.viewManagerModel.setActiveView(homeScreenViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }
 

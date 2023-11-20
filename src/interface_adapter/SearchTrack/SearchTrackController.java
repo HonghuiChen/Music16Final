@@ -15,6 +15,6 @@ public class SearchTrackController {
         SearchTrackInputData searchTrackInputData = new SearchTrackInputData(
                 query);
 
-        searchTrackUseCaseInteractor.searchTrack(searchTrackInputData);
+        searchTrackUseCaseInteractor.search(searchTrackInputData);
     }
 }
