@@ -63,5 +63,13 @@ users would be able to follow and connect with their friends.
 - made changes in the FavoriteArtist and FavoriteSongs attributes of the User entity
 - refractored getusername() method name
 - added getTrack helper class to retrieve track information when given the ID of the track
-- create SearchArtist class and implement the  searchArtist method
+- create SearchArtist class and implement the searchArtist method
+- updated the readme files
+
+## Few updates on Week 10:
+- finished log out use case
+- allowing user to switch between the signup view and login view, without having to signup everytime they open the app
+
+
+
 
