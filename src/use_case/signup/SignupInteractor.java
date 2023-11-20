@@ -36,7 +36,7 @@ public class SignupInteractor implements SignupInputBoundary {
     }
 
     @Override
-    public void cancel() {
+    public void switchView() {
         userPresenter.cancel();
     }
 }

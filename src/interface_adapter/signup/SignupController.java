@@ -18,6 +18,6 @@ public class SignupController {
     }
 
     public void cancel() {
-        userSignupUseCaseInteractor.cancel();
+        userSignupUseCaseInteractor.switchView();
     }
 }

@@ -12,8 +12,13 @@ public class LoginInteractor implements LoginInputBoundary {
         this.loginPresenter = loginOutputBoundary;
     }
 
-    public void cancel() {
+    public void switchView() {
         loginPresenter.cancel();
+    }
+
+    @Override
+    public void storeCurrUser(String username) {
+        userDataAccessObject.storeCurrUser(username);
     }
 
     @Override
