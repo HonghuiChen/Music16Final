@@ -34,5 +34,12 @@ public class HomeScreenPresenter implements SearchTrackOutputBoundary {
     }
 
     public void prepareFailView(String error) {
+        HomeScreenState homeScreenState = homeScreenViewModel.getState();
+        homeScreenState.setError(error);
+        this.homeScreenViewModel.setState(homeScreenState);
+        this.homeScreenViewModel.firePropertyChanged("SearchTrackError");
+
+        this.viewManagerModel.setActiveView(homeScreenViewModel.getViewName());
+        this.viewManagerModel.firePropertyChanged();
     }
 }
