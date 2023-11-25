@@ -61,7 +61,7 @@ public class Main {
         HomeScreenView homeScreenView = HomeScreenUseCaseFactory.create(viewManagerModel, loginViewModel, homeScreenViewModel);
         views.add(homeScreenView, homeScreenView.viewName);
 
-        viewManagerModel.setActiveView(homeScreenView.viewName);
+        viewManagerModel.setActiveView(loginView.viewName);
         viewManagerModel.firePropertyChanged();
 
         application.pack();
