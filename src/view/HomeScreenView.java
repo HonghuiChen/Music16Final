@@ -17,7 +17,7 @@ import java.util.Objects;
 
 public class HomeScreenView extends JPanel implements ActionListener, PropertyChangeListener {
 
-    public final String viewName = "logged in";
+    public final String viewName = "Home Screen";
     private final HomeScreenViewModel homeScreenViewModel;
 
     // All the controllers

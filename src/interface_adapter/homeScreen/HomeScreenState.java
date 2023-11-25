@@ -8,6 +8,7 @@ public class HomeScreenState {
 
     public HomeScreenState(HomeScreenState copy) {
         username = copy.username;
+        output = copy.output;
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
@@ -20,7 +21,6 @@ public class HomeScreenState {
         this.username = username;
     }
 
-    //TODO Implement to send the output result to the view model
     public void setOutput(ArrayList<String> output) {
         this.output = output;
     }
