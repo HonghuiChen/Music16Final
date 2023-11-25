@@ -6,12 +6,8 @@ import interface_adapter.homeScreen.HomeScreenPresenter;
 import interface_adapter.homeScreen.HomeScreenViewModel;
 import interface_adapter.login.LoginViewModel;
 import org.json.JSONException;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import okhttp3.*;
-
 import java.io.IOException;
-
 import static org.junit.jupiter.api.Assertions.fail;
 
 class SearchTrackInteractorTest {
@@ -33,7 +29,6 @@ class SearchTrackInteractorTest {
                 fail("Failure as expected");
             }
         };
-
         SearchTrackInteractor searchTrackInteractor = new SearchTrackInteractor(successPresenter);
         searchTrackInteractor.search(inputData);
     }
@@ -84,5 +79,4 @@ class SearchTrackInteractorTest {
         SearchTrackInteractor searchTrackInteractor = new SearchTrackInteractor(failPresenter);
         searchTrackInteractor.search(inputData);
     }
-
 }

@@ -72,5 +72,4 @@ public class SearchTrackInteractor implements SearchTrackInputBoundary{
             homeScreenPresenter.prepareFailView("JSON parsing error");
         }
     }
-
 }
