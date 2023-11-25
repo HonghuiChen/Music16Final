@@ -1,6 +1,8 @@
 package app;
 
 import entity.UserFactory;
+import interface_adapter.SearchArtist.SearchArtistController;
+import interface_adapter.SearchArtist.SearchArtistPresenter;
 import interface_adapter.SearchTrack.SearchTrackController;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.homeScreen.HomeScreenPresenter;
@@ -10,6 +12,9 @@ import interface_adapter.homeScreen.LogoutPresenter;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginPresenter;
 import interface_adapter.login.LoginViewModel;
+import use_case.SearchArtist.SearchArtistInputBoundary;
+import use_case.SearchArtist.SearchArtistInteractor;
+import use_case.SearchArtist.SearchArtistOutputBoundary;
 import use_case.SearchTrack.SearchTrackInputBoundary;
 import use_case.SearchTrack.SearchTrackInteractor;
 import use_case.SearchTrack.SearchTrackOutputBoundary;
@@ -38,8 +43,9 @@ public class HomeScreenUseCaseFactory {
 
         try {
             SearchTrackController searchTrackController = createSearchTrackController(viewManagerModel, loginViewModel, homeScreenViewModel);
+            SearchArtistController searchArtistController = createSearchArtistUseCase(viewManagerModel, homeScreenViewModel);
             LogoutController logoutController = createLogoutController(viewManagerModel, loginViewModel, homeScreenViewModel);
-            return new HomeScreenView(homeScreenViewModel, searchTrackController, logoutController);
+            return new HomeScreenView(homeScreenViewModel, searchTrackController, searchArtistController, logoutController);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "HS Factory Error: " + e.getMessage());
         }
@@ -74,4 +80,18 @@ public class HomeScreenUseCaseFactory {
 
         return new LogoutController(logoutInteractor);
     }
+
+    private static SearchArtistController createSearchArtistUseCase(
+            ViewManagerModel viewManagerModel,
+            HomeScreenViewModel homeScreenViewModel) {
+
+        SearchArtistOutputBoundary searchArtistOutputBoundary =
+                new SearchArtistPresenter(viewManagerModel, homeScreenViewModel);
+
+        SearchArtistInputBoundary searchArtistInteractor = new SearchArtistInteractor(searchArtistOutputBoundary);
+
+        return new SearchArtistController(searchArtistInteractor);
+    }
+
+
 }

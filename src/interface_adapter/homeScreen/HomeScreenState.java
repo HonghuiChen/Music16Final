@@ -33,4 +33,5 @@ public class HomeScreenState {
         }
         return outputBuilder.toString();
     }
+
 }
