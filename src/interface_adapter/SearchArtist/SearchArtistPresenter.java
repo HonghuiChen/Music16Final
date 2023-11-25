@@ -7,6 +7,8 @@ import use_case.SearchArtist.SearchArtistInputData;
 import use_case.SearchArtist.SearchArtistOutputBoundary;
 import use_case.SearchArtist.SearchArtistOutputData;
 
+import java.util.ArrayList;
+
 public class SearchArtistPresenter implements SearchArtistOutputBoundary {
 
     private final HomeScreenViewModel homeScreenViewModel;
@@ -30,9 +32,13 @@ public class SearchArtistPresenter implements SearchArtistOutputBoundary {
 
     @Override
     public void prepareFailView(String error) {
-//        HomeScreenState homeScreenState = homeScreenViewModel.getState();
-//        homeScreenState.setArtistNotExistError(error);
-//        homeScreenViewModel.firePropertyChanged();
+        HomeScreenState homeScreenState = homeScreenViewModel.getState();
+        ArrayList<String> errorlist = new ArrayList<>();
+        errorlist.add(error);
+        homeScreenState.setOutput(errorlist);
+
+        this.homeScreenViewModel.setState(homeScreenState);
+        homeScreenViewModel.firePropertyChanged("searchArtists");
     }
 
 

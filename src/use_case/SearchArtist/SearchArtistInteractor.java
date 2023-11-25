@@ -74,14 +74,14 @@ public class SearchArtistInteractor implements SearchArtistInputBoundary{
 
             Integer intArtistNumFollowers = getArtistResponseBody.getJSONObject("followers").getInt("total");
 
-            String artistNumFollowers = intArtistNumFollowers.toString();
+            String artistNumFollowers = intArtistNumFollowers.toString() + " followers";
 
             // For Testing
-            System.out.println(artistName);
-            for (String genre: artistGenres) {
-                System.out.println(genre);
-            }
-            System.out.println(artistNumFollowers);
+//            System.out.println(artistName);
+//            for (String genre: artistGenres) {
+//                System.out.println(genre);
+//            }
+//            System.out.println(artistNumFollowers);
 
             SearchArtistOutputData searchArtistOutputData =
                     new SearchArtistOutputData(artistName, artistGenres, artistNumFollowers);
