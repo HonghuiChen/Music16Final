@@ -1,5 +1,6 @@
 package view;
 
+import interface_adapter.SearchArtist.SearchArtistController;
 import interface_adapter.homeScreen.HomeScreenState;
 import interface_adapter.homeScreen.HomeScreenViewModel;
 import interface_adapter.SearchTrack.SearchTrackController;
@@ -23,6 +24,8 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
     // All the controllers
     private final SearchTrackController searchTrackController;
 
+    private final SearchArtistController searchArtistController;
+
     private final LogoutController logoutController;
     private final JLabel username;
 
@@ -38,10 +41,11 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
 
     // TODO: Add all the controllers here, and to the constructors, along with Main.java and
     public HomeScreenView(HomeScreenViewModel homeScreenViewModel, SearchTrackController searchTrackController,
-                          LogoutController logoutController) {
+                          SearchArtistController searchArtistController, LogoutController logoutController) {
         this.homeScreenViewModel = homeScreenViewModel;
         this.homeScreenViewModel.addPropertyChangeListener(this);
         this.searchTrackController = searchTrackController;
+        this.searchArtistController = searchArtistController;
         this.logoutController = logoutController;
 
         JLabel title = new JLabel("Home Screen");
@@ -94,6 +98,9 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
         if (searchType.equals("Search Tracks")){
             searchTrackController.execute(query);
         }
+        if (searchType.equals("Search Artists")){
+            searchArtistController.execute(query);
+        }
     }
 
     /**
@@ -109,6 +116,10 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
         username.setText(state.getUsername());
         if ("searchTracks".equals(evt.getPropertyName())) {
 //            outputArea.setText("");
+            outputArea.setText(state.getOutput());
+        }
+
+        if ("searchArtists".equals(evt.getPropertyName())) {
             outputArea.setText(state.getOutput());
         }
     }
