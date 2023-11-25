@@ -5,7 +5,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import app.api.Token;
-import use_case.signup.SignupOutputBoundary;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,7 +29,6 @@ public class SearchTrackInteractor implements SearchTrackInputBoundary{
     }
 
     public void search(SearchTrackInputData inputData) throws IOException, JSONException {
-
         try {
             OkHttpClient client = new OkHttpClient().newBuilder()
                     .build();

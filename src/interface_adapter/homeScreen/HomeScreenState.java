@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class HomeScreenState {
     private String username = "";
     ArrayList<String> output;
+    private String error;
 
     public HomeScreenState(HomeScreenState copy) {
         username = copy.username;
@@ -23,6 +24,10 @@ public class HomeScreenState {
 
     public void setOutput(ArrayList<String> output) {
         this.output = output;
+    }
+
+    public void setError(String error) {
+        this.error = error;
     }
     public String getOutput() {
         //Get a string builder to build the output
