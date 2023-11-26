@@ -93,10 +93,10 @@ public class SearchArtistInteractor implements SearchArtistInputBoundary{
     }
 
     // For testing
-    public static void main(String[] args) throws IOException {
-        //SearchArtistInteractor sa = new SearchArtistInteractor();
-        //sa.execute(new SearchArtistInputData("Eminem"));
-    }
+//    public static void main(String[] args) throws IOException {
+//        //SearchArtistInteractor sa = new SearchArtistInteractor();
+//        //sa.execute(new SearchArtistInputData("Eminem"));
+//    }
 
 }
 

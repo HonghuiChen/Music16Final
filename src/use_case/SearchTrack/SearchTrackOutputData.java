@@ -8,4 +8,7 @@ public class SearchTrackOutputData {
     public SearchTrackOutputData(ArrayList results) {
         this.results = results;
     }
+    public ArrayList getResults() {
+        return results;
+    }
 }
