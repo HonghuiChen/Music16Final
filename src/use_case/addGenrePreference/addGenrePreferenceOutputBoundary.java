@@ -1,6 +1,8 @@
 package use_case.addGenrePreference;
 
 public interface addGenrePreferenceOutputBoundary {
-    void prepareSuccessView(addGenrePreferenceOutputData user);
-    void prepareFailView(String error);
+    void prepareAddSuccessView(addGenrePreferenceOutputData user);
+    void prepareAddFailView(String error);
+
+    void cancel();
 }

@@ -104,6 +104,16 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         }
     }
 
+    public String readCurrUser(String fname) throws FileNotFoundException {
+        BufferedReader reader;
+        try {
+            reader = new BufferedReader(new FileReader(fname));
+            return reader.readLine();
+        } catch (IOException e) {
+            throw new FileNotFoundException();
+        }
+    }
+
     /**
      * Return whether a user exists with username identifier.
      * @param identifier the username to check.

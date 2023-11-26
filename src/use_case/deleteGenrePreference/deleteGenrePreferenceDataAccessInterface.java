@@ -1,14 +1,13 @@
-package use_case.addGenrePreference;
+package use_case.deleteGenrePreference;
 
 import entity.User;
 
-public interface addGenrePreferenceDataAccessInterface {
+public interface deleteGenrePreferenceDataAccessInterface {
     boolean haveGenre(String username, String genre);
 
     public User get(String username);
 
-    void addGenre(String genre);
+    void deleteGenre(String genre);
 
     String readCurrUser(String fname);
 }
-

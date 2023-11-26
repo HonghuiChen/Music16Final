@@ -2,7 +2,9 @@ package use_case.deleteGenrePreference;
 
 import use_case.deleteGenrePreference.deleteGenrePreferenceOutputData;
 
-public class deleteGenrePreferenceOutputBoundary {
-    void prepareSuccessView(deleteGenrePreferenceOutputData user);
-    void prepareFailView(String error);
+public interface deleteGenrePreferenceOutputBoundary {
+    void prepareDeleteSuccessView(deleteGenrePreferenceOutputData user);
+    void prepareDeleteFailView(String error);
+    void cancel();
+
 }

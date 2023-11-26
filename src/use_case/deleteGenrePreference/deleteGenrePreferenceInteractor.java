@@ -2,25 +2,26 @@ package use_case.deleteGenrePreference;
 
 import entity.User;
 
-public class addGenrePreferenceInteractor implements deleteGenrePreferenceInputBoundary{
+public class deleteGenrePreferenceInteractor {
     final deleteGenrePreferenceDataAccessInterface deleteGenrePreferenceDataAccessObject;
     final deleteGenrePreferenceOutputBoundary deleteGenrePresenter;
-    final User user;
-    public addGenrePreferenceInteractor(deleteGenrePreferenceDataAccessInterface deletegenrePreferenceDataAccessInterface,
+
+    public deleteGenrePreferenceInteractor(deleteGenrePreferenceDataAccessInterface deletegenrePreferenceDataAccessInterface,
                                         deleteGenrePreferenceOutputBoundary deletegenrePreferenceOutputBoundary) {
         this.deleteGenrePreferenceDataAccessObject = deletegenrePreferenceDataAccessInterface;
         this.deleteGenrePresenter = deletegenrePreferenceOutputBoundary;
-        this.user =
     }
+
     @Override
     public void execute(deleteGenrePreferenceInputData deletegenrePreferenceInputData) {
-        if (deleteGenrePreferenceDataAccessObject.haveGenre(loggedIn,
-                deletegenrePreferenceInputData.getGenre())) {
-            userPresenter.prepareFailView("Genre is either already deleted or not in your preference.");
+        String username = deleteGenrePreferenceDataAccessObject.readCurrUser("currentUser.txt");
+        if (!deleteGenrePreferenceDataAccessObject.haveGenre(username, deletegenrePreferenceInputData.getGenre())) {
+            deleteGenrePresenter.prepareDeleteFailView("Genre is not in your preferences.");
         } else {
-            //String genre = ...
-            //userDataAccessObject.addGenre(genre);
-            deleteGenrePreferenceOutputData deletegenrePreferenceOutputData = new deleteGenrePreferenceOutputData();
-            userPresenter.prepareSuccessView(deletegenrePreferenceOutputData);
-
+            String genre = deletegenrePreferenceInputData.getGenre();
+            User user = deleteGenrePreferenceDataAccessObject.get(genre);
+            deleteGenrePreferenceOutputData deletegenrePreferenceOutputData = new deleteGenrePreferenceOutputData(user.getUsername(), false);
+            deleteGenrePresenter.prepareDeleteSuccessView(deletegenrePreferenceOutputData);
         }
+    }
+}
