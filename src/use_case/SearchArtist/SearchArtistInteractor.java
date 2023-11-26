@@ -47,7 +47,7 @@ public class SearchArtistInteractor implements SearchArtistInputBoundary{
         JSONObject searchResponseBody = new JSONObject(searchResponse.body().string());
 
         if (searchResponseBody.getJSONObject("artists").getJSONArray("items").isEmpty()) {
-            searchArtistPresenter.prepareFailView("Artist not exist.");
+            searchArtistPresenter.prepareFailView("Sorry, we couldn't find this artist.");
         }
         else {
             String artistID = searchResponseBody.getJSONObject("artists").getJSONArray("items")
