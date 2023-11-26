@@ -1,5 +1,6 @@
 package view;
 
+import interface_adapter.GenrePreference.GenreController;
 import interface_adapter.SearchArtist.SearchArtistController;
 import interface_adapter.homeScreen.HomeScreenState;
 import interface_adapter.homeScreen.HomeScreenViewModel;
@@ -27,6 +28,7 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
     private final SearchArtistController searchArtistController;
 
     private final LogoutController logoutController;
+    private final GenreController genreController;
     private final JLabel username;
 
     final JButton logOut;
@@ -35,14 +37,17 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
     private JTextArea outputArea;
     private JButton searchButton;
 
+    private JButton genrePreferenceButton;
+
     /**
      * A window with a title and a JButton.
      */
 
     // TODO: Add all the controllers here, and to the constructors, along with Main.java and
     public HomeScreenView(HomeScreenViewModel homeScreenViewModel, SearchTrackController searchTrackController,
-                          SearchArtistController searchArtistController, LogoutController logoutController) {
+                          SearchArtistController searchArtistController, LogoutController logoutController, GenreController genreController) {
         this.homeScreenViewModel = homeScreenViewModel;
+        this.genreController = genreController;
         this.homeScreenViewModel.addPropertyChangeListener(this);
         this.searchTrackController = searchTrackController;
         this.searchArtistController = searchArtistController;
@@ -80,6 +85,7 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
         this.add(searchButton);
         this.add(new JScrollPane(outputArea));
         this.add(logOut);
+        this.add(genrePreferenceButton);
 
         // Action listeners
         searchButton.addActionListener(e -> {
@@ -90,6 +96,9 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
             }
         });
         this.setVisible(true);
+
+        // GENRE PREFERENCE BUTTON
+        // Still confused
     }
 
     private void performSearch() throws IOException {

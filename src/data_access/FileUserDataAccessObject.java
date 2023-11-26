@@ -7,6 +7,7 @@ import use_case.signup.SignupUserDataAccessInterface;
 
 import java.io.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -103,6 +104,16 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         }
     }
 
+    public String readCurrUser(String fname) throws FileNotFoundException {
+        BufferedReader reader;
+        try {
+            reader = new BufferedReader(new FileReader(fname));
+            return reader.readLine();
+        } catch (IOException e) {
+            throw new FileNotFoundException();
+        }
+    }
+
     /**
      * Return whether a user exists with username identifier.
      * @param identifier the username to check.
@@ -112,5 +123,9 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         return accounts.containsKey(identifier);
     }
 
-
+    public boolean haveGenre(String username, String genre) {
+        User user = get(username);
+        ArrayList<String> genres = user.getGenrePreference();
+        return genres.contains(genre);
+    }
 }
