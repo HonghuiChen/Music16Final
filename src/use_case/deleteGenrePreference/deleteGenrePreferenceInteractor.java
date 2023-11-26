@@ -2,7 +2,7 @@ package use_case.deleteGenrePreference;
 
 import entity.User;
 
-public class deleteGenrePreferenceInteractor {
+public class deleteGenrePreferenceInteractor implements deleteGenrePreferenceInputBoundary {
     final deleteGenrePreferenceDataAccessInterface deleteGenrePreferenceDataAccessObject;
     final deleteGenrePreferenceOutputBoundary deleteGenrePresenter;
 
