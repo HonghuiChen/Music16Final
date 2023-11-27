@@ -7,5 +7,8 @@ public class LikeTracksOutputData {
         this.song = song;
         this.useCaseFailed = useCaseFailed;
     }
+    public String getSong(){
+        return song;
+    }
 
 }

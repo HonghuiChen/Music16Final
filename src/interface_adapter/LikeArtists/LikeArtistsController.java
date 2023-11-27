@@ -9,12 +9,12 @@ public class LikeArtistsController {
         this.likeArtistsInteractor = likeArtistsInteractor;
     }
 
-    public void like(LikeArtistsInputData likeArtistsInputData) {
-        LikeArtistsInputData likeArtistsInputDatas = new LikeArtistsInputData(likeArtistsInputData.toString());
+    public void like(String artist) {
+        LikeArtistsInputData likeArtistsInputDatas = new LikeArtistsInputData(artist);
         likeArtistsInteractor.like(likeArtistsInputDatas);
     }
-    public void unlike(LikeArtistsInputData likeArtistsInputData) {
-        LikeArtistsInputData likeArtistsInputDatas = new LikeArtistsInputData(likeArtistsInputData.toString());
+    public void unlike(String artist) {
+        LikeArtistsInputData likeArtistsInputDatas = new LikeArtistsInputData(artist);
         likeArtistsInteractor.unlike(likeArtistsInputDatas);
     }
 }

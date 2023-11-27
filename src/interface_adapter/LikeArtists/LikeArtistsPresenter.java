@@ -15,17 +15,25 @@ public class LikeArtistsPresenter implements LikeArtistsOutputBoundary {
     }
 
     @Override
-    public void prepareLikeSuccessView(LikeArtistsViewModel artist){
-        // implemented later
+    public void prepareLikeSuccessView(LikeArtistsOutputData artist){
+        LikeArtistsState likeArtistsState = likeArtistsViewModel.getState(); // implement getState
+        likeArtistsState.likeArtist(artist.getArtists()); // implement getArtists??
+        this.viewManagerModel.setActiveView(likeArtistsViewModel.getViewName()); // implement getViewName
+        this.viewManagerModel.firePropertyChanged();
     }
 
     @Override
-    public void prepareUnlikeSuccessView(LikeArtistsViewModel artist){
-        // implemented later
+    public void prepareUnlikeSuccessView(LikeArtistsOutputData artist){
+        LikeArtistsState likeArtistsState = likeArtistsViewModel.getState();
+        likeArtistsState.unlikeArtist(artist.getArtists());
+        this.viewManagerModel.setActiveView(likeArtistsViewModel.getViewName()); // implement getViewName
+        this.viewManagerModel.firePropertyChanged();
     }
 
     @Override
-    public void prepareFailView(LikeArtistsViewModel artist){
-        // implemented later
+    public void prepareFailView(String error){
+        LikeArtistsState likeArtistsState = likeArtistsViewModel.getState();
+        likeArtistsState.likeArtistError(error); // implement likeError??
+        likeArtistsViewModel.firePropertyChanged();
     }
 }

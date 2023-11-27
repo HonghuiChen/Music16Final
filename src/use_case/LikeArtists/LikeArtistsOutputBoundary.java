@@ -1,7 +1,7 @@
 package use_case.LikeArtists;
 
 public interface LikeArtistsOutputBoundary {
-    void prepareLikeSuccessView(LikeArtistsOutputData song);
-    void prepareUnlikeSuccessView(LikeArtistsOutputData song);
+    void prepareLikeSuccessView(LikeArtistsOutputData artist);
+    void prepareUnlikeSuccessView(LikeArtistsOutputData artist);
     void prepareFailView(String error);
 }

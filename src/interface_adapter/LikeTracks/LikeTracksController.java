@@ -9,12 +9,12 @@ public class LikeTracksController {
         this.likeTracksInteractor = likeTracksInteractor;
     }
 
-    public void like(LikeTracksInputData likeTracksInputData) {
-        LikeTracksInputData likeTracksInputDatas = new LikeTracksInputData(likeTracksInputData.toString());
+    public void like(String track) {
+        LikeTracksInputData likeTracksInputDatas = new LikeTracksInputData(track);
         likeTracksInteractor.like(likeTracksInputDatas);
     }
-    public void unlike(LikeTracksInputData likeTracksInputData) {
-        LikeTracksInputData likeTracksInputDatas = new LikeTracksInputData(likeTracksInputData.toString());
+    public void unlike(String track) {
+        LikeTracksInputData likeTracksInputDatas = new LikeTracksInputData(track);
         likeTracksInteractor.unlike(likeTracksInputDatas);
     }
 }
