@@ -45,7 +45,7 @@ public class LoginUseCaseFactory {
         // Notice how we pass this method's parameters to the Presenter.
         LoginOutputBoundary loginOutputBoundary = new LoginPresenter(viewManagerModel, homeScreenViewModel, loginViewModel);
 
-        UserFactory userFactory = new UserFactory();
+        //UserFactory userFactory = new UserFactory();
 
         LoginInputBoundary loginInteractor = new LoginInteractor(
                 userDataAccessObject, loginOutputBoundary);

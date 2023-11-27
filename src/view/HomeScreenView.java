@@ -43,7 +43,6 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
      * A window with a title and a JButton.
      */
 
-    // TODO: Add all the controllers here, and to the constructors, along with Main.java and
     public HomeScreenView(HomeScreenViewModel homeScreenViewModel, SearchTrackController searchTrackController,
                           SearchArtistController searchArtistController, LogoutController logoutController, GenreController genreController) {
         this.homeScreenViewModel = homeScreenViewModel;
@@ -82,7 +81,7 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
         genrePreferenceButton.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
-                        if (Objects.equals(evt.getActionCommand(), "Change Genre")) {
+                        if (Objects.equals(evt.getActionCommand(), "Change Preference")) {
                             genreController.switchView();
                         }
                     }

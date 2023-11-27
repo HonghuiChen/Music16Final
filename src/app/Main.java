@@ -60,7 +60,8 @@ public class Main {
         HomeScreenView homeScreenView = HomeScreenUseCaseFactory.create(viewManagerModel, loginViewModel, homeScreenViewModel, genreViewModel, userDataAccessObject, userDataAccessObject);
         views.add(homeScreenView, homeScreenView.viewName);
 
-        GenreView genreView = ;
+        GenreView genreView = GenreUseCaseFactory.create(viewManagerModel, genreViewModel, userDataAccessObject);
+        views.add(genreView, genreView.viewName);
 
         viewManagerModel.setActiveView(loginView.viewName);
         viewManagerModel.firePropertyChanged();
