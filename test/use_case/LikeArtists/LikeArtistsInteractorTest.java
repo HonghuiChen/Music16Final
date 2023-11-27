@@ -1,4 +1,4 @@
-package use_case.LikeArtist;
+package use_case.LikeArtists;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -32,7 +32,7 @@ class LikeArtistsInteractorTest{
         }
         LikeArtistsInteractor interactor = new LikeArtistsInteractor(successPresenter);
         interactor.like(input);
-        interactor.unlike(input); // shoul we divide the test case for like and unlike?
+        interactor.unlike(input);
 
     }
 }
