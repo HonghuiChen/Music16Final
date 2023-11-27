@@ -2,14 +2,12 @@ package app;
 
 import data_access.FileUserDataAccessObject;
 import entity.UserFactory;
+import interface_adapter.GenrePreference.GenreViewModel;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.homeScreen.HomeScreenViewModel;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.signup.SignupViewModel;
-import view.HomeScreenView;
-import view.LoginView;
-import view.SignupView;
-import view.ViewManager;
+import view.*;
 import app.api.Token;
 
 import javax.swing.*;
@@ -44,6 +42,7 @@ public class Main {
         LoginViewModel loginViewModel = new LoginViewModel();
         HomeScreenViewModel homeScreenViewModel = new HomeScreenViewModel();
         SignupViewModel signupViewModel = new SignupViewModel();
+        GenreViewModel genreViewModel = new GenreViewModel();
 
         FileUserDataAccessObject userDataAccessObject;
         try {
@@ -58,8 +57,10 @@ public class Main {
         LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, homeScreenViewModel, userDataAccessObject);
         views.add(loginView, loginView.viewName);
 
-        HomeScreenView homeScreenView = HomeScreenUseCaseFactory.create(viewManagerModel, loginViewModel, homeScreenViewModel);
+        HomeScreenView homeScreenView = HomeScreenUseCaseFactory.create(viewManagerModel, loginViewModel, homeScreenViewModel, genreViewModel, userDataAccessObject, userDataAccessObject);
         views.add(homeScreenView, homeScreenView.viewName);
+
+        GenreView genreView = ;
 
         viewManagerModel.setActiveView(loginView.viewName);
         viewManagerModel.firePropertyChanged();

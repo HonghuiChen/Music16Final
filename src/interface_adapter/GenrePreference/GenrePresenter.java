@@ -47,8 +47,9 @@ public class GenrePresenter
         GenreState.setGenreError(error);
         genreViewModel.firePropertyChanged();
     }
+
     @Override
-    public void cancel() {
+    public void switchView() {
         genreViewModel = new GenreViewModel();
         this.viewManagerModel.setActiveView(genreViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();

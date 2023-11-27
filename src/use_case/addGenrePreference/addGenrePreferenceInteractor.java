@@ -2,6 +2,7 @@ package use_case.addGenrePreference;
 
 import entity.User;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class addGenrePreferenceInteractor implements addGenrePreferenceInputBoundary {
@@ -15,7 +16,7 @@ public class addGenrePreferenceInteractor implements addGenrePreferenceInputBoun
     }
 
     @Override
-    public void execute(addGenrePreferenceInputData addgenrePreferenceInputData) {
+    public void execute(addGenrePreferenceInputData addgenrePreferenceInputData) throws FileNotFoundException {
         String username = addGenrePreferenceDataAccessObject.readCurrUser("currentUser.txt");
         ArrayList<String> availableGenres = getGenre.getAvailableGenres();
         if ( ! availableGenres.contains(addgenrePreferenceInputData.getGenre())) {
@@ -29,5 +30,10 @@ public class addGenrePreferenceInteractor implements addGenrePreferenceInputBoun
             addGenrePreferenceOutputData addgenrePreferenceOutputData = new addGenrePreferenceOutputData(user.getUsername(), false);
             addGenrePresenter.prepareAddSuccessView(addgenrePreferenceOutputData);
         }
+    }
+
+    @Override
+    public void switchView() {
+        addGenrePresenter.switchView();
     }
 }

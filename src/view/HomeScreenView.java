@@ -31,7 +31,7 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
     private final GenreController genreController;
     private final JLabel username;
 
-    final JButton logOut;
+    final JButton logOutButton;
     private JTextField searchInputField;
     private JComboBox<String> searchTypeDropdown;
     private JTextArea outputArea;
@@ -58,7 +58,7 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
 
         JLabel usernameInfo = new JLabel("Currently logged in: ");
         username = new JLabel();
-        logOut = new JButton(homeScreenViewModel.LOGOUT_BUTTON_LABEL);
+        logOutButton = new JButton(homeScreenViewModel.LOGOUT_BUTTON_LABEL);
 
         // Initialize components
         searchInputField = new JTextField(20);
@@ -66,13 +66,24 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
         outputArea = new JTextArea(10, 30);
         outputArea.setEditable(false);
         searchButton = new JButton("Search");
+        genrePreferenceButton = new JButton("Change Preference");
 
         // LOGOUT BUTTON
-        logOut.addActionListener(
+        logOutButton.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (Objects.equals(evt.getActionCommand(), "Log out")) {
                             logoutController.execute();
+                        }
+                    }
+                }
+        );
+
+        genrePreferenceButton.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (Objects.equals(evt.getActionCommand(), "Change Genre")) {
+                            genreController.switchView();
                         }
                     }
                 }
@@ -84,7 +95,7 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
         this.add(searchTypeDropdown);
         this.add(searchButton);
         this.add(new JScrollPane(outputArea));
-        this.add(logOut);
+        this.add(logOutButton);
         this.add(genrePreferenceButton);
 
         // Action listeners
