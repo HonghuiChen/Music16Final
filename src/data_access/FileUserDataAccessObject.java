@@ -126,7 +126,12 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
     public boolean existsByTracks(String username, String song){
         User user = get(username);
         ArrayList<Song> songs = user.getFavoriteSongs();
-        return songs.contains(song);
+        for (Song value : songs) {
+            if (value.getName().equals(song)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean existsByArtists(String username, String artist){
