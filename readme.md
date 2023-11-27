@@ -70,8 +70,8 @@ users would be able to follow and connect with their friends.
 - finished log out use case
 - allowing user to switch between the signup view and login view, without having to signup everytime they open the app
 
-
-
+## Few updates on Week 11:
+- finished add & delete genre preference
 
 ## Criteria for final project
 - Albert: Log in view (basic)
