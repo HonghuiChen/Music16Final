@@ -7,4 +7,6 @@ public interface deleteGenrePreferenceOutputBoundary {
     void prepareDeleteFailView(String error);
     void cancel();
 
+    void homeButton();
+
 }

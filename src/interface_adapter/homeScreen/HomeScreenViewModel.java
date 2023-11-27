@@ -12,6 +12,8 @@ public class HomeScreenViewModel extends ViewModel {
 
     public static final String LOGOUT_BUTTON_LABEL = "Log out";
 
+    public static final String GENRE_BUTTON_LABEL = "Genre Preference";
+
     public static final String SEARCH_BUTTON_LABEL = "Search";
 
     private String loggedInUser;

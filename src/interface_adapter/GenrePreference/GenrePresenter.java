@@ -2,6 +2,7 @@ package interface_adapter.GenrePreference;
 
 import interface_adapter.ViewManagerModel;
 import interface_adapter.GenrePreference.GenreViewModel;
+import interface_adapter.signup.SignupViewModel;
 import use_case.addGenrePreference.addGenrePreferenceOutputBoundary;
 import use_case.addGenrePreference.addGenrePreferenceOutputData;
 import use_case.deleteGenrePreference.deleteGenrePreferenceOutputBoundary;
@@ -54,5 +55,11 @@ public class GenrePresenter
         this.viewManagerModel.firePropertyChanged();
     }
 
+    @Override
+    public void homeButton() {
+        genreViewModel = new GenreViewModel();
+        this.viewManagerModel.setActiveView(genreViewModel.getViewName());
+        this.viewManagerModel.firePropertyChanged();
+    }
 }
 

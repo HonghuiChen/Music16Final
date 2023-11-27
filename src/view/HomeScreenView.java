@@ -28,7 +28,8 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
     private final SearchArtistController searchArtistController;
 
     private final LogoutController logoutController;
-    //private final GenreController genreController;
+
+    private final GenreController genreController;
     private final JLabel username;
 
     final JButton logOut;
@@ -45,9 +46,9 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
 
     // TODO: Add all the controllers here, and to the constructors, along with Main.java and
     public HomeScreenView(HomeScreenViewModel homeScreenViewModel, SearchTrackController searchTrackController,
-                          SearchArtistController searchArtistController, LogoutController logoutController) {
+                          SearchArtistController searchArtistController, LogoutController logoutController, GenreController genreController) {
         this.homeScreenViewModel = homeScreenViewModel;
-        //this.genreController = genreController;
+        this.genreController = genreController;
         this.homeScreenViewModel.addPropertyChangeListener(this);
         this.searchTrackController = searchTrackController;
         this.searchArtistController = searchArtistController;
@@ -59,6 +60,7 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
         JLabel usernameInfo = new JLabel("Currently logged in: ");
         username = new JLabel();
         logOut = new JButton(homeScreenViewModel.LOGOUT_BUTTON_LABEL);
+        genrePreferenceButton = new JButton(homeScreenViewModel.GENRE_BUTTON_LABEL);
 
         // Initialize components
         searchInputField = new JTextField(20);
@@ -98,7 +100,15 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
         this.setVisible(true);
 
         // GENRE PREFERENCE BUTTON
-        // Still confused
+        genrePreferenceButton.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (Objects.equals(evt.getActionCommand(), "Genre Preference")) {
+                            HomeScreenView.this.genreController.homeButton();
+                        }
+                    }
+                }
+        );
     }
 
     private void performSearch() throws IOException {
