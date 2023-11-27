@@ -22,16 +22,15 @@ public class LoginPresenter implements LoginOutputBoundary {
         this.loginViewModel = loginViewModel;
     }
 
-    //TODO DEBUG THIS, NOT SWITCHING TO HOME SCREEN
     @Override
     public void prepareSuccessView(LoginOutputData response) {
         // On success, switch to Home Screen view.
-        System.out.println("Switching to Home Screen view");
         HomeScreenState homeScreenState = homeScreenViewModel.getState();
         homeScreenState.setUsername(response.getUsername());
         this.homeScreenViewModel.setState(homeScreenState);
         this.homeScreenViewModel.firePropertyChanged();
-
+        System.out.println("Switching to Home Screen view");
+        //switch to home screen view
         this.viewManagerModel.setActiveView(homeScreenViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }

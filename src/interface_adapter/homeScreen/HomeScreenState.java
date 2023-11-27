@@ -5,9 +5,11 @@ import java.util.ArrayList;
 public class HomeScreenState {
     private String username = "";
     ArrayList<String> output;
+    private String error;
 
     public HomeScreenState(HomeScreenState copy) {
         username = copy.username;
+        output = copy.output;
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
@@ -20,9 +22,12 @@ public class HomeScreenState {
         this.username = username;
     }
 
-    //TODO Implement to send the output result to the view model
     public void setOutput(ArrayList<String> output) {
         this.output = output;
+    }
+
+    public void setError(String error) {
+        this.error = error;
     }
     public String getOutput() {
         //Get a string builder to build the output
@@ -33,4 +38,5 @@ public class HomeScreenState {
         }
         return outputBuilder.toString();
     }
+
 }

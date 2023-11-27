@@ -5,7 +5,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import app.api.Token;
-import use_case.signup.SignupOutputBoundary;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,7 +29,10 @@ public class SearchTrackInteractor implements SearchTrackInputBoundary{
     }
 
     public void search(SearchTrackInputData inputData) throws IOException, JSONException {
-
+        if (inputData.getQuery().equals("")) {
+            homeScreenPresenter.prepareFailView("Query cannot be null");
+            return;
+        }
         try {
             OkHttpClient client = new OkHttpClient().newBuilder()
                     .build();
@@ -45,7 +47,7 @@ public class SearchTrackInteractor implements SearchTrackInputBoundary{
             if (!response.isSuccessful()) try {
                 throw new IOException("Unexpected code " + response);
             } catch (IOException ex) {
-                throw new RuntimeException(ex);
+                System.out.println("SearchTrack - code = 400");
             }
 
             JSONObject responseBody = new JSONObject(response.body().string());
@@ -59,8 +61,6 @@ public class SearchTrackInteractor implements SearchTrackInputBoundary{
                 result.add(song + " - " + artist);
             }
             SearchTrackOutputData outputData = new SearchTrackOutputData(result);
-
-            // TODO create a presenter and pass the output data to it
             homeScreenPresenter.prepareSuccessView(outputData);
         } catch (IOException e) {
             e.printStackTrace();
@@ -72,5 +72,4 @@ public class SearchTrackInteractor implements SearchTrackInputBoundary{
             homeScreenPresenter.prepareFailView("JSON parsing error");
         }
     }
-
 }
