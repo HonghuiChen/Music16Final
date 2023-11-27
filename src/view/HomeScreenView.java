@@ -28,7 +28,7 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
     private final SearchArtistController searchArtistController;
 
     private final LogoutController logoutController;
-    private final GenreController genreController;
+    //private final GenreController genreController;
     private final JLabel username;
 
     final JButton logOut;
@@ -45,9 +45,9 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
 
     // TODO: Add all the controllers here, and to the constructors, along with Main.java and
     public HomeScreenView(HomeScreenViewModel homeScreenViewModel, SearchTrackController searchTrackController,
-                          SearchArtistController searchArtistController, LogoutController logoutController, GenreController genreController) {
+                          SearchArtistController searchArtistController, LogoutController logoutController) {
         this.homeScreenViewModel = homeScreenViewModel;
-        this.genreController = genreController;
+        //this.genreController = genreController;
         this.homeScreenViewModel.addPropertyChangeListener(this);
         this.searchTrackController = searchTrackController;
         this.searchArtistController = searchArtistController;
