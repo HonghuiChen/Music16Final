@@ -78,4 +78,8 @@ users would be able to follow and connect with their friends.
 - look the graded criteria, will be added in the presentation
 - write the git issues
 
+## Few updates on Week 11:
+- finished add & delete genre preference
 
+## Criteria for final project
+- Albert: Log in view (basic)

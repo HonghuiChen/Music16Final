@@ -25,7 +25,7 @@ class SearchArtistInteractorTest {
                 genres.add("rap");
                 assertEquals(genres, artistInfo.getGenres());
 
-                assertEquals("78528512", artistInfo.getFollowers());
+                assertEquals("78820805 followers", artistInfo.getFollowers());
             }
 
             @Override
@@ -38,5 +38,28 @@ class SearchArtistInteractorTest {
         interactor.execute(inputData);
 
     }
+
+    @Test
+    void failureTest() throws IOException {
+        SearchArtistInputData inputData = new SearchArtistInputData("aavdkaecadvaec");
+
+        SearchArtistOutputBoundary failurePresenter = new SearchArtistOutputBoundary() {
+
+            @Override
+            public void prepareSuccessView(SearchArtistOutputData artistInfo) {
+                fail("Use case success is unexpected.");
+            }
+
+            @Override
+            public void prepareFailView(String error) {
+                assertEquals("Sorry, we couldn't find this artist.", error);
+            }
+        };
+
+        SearchArtistInteractor interactor = new SearchArtistInteractor(failurePresenter);
+        interactor.execute(inputData);
+    }
+
+
 
 }

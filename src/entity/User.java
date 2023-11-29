@@ -9,11 +9,8 @@ public class User {
     private String password;
     private LocalDateTime creationTime;
     private ArrayList<String> genrePreference;
-    private ArrayList<String> FavoriteArist;
-    private ArrayList<Song> FavoriteSongs;
-    private ArrayList<User> Followers;
-    private ArrayList<User> Follow;
-
+    private ArrayList<String> FavoriteArtist;
+    private ArrayList<String> FavoriteSongs;
 
     public User(String name, String password, LocalDateTime ltd) {
         this.username = name;
@@ -33,7 +30,10 @@ public class User {
         return username;
     }
 
+
     public ArrayList<Song> getFavoriteSongs(){ return FavoriteSongs;}
 
     public ArrayList<String> getFavoriteArist(){ return FavoriteArist;}
+
+    public ArrayList<String> getGenrePreference() { return genrePreference; }
 }
