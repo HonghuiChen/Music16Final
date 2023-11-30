@@ -1,5 +1,8 @@
 package app;
 
+import interface_adapter.GenrePreference.GenreController;
+import interface_adapter.GenrePreference.GenrePresenter;
+import interface_adapter.GenrePreference.GenreViewModel;
 import interface_adapter.SearchArtist.SearchArtistController;
 import interface_adapter.SearchArtist.SearchArtistPresenter;
 import interface_adapter.SearchTrack.SearchTrackController;
@@ -14,6 +17,14 @@ import use_case.SearchArtist.SearchArtistInteractor;
 import use_case.SearchArtist.SearchArtistOutputBoundary;
 import use_case.SearchTrack.SearchTrackInputBoundary;
 import use_case.SearchTrack.SearchTrackInteractor;
+import use_case.addGenrePreference.addGenrePreferenceDataAccessInterface;
+import use_case.addGenrePreference.addGenrePreferenceInputBoundary;
+import use_case.addGenrePreference.addGenrePreferenceInteractor;
+import use_case.addGenrePreference.addGenrePreferenceOutputBoundary;
+import use_case.deleteGenrePreference.deleteGenrePreferenceDataAccessInterface;
+import use_case.deleteGenrePreference.deleteGenrePreferenceInputBoundary;
+import use_case.deleteGenrePreference.deleteGenrePreferenceInteractor;
+import use_case.deleteGenrePreference.deleteGenrePreferenceOutputBoundary;
 import use_case.logout.LogoutInputBoundary;
 import use_case.logout.LogoutInteractor;
 import use_case.logout.LogoutOutputBoundary;
@@ -30,13 +41,17 @@ public class HomeScreenUseCaseFactory {
     public static HomeScreenView create(
             ViewManagerModel viewManagerModel,
             LoginViewModel loginViewModel,
-            HomeScreenViewModel homeScreenViewModel) {
+            HomeScreenViewModel homeScreenViewModel,
+            GenreViewModel genreViewModel,
+            addGenrePreferenceDataAccessInterface addGenreDataAccessObject,
+            deleteGenrePreferenceDataAccessInterface deleteGenreDataAccessObject) {
 
         try {
             SearchTrackController searchTrackController = createSearchTrackController(viewManagerModel, loginViewModel, homeScreenViewModel);
             SearchArtistController searchArtistController = createSearchArtistUseCase(viewManagerModel, homeScreenViewModel);
             LogoutController logoutController = createLogoutController(viewManagerModel, loginViewModel, homeScreenViewModel);
-            return new HomeScreenView(homeScreenViewModel, searchTrackController, searchArtistController, logoutController);
+            GenreController genreController = createGenreUseCase(viewManagerModel, genreViewModel, addGenreDataAccessObject, deleteGenreDataAccessObject);
+            return new HomeScreenView(homeScreenViewModel, searchTrackController, searchArtistController, logoutController, genreController);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "HS Factory Error: " + e.getMessage());
         }
@@ -44,12 +59,6 @@ public class HomeScreenUseCaseFactory {
         return null;
     }
 
-    //private static GenreController createGenreController(
-           // ViewManagerModel viewManagerModel, LoginViewModel loginViewModel, HomeScreenViewModel homeScreenViewModel)
-            //throws IOException {
-   // }
-
-    //TODO Create all the necessary controllers here
     private static SearchTrackController createSearchTrackController(
             ViewManagerModel viewManagerModel,
             LoginViewModel loginViewModel,
@@ -87,6 +96,28 @@ public class HomeScreenUseCaseFactory {
         SearchArtistInputBoundary searchArtistInteractor = new SearchArtistInteractor(searchArtistOutputBoundary);
 
         return new SearchArtistController(searchArtistInteractor);
+    }
+
+    private static GenreController createGenreUseCase(
+            ViewManagerModel viewManagerModel,
+            GenreViewModel genreViewModel,
+            addGenrePreferenceDataAccessInterface addGenreDataAccessObject,
+            deleteGenrePreferenceDataAccessInterface deleteGenreDataAccessObject) {
+
+        addGenrePreferenceOutputBoundary addGenreOutputBoundary =
+                new GenrePresenter(viewManagerModel, genreViewModel);
+
+        deleteGenrePreferenceOutputBoundary deleteGenreOutputBoundary =
+                new GenrePresenter(viewManagerModel, genreViewModel);
+
+        addGenrePreferenceInputBoundary addGenreInteractor = new addGenrePreferenceInteractor(addGenreDataAccessObject,
+                addGenreOutputBoundary);
+
+        deleteGenrePreferenceInputBoundary deleteGenreInteractor = new deleteGenrePreferenceInteractor(
+                deleteGenreDataAccessObject,
+                deleteGenreOutputBoundary);
+
+        return new GenreController(addGenreInteractor, deleteGenreInteractor);
     }
 
 
