@@ -22,7 +22,7 @@ public class deleteGenrePreferenceInteractor implements deleteGenrePreferenceInp
         } else {
             String genre = deletegenrePreferenceInputData.getGenre();
             User user = deleteGenrePreferenceDataAccessObject.get(username);
-            user.setGenrePreference(genre);
+            user.deleteGenrePreference(genre);
             deleteGenrePreferenceOutputData deletegenrePreferenceOutputData = new deleteGenrePreferenceOutputData(genre, false);
             deleteGenrePresenter.prepareDeleteSuccessView(deletegenrePreferenceOutputData);
         }

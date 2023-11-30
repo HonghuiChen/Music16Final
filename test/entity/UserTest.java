@@ -37,4 +37,10 @@ class UserTest {
         User user = new User("username", "password", now);
         assertEquals(now, user.getCreationTime(), "getCreationTime should return the correct creation time");
     }
+
+    @Test
+    void testGetGenrePreference() {
+        User user = new User("username", "password", LocalDateTime.now());
+        assertEquals(null, user.getGenrePreference(), "getGenrePreference should return the correct genre preference");
+    }
 }

@@ -1,8 +1,6 @@
 package interface_adapter.homeScreen;
 
 import interface_adapter.ViewManagerModel;
-import interface_adapter.homeScreen.HomeScreenState;
-import interface_adapter.homeScreen.HomeScreenViewModel;
 import interface_adapter.login.LoginState;
 import interface_adapter.login.LoginViewModel;
 import use_case.logout.LogoutOutputBoundary;

@@ -41,7 +41,6 @@ public class SearchTrackInteractor implements SearchTrackInputBoundary{
                     .addHeader("Content-Type", "application/json")
                     .build();
             Response response = client.newCall(request).execute();
-            System.out.println(response);
 
             if (!response.isSuccessful()) try {
                 throw new IOException("Unexpected code " + response);
@@ -49,8 +48,9 @@ public class SearchTrackInteractor implements SearchTrackInputBoundary{
                 System.out.println("SearchTrack - code = 400");
             }
 
-            JSONObject responseBody = new JSONObject(response.body().string());
-            JSONArray items = responseBody.getJSONObject("tracks").getJSONArray("items");
+            ResponseBody responseBody = response.body();
+            JSONObject body = new JSONObject(responseBody.string());
+            JSONArray items = body.getJSONObject("tracks").getJSONArray("items");
 
             // The array list that will store the results of the search
             ArrayList<String> result = new ArrayList<>();

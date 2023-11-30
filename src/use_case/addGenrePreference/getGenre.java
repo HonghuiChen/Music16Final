@@ -23,7 +23,7 @@ public class getGenre {
             throw new RuntimeException(e);
         }
     }
-    public static void main(String[] args) {
+    public static void initAvailableGenres() {
         // Create an HTTP client
         HttpClient httpClient = HttpClient.newHttpClient();
 
