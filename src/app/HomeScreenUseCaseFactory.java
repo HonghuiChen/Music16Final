@@ -1,6 +1,5 @@
 package app;
 
-import entity.UserFactory;
 import interface_adapter.GenrePreference.GenreController;
 import interface_adapter.GenrePreference.GenrePresenter;
 import interface_adapter.GenrePreference.GenreViewModel;
@@ -12,15 +11,12 @@ import interface_adapter.homeScreen.HomeScreenPresenter;
 import interface_adapter.homeScreen.HomeScreenViewModel;
 import interface_adapter.homeScreen.LogoutController;
 import interface_adapter.homeScreen.LogoutPresenter;
-import interface_adapter.login.LoginController;
-import interface_adapter.login.LoginPresenter;
 import interface_adapter.login.LoginViewModel;
 import use_case.SearchArtist.SearchArtistInputBoundary;
 import use_case.SearchArtist.SearchArtistInteractor;
 import use_case.SearchArtist.SearchArtistOutputBoundary;
 import use_case.SearchTrack.SearchTrackInputBoundary;
 import use_case.SearchTrack.SearchTrackInteractor;
-import use_case.SearchTrack.SearchTrackOutputBoundary;
 import use_case.addGenrePreference.addGenrePreferenceDataAccessInterface;
 import use_case.addGenrePreference.addGenrePreferenceInputBoundary;
 import use_case.addGenrePreference.addGenrePreferenceInteractor;
@@ -29,15 +25,10 @@ import use_case.deleteGenrePreference.deleteGenrePreferenceDataAccessInterface;
 import use_case.deleteGenrePreference.deleteGenrePreferenceInputBoundary;
 import use_case.deleteGenrePreference.deleteGenrePreferenceInteractor;
 import use_case.deleteGenrePreference.deleteGenrePreferenceOutputBoundary;
-import use_case.login.LoginInputBoundary;
-import use_case.login.LoginInteractor;
-import use_case.login.LoginOutputBoundary;
-import use_case.login.LoginUserDataAccessInterface;
 import use_case.logout.LogoutInputBoundary;
 import use_case.logout.LogoutInteractor;
 import use_case.logout.LogoutOutputBoundary;
 import view.HomeScreenView;
-import view.LoginView;
 
 import javax.swing.*;
 import java.io.IOException;
