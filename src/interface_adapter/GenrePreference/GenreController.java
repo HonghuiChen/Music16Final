@@ -30,5 +30,5 @@ public class GenreController {
     }
 
     public void switchView() {addGenrePreferenceInteractor.switchView();
-    }
+
 }

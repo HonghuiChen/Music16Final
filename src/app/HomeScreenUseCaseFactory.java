@@ -12,8 +12,6 @@ import interface_adapter.homeScreen.HomeScreenPresenter;
 import interface_adapter.homeScreen.HomeScreenViewModel;
 import interface_adapter.homeScreen.LogoutController;
 import interface_adapter.homeScreen.LogoutPresenter;
-import interface_adapter.login.LoginController;
-import interface_adapter.login.LoginPresenter;
 import interface_adapter.login.LoginViewModel;
 import use_case.SearchArtist.SearchArtistInputBoundary;
 import use_case.SearchArtist.SearchArtistInteractor;
@@ -37,7 +35,6 @@ import use_case.logout.LogoutInputBoundary;
 import use_case.logout.LogoutInteractor;
 import use_case.logout.LogoutOutputBoundary;
 import view.HomeScreenView;
-import view.LoginView;
 
 import javax.swing.*;
 import java.io.IOException;

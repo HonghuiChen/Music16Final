@@ -2,6 +2,7 @@ package use_case.addGenrePreference;
 
 import app.api.Token;
 import entity.User;
+import interface_adapter.GenrePreference.GenreController;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -9,12 +10,12 @@ import java.util.ArrayList;
 
 public class addGenrePreferenceInteractor implements addGenrePreferenceInputBoundary {
     final addGenrePreferenceDataAccessInterface addGenrePreferenceDataAccessObject;
-    final addGenrePreferenceOutputBoundary addGenrePresenter;
+    final addGenrePreferenceOutputBoundary GenrePresenter;
 
     public addGenrePreferenceInteractor(addGenrePreferenceDataAccessInterface addgenrePreferenceDataAccessInterface,
                                         addGenrePreferenceOutputBoundary addgenrePreferenceOutputBoundary) {
         this.addGenrePreferenceDataAccessObject = addgenrePreferenceDataAccessInterface;
-        this.addGenrePresenter = addgenrePreferenceOutputBoundary;
+        this.GenrePresenter = addgenrePreferenceOutputBoundary;
     }
 
     @Override
@@ -23,16 +24,16 @@ public class addGenrePreferenceInteractor implements addGenrePreferenceInputBoun
         getGenre.main(null);
         ArrayList<String> availableGenres = getGenre.getAvailableGenres();
         if ( ! availableGenres.contains(addgenrePreferenceInputData.getGenre())) {
-            addGenrePresenter.prepareAddFailView("This is not a valid genre.");
+            GenrePresenter.prepareAddFailView("This is not a valid genre.");
         }
         if (addGenrePreferenceDataAccessObject.haveGenre(username, addgenrePreferenceInputData.getGenre())) {
-            addGenrePresenter.prepareAddFailView("Genre already inputted.");
+            GenrePresenter.prepareAddFailView("Genre already inputted.");
         } else {
             String genre = addgenrePreferenceInputData.getGenre();
             User user = addGenrePreferenceDataAccessObject.get(username);
             user.setGenrePreference(genre);
-            addGenrePreferenceOutputData addgenrePreferenceOutputData = new addGenrePreferenceOutputData(genre, false);
-            addGenrePresenter.prepareAddSuccessView(addgenrePreferenceOutputData);
+            addGenrePreferenceOutputData addGenrePreferenceOutputData = new addGenrePreferenceOutputData(genre, false);
+            GenrePresenter.prepareAddSuccessView(addGenrePreferenceOutputData);
         }
     }
 
