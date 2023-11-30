@@ -127,7 +127,7 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         User user = get(username);
         ArrayList<Song> songs = user.getFavoriteSongs();
         for (Song value : songs) {
-            if (value.getName().equals(song)) {
+            if (value.equals(song)) {
                 return true;
             }
         }
