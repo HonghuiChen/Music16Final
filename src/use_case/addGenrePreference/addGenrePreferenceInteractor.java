@@ -20,7 +20,7 @@ public class addGenrePreferenceInteractor implements addGenrePreferenceInputBoun
     @Override
     public void execute(addGenrePreferenceInputData addgenrePreferenceInputData) throws FileNotFoundException {
         String username = addGenrePreferenceDataAccessObject.readCurrUser("currentUser.txt");
-        getGenre.main(null);
+        getGenre.initAvailableGenres();
         ArrayList<String> availableGenres = getGenre.getAvailableGenres();
         if ( ! availableGenres.contains(addgenrePreferenceInputData.getGenre())) {
             addGenrePresenter.prepareAddFailView("This is not a valid genre.");
@@ -30,9 +30,9 @@ public class addGenrePreferenceInteractor implements addGenrePreferenceInputBoun
         } else {
             String genre = addgenrePreferenceInputData.getGenre();
             User user = addGenrePreferenceDataAccessObject.get(username);
-            user.setGenrePreference(genre);
-            addGenrePreferenceOutputData addgenrePreferenceOutputData = new addGenrePreferenceOutputData(genre, false);
-            addGenrePresenter.prepareAddSuccessView(addgenrePreferenceOutputData);
+            user.addGenrePreference(genre);
+            addGenrePreferenceOutputData addGenrePreferenceOutputData = new addGenrePreferenceOutputData(genre, false);
+            addGenrePresenter.prepareAddSuccessView(addGenrePreferenceOutputData);
         }
     }
 
