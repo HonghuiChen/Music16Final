@@ -16,6 +16,7 @@ public class User {
         this.username = name;
         this.password = password;
         this.creationTime = ltd;
+        this.genrePreference = new ArrayList<String>();
 }
 
     public String getPassword() {
@@ -36,4 +37,14 @@ public class User {
     public ArrayList<String> getFavoriteArist(){ return FavoriteArist;}
 
     public ArrayList<String> getGenrePreference() { return genrePreference; }
+
+    public void setGenrePreference(String genre) {
+        if (genrePreference.isEmpty()){
+            genrePreference.add(genre);
+        } else if (genrePreference.contains(genre)) {
+            genrePreference.remove(genre);
+        } else {
+            genrePreference.add(genre);
+        }
+    }
 }

@@ -142,6 +142,11 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
     public boolean haveGenre(String username, String genre) {
         User user = get(username);
         ArrayList<String> genres = user.getGenrePreference();
-        return genres.contains(genre);
+        try{
+            return genres.contains(genre);
+        } catch (NullPointerException e) {
+            return false;
+        }
+
     }
 }

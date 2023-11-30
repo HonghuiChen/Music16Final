@@ -21,8 +21,9 @@ public class deleteGenrePreferenceInteractor implements deleteGenrePreferenceInp
             deleteGenrePresenter.prepareDeleteFailView("Genre is not in your preferences.");
         } else {
             String genre = deletegenrePreferenceInputData.getGenre();
-            User user = deleteGenrePreferenceDataAccessObject.get(genre);
-            deleteGenrePreferenceOutputData deletegenrePreferenceOutputData = new deleteGenrePreferenceOutputData(user.getUsername(), false);
+            User user = deleteGenrePreferenceDataAccessObject.get(username);
+            user.setGenrePreference(genre);
+            deleteGenrePreferenceOutputData deletegenrePreferenceOutputData = new deleteGenrePreferenceOutputData(genre, false);
             deleteGenrePresenter.prepareDeleteSuccessView(deletegenrePreferenceOutputData);
         }
     }
