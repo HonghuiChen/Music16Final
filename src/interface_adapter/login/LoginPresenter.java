@@ -29,7 +29,6 @@ public class LoginPresenter implements LoginOutputBoundary {
         homeScreenState.setUsername(response.getUsername());
         this.homeScreenViewModel.setState(homeScreenState);
         this.homeScreenViewModel.firePropertyChanged();
-        System.out.println("Switching to Home Screen view");
         //switch to home screen view
         this.viewManagerModel.setActiveView(homeScreenViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
