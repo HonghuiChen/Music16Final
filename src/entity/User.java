@@ -30,5 +30,10 @@ public class User {
         return username;
     }
 
+
+    public ArrayList<Song> getFavoriteSongs(){ return FavoriteSongs;}
+
+    public ArrayList<String> getFavoriteArist(){ return FavoriteArist;}
+
     public ArrayList<String> getGenrePreference() { return genrePreference; }
 }
