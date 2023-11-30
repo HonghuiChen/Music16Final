@@ -28,10 +28,11 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
     private final SearchArtistController searchArtistController;
 
     private final LogoutController logoutController;
-    //private final GenreController genreController;
+
+    private final GenreController genreController;
     private final JLabel username;
 
-    final JButton logOut;
+    final JButton logOutButton;
     private JTextField searchInputField;
     private JComboBox<String> searchTypeDropdown;
     private JTextArea outputArea;
@@ -42,11 +43,10 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
      * A window with a title and a JButton.
      */
 
-    // TODO: Add all the controllers here, and to the constructors, along with Main.java and
     public HomeScreenView(HomeScreenViewModel homeScreenViewModel, SearchTrackController searchTrackController,
-                          SearchArtistController searchArtistController, LogoutController logoutController) {
+                          SearchArtistController searchArtistController, LogoutController logoutController, GenreController genreController) {
         this.homeScreenViewModel = homeScreenViewModel;
-        //this.genreController = genreController;
+        this.genreController = genreController;
         this.homeScreenViewModel.addPropertyChangeListener(this);
         this.searchTrackController = searchTrackController;
         this.searchArtistController = searchArtistController;
@@ -57,7 +57,8 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
 
         JLabel usernameInfo = new JLabel("Currently logged in: ");
         username = new JLabel();
-        logOut = new JButton(homeScreenViewModel.LOGOUT_BUTTON_LABEL);
+        logOutButton = new JButton(homeScreenViewModel.LOGOUT_BUTTON_LABEL);
+        genrePreferenceButton = new JButton("Change Preference");
 
         // Initialize components
         searchInputField = new JTextField(20);
@@ -65,13 +66,24 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
         outputArea = new JTextArea(10, 30);
         outputArea.setEditable(false);
         searchButton = new JButton("Search");
+       
 
         // LOGOUT BUTTON
-        logOut.addActionListener(
+        logOutButton.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (Objects.equals(evt.getActionCommand(), "Log out")) {
                             logoutController.execute();
+                        }
+                    }
+                }
+        );
+
+        genrePreferenceButton.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (Objects.equals(evt.getActionCommand(), "Change Preference")) {
+                            genreController.switchView();
                         }
                     }
                 }
@@ -83,8 +95,9 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
         this.add(searchTypeDropdown);
         this.add(searchButton);
         this.add(new JScrollPane(outputArea));
-        this.add(logOut);
-        //this.add(genrePreferenceButton);
+        this.add(logOutButton);
+        this.add(genrePreferenceButton);
+
 
         // Action listeners
         searchButton.addActionListener(e -> {
@@ -95,10 +108,18 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
             }
         });
         this.setVisible(true);
-
-        // GENRE PREFERENCE BUTTON
-        // Still confused
     }
+        // GENRE PREFERENCE BUTTON
+        //genrePreferenceButton.addActionListener(
+//                new ActionListener() {
+//                    public void actionPerformed(ActionEvent evt) {
+//                        if (Objects.equals(evt.getActionCommand(), "Genre Preference")) {
+//                            HomeScreenView.this.genreController.homeButton();
+//                        }
+//                    }
+//                }
+//        );
+//    }
 
     private void performSearch() throws IOException {
         String query = searchInputField.getText();

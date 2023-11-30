@@ -1,25 +1,36 @@
 package use_case.addGenrePreference;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+
+import app.api.Token;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class getGenre {
     private static final String API_URL = "https://api.spotify.com/v1/recommendations/available-genre-seeds";
-    private static String API_TOKEN;
+    private static String API_TOKEN = "BQB0-a7cYBcC4HuEUris_8xtjKVyxkgXcb7kfOTm-5uehLVVIbXIgtFj2Tf6xAi11DvbihbCJ57yZDtIh1q90ZzqfDi4SxOQ_aaWXH58lI-K4BNW7JU";
     private static ArrayList<String> availableGenres;
-    public static void main(String[] args) {
+
+    static {
+        try {
+            API_TOKEN = Token.get_auth();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static void initAvailableGenres() {
         // Create an HTTP client
         HttpClient httpClient = HttpClient.newHttpClient();
 
         // Build the request with the access token in the Authorization header
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(API_URL))
-                .header("Authorization", "Bearer " + API_TOKEN)
+                .header("Authorization", API_TOKEN)
                 .build();
 
         try {
@@ -32,7 +43,7 @@ public class getGenre {
                 String responseBody = response.body();
 
                 // Parse the JSON response and store information in an ArrayList
-                ArrayList<String> availableGenres = parseAvailableGenres(responseBody);
+                availableGenres = parseAvailableGenres(responseBody);
 
                 // Print the genre seeds
                 System.out.println("Available Genres:");

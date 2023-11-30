@@ -74,6 +74,14 @@ users would be able to follow and connect with their friends.
 - Finished Entity Tests
 - Finished Search Track - Use Case tests
 
+## Tasks need to be done on Week 10:
+- start outlining for the presentation 
+- finish all current use case
+- search track and search artist need to be finalized
+- write test case
+- look the graded criteria, will be added in the presentation
+- write the git issues
+
 ## Few updates on Week 11:
 - finished add & delete genre preference, with UI
 - FINISH THE REST OF THE TEST CASES BY SATURDAY
