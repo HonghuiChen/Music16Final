@@ -29,7 +29,7 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
 
     private final LogoutController logoutController;
 
-    //private final GenreController genreController;
+    private final GenreController genreController;
     private final JLabel username;
 
     final JButton logOutButton;
@@ -44,9 +44,9 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
      */
 
     public HomeScreenView(HomeScreenViewModel homeScreenViewModel, SearchTrackController searchTrackController,
-                          SearchArtistController searchArtistController, LogoutController logoutController) {
+                          SearchArtistController searchArtistController, LogoutController logoutController, GenreController genreController) {
         this.homeScreenViewModel = homeScreenViewModel;
-        //this.genreController = genreController;
+        this.genreController = genreController;
         this.homeScreenViewModel.addPropertyChangeListener(this);
         this.searchTrackController = searchTrackController;
         this.searchArtistController = searchArtistController;

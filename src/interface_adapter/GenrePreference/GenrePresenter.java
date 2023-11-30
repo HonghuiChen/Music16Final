@@ -55,12 +55,5 @@ public class GenrePresenter
         this.viewManagerModel.setActiveView(genreViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }
-
-    @Override
-    public void homeButton() {
-        genreViewModel = new GenreViewModel();
-        this.viewManagerModel.setActiveView(genreViewModel.getViewName());
-        this.viewManagerModel.firePropertyChanged();
-    }
 }
 
