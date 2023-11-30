@@ -3,72 +3,19 @@ package use_case.SearchTrack;
 import app.api.Token;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.homeScreen.HomeScreenPresenter;
-import interface_adapter.homeScreen.HomeScreenState;
 import interface_adapter.homeScreen.HomeScreenViewModel;
 import interface_adapter.login.LoginViewModel;
-import okhttp3.*;
 import org.json.JSONException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import okhttp3.Call;
 
 import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.fail;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
 
 class SearchTrackInteractorTest {
-
-    @Mock
-    private HomeScreenPresenter homeScreenPresenter;
-
-    @Mock
-    private SearchTrackInputData searchTrackInputData;
-
-    @Mock
-    private OkHttpClient client;
-
-    // Mock a non-empty response
-
-    @Mock
-    private Response response;
-
-    @Mock
-    private ResponseBody responseBody;
-    @Mock
-    private Call mockCall;
-
-    @Mock
-    private Request request;
-
-    @Mock
-    private SearchTrackInteractor interactor;
-
-
-
     @BeforeEach
     void setUp() throws IOException {
         Token.main(new String[]{""});
-        MockitoAnnotations.openMocks(this);
-        interactor = new SearchTrackInteractor(homeScreenPresenter);
-
-        when(client.newCall(any(Request.class))).thenReturn(mockCall);
-        when(mockCall.execute()).thenReturn(response);
-
-        SearchTrackInputData inputData = new SearchTrackInputData("Bohemian Rhapsody");
-//        request = new Request.Builder()
-//                .url(String.format("%s?q=%s&type=%s", "https://api.spotify.com/v1/search", inputData.getQuery(), "track"))
-//                .addHeader("Authorization", Token.get_auth())
-//                .addHeader("Content-Type", "application/json")
-//                .build();
-    }
-
-    public Response execute(Request request) throws IOException {
-        return client.newCall(request).execute();
     }
 
     @Test
