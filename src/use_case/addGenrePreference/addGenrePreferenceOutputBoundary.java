@@ -5,4 +5,6 @@ public interface addGenrePreferenceOutputBoundary {
     void prepareAddFailView(String error);
 
     void cancel();
+
+    void homeButton();
 }

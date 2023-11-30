@@ -3,12 +3,12 @@ package entity;
 import java.util.ArrayList;
 
 public class Song {
-private String name;
-    private String artist;
-    private String album;
-    private String url;
+private final String name;
+    private final String artist;
+    private final String album;
+    private final String url;
 
-    private ArrayList<String> comments;
+    private final ArrayList<String> comments;
 
     public Song(String name, String artist, String album, String url) {
         this.name = name;
@@ -36,5 +36,8 @@ private String name;
 
     public void addComments(String comment){
         this.comments.add(comment);
+    }
+    public ArrayList<String> getComments(){
+        return comments;
     }
 }
