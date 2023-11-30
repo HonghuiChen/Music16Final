@@ -62,7 +62,7 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
 
         // Initialize components
         searchInputField = new JTextField(20);
-        searchTypeDropdown = new JComboBox<>(new String[]{"Search Tracks", "Search Songs", "Search Artists"});
+        searchTypeDropdown = new JComboBox<>(new String[]{"Search Tracks", "Search Artists"});
         outputArea = new JTextArea(10, 30);
         outputArea.setEditable(false);
         searchButton = new JButton("Search");
