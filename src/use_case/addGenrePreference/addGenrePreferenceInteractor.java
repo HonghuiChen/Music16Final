@@ -1,33 +1,39 @@
 package use_case.addGenrePreference;
 
 import entity.User;
+import interface_adapter.GenrePreference.GenreController;
 
 import java.util.ArrayList;
 
 public class addGenrePreferenceInteractor implements addGenrePreferenceInputBoundary {
     final addGenrePreferenceDataAccessInterface addGenrePreferenceDataAccessObject;
-    final addGenrePreferenceOutputBoundary addGenrePresenter;
+    final addGenrePreferenceOutputBoundary GenrePresenter;
+    final GenreController genrePresenter;
 
     public addGenrePreferenceInteractor(addGenrePreferenceDataAccessInterface addgenrePreferenceDataAccessInterface,
-                                        addGenrePreferenceOutputBoundary addgenrePreferenceOutputBoundary) {
+                                        addGenrePreferenceOutputBoundary addgenrePreferenceOutputBoundary, GenreController genrePresenter) {
         this.addGenrePreferenceDataAccessObject = addgenrePreferenceDataAccessInterface;
-        this.addGenrePresenter = addgenrePreferenceOutputBoundary;
+        this.GenrePresenter = addgenrePreferenceOutputBoundary;
+        this.genrePresenter = genrePresenter;
     }
+    //public void switchView() {
+     //   genrePresenter.homeButton();
+   // }
 
     @Override
     public void execute(addGenrePreferenceInputData addgenrePreferenceInputData) {
         String username = addGenrePreferenceDataAccessObject.readCurrUser("currentUser.txt");
         ArrayList<String> availableGenres = getGenre.getAvailableGenres();
         if ( ! availableGenres.contains(addgenrePreferenceInputData.getGenre())) {
-            addGenrePresenter.prepareAddFailView("This is not a valid genre.");
+            GenrePresenter.prepareAddFailView("This is not a valid genre.");
         }
         if (addGenrePreferenceDataAccessObject.haveGenre(username, addgenrePreferenceInputData.getGenre())) {
-            addGenrePresenter.prepareAddFailView("Genre already inputted.");
+            GenrePresenter.prepareAddFailView("Genre already inputted.");
         } else {
             String genre = addgenrePreferenceInputData.getGenre();
             User user = addGenrePreferenceDataAccessObject.get(genre);
             addGenrePreferenceOutputData addgenrePreferenceOutputData = new addGenrePreferenceOutputData(user.getUsername(), false);
-            addGenrePresenter.prepareAddSuccessView(addgenrePreferenceOutputData);
+            GenrePresenter.prepareAddSuccessView(addgenrePreferenceOutputData);
         }
     }
 }
