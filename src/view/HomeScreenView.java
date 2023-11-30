@@ -37,7 +37,6 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
     private JComboBox<String> searchTypeDropdown;
     private JTextArea outputArea;
     private JButton searchButton;
-
     private JButton genrePreferenceButton;
 
     /**
@@ -87,7 +86,7 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
         this.add(searchButton);
         this.add(new JScrollPane(outputArea));
         this.add(logOut);
-        this.add(genrePreferenceButton);
+        //this.add(genrePreferenceButton);
 
         // Action listeners
         searchButton.addActionListener(e -> {

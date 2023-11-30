@@ -69,6 +69,10 @@ users would be able to follow and connect with their friends.
 ## Few updates on Week 10:
 - finished log out use case
 - allowing user to switch between the signup view and login view, without having to signup everytime they open the app
+- Finished the SearchTrack use case test, with UI
+- Finished Home Screen View
+- Finished Entity Tests
+- Finished Search Track - Use Case tests
 
 ## Tasks need to be done on Week 10:
 - start outlining for the presentation 
@@ -79,7 +83,8 @@ users would be able to follow and connect with their friends.
 - write the git issues
 
 ## Few updates on Week 11:
-- finished add & delete genre preference
+- finished add & delete genre preference, with UI
+- FINISH THE REST OF THE TEST CASES BY SATURDAY
 
 ## Criteria for final project
 - Albert: Log in view (basic)
