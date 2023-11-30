@@ -31,8 +31,8 @@ public class addGenrePreferenceInteractor implements addGenrePreferenceInputBoun
             String genre = addgenrePreferenceInputData.getGenre();
             User user = addGenrePreferenceDataAccessObject.get(username);
             user.addGenrePreference(genre);
-            addGenrePreferenceOutputData addGenrePreferenceOutputData = new addGenrePreferenceOutputData(genre, false);
-            addGenrePresenter.prepareAddSuccessView(addGenrePreferenceOutputData);
+            addGenrePreferenceOutputData addgenrePreferenceOutputData = new addGenrePreferenceOutputData(genre, false);
+            addGenrePresenter.prepareAddSuccessView(addgenrePreferenceOutputData);
         }
     }
 
