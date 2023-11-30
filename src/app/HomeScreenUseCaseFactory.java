@@ -36,7 +36,7 @@ public class HomeScreenUseCaseFactory {
             SearchTrackController searchTrackController = createSearchTrackController(viewManagerModel, loginViewModel, homeScreenViewModel);
             SearchArtistController searchArtistController = createSearchArtistUseCase(viewManagerModel, homeScreenViewModel);
             LogoutController logoutController = createLogoutController(viewManagerModel, loginViewModel, homeScreenViewModel);
-            return new HomeScreenView(homeScreenViewModel, searchTrackController, searchArtistController, logoutController, genreController);
+            return new HomeScreenView(homeScreenViewModel, searchTrackController, searchArtistController, logoutController);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "HS Factory Error: " + e.getMessage());
         }

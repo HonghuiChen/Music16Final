@@ -16,9 +16,9 @@ public class addGenrePreferenceInteractor implements addGenrePreferenceInputBoun
         this.GenrePresenter = addgenrePreferenceOutputBoundary;
         this.genrePresenter = genrePresenter;
     }
-    public void switchView() {
-        genrePresenter.homeButton();
-    }
+    //public void switchView() {
+     //   genrePresenter.homeButton();
+   // }
 
     @Override
     public void execute(addGenrePreferenceInputData addgenrePreferenceInputData) {
