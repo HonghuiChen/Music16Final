@@ -6,16 +6,20 @@ import interface_adapter.homeScreen.HomeScreenPresenter;
 import interface_adapter.homeScreen.HomeScreenViewModel;
 import interface_adapter.login.LoginViewModel;
 import org.json.JSONException;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.fail;
 
 class SearchTrackInteractorTest {
-    // Test SearhTrackInteractor, but not testing the API Call
+    @BeforeEach
+    void setUp() throws IOException {
+        Token.main(new String[]{""});
+    }
+
     @Test
     void testSuccess() throws IOException, JSONException {
-        Token.main(new String[]{""});
-        SearchTrackInputData inputData = new SearchTrackInputData("Bohemian Rhapsody");
         // Check that the output data is correct and valid
         HomeScreenPresenter successPresenter = new HomeScreenPresenter(new ViewManagerModel(), new HomeScreenViewModel(), new LoginViewModel()) {
             @Override
@@ -29,13 +33,13 @@ class SearchTrackInteractorTest {
                 fail("Failure as expected");
             }
         };
+        SearchTrackInputData inputData = new SearchTrackInputData("Bohemian Rhapsody");
         SearchTrackInteractor searchTrackInteractor = new SearchTrackInteractor(successPresenter);
         searchTrackInteractor.search(inputData);
     }
 
     @Test
     void testEmptyQuery() throws IOException, JSONException {
-        Token.main(new String[]{""});
         SearchTrackInputData inputData = new SearchTrackInputData("");
         // Check that the output data is correct and valid
         HomeScreenPresenter failPresenter = new HomeScreenPresenter(new ViewManagerModel(), new HomeScreenViewModel(), new LoginViewModel()) {
@@ -56,10 +60,7 @@ class SearchTrackInteractorTest {
     }
 
     @Test
-    // This test case only success when you don't connect to Wi-Fi, unless using Mockito to mock the response but that's
-    // beyond the scope of this course
     void testNetworkError() throws IOException, JSONException {
-        Token.main(new String[]{""});
         SearchTrackInputData inputData = new SearchTrackInputData("Bohemian Rhapsody");
         // Check that the output data is correct and valid
         HomeScreenPresenter failPresenter = new HomeScreenPresenter(new ViewManagerModel(), new HomeScreenViewModel(), new LoginViewModel()) {
@@ -79,4 +80,21 @@ class SearchTrackInteractorTest {
         SearchTrackInteractor searchTrackInteractor = new SearchTrackInteractor(failPresenter);
         searchTrackInteractor.search(inputData);
     }
+//    @Test
+//    void testJSONExceptionSearch() throws IOException {
+//        // Mock JSONException scenario
+//        when(this.execute(request)).thenReturn(response);
+//        when(response.isSuccessful()).thenReturn(true);
+//        when(response.body()).thenReturn(responseBody);
+//        when(responseBody.string()).thenThrow(new JSONException("JSON error"));
+//        when(interactor.search(searchTrackInputData))
+//
+//        // Execute search
+//        interactor.search(new SearchTrackInputData("query"));
+//
+//        // Verify if prepareFailView is called with JSON parsing error
+//        verify(homeScreenPresenter).prepareFailView("JSON parsing error");
+//    }
+//
+
 }

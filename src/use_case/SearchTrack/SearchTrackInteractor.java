@@ -1,5 +1,4 @@
 package use_case.SearchTrack;
-import interface_adapter.homeScreen.HomeScreenPresenter;
 import okhttp3.*;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -10,7 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class SearchTrackInteractor implements SearchTrackInputBoundary{
-    final HomeScreenPresenter homeScreenPresenter;
+    final SearchTrackOutputBoundary homeScreenPresenter;
     private static final String API_URL = "https://api.spotify.com/v1/search";
     // Read token from token.txt
     private static String API_TOKEN;
@@ -24,7 +23,7 @@ public class SearchTrackInteractor implements SearchTrackInputBoundary{
         }
     }
 
-    public SearchTrackInteractor(HomeScreenPresenter homeScreenPresenter) {
+    public SearchTrackInteractor(SearchTrackOutputBoundary homeScreenPresenter) {
         this.homeScreenPresenter = homeScreenPresenter;
     }
 
@@ -42,7 +41,6 @@ public class SearchTrackInteractor implements SearchTrackInputBoundary{
                     .addHeader("Content-Type", "application/json")
                     .build();
             Response response = client.newCall(request).execute();
-            System.out.println(response);
 
             if (!response.isSuccessful()) try {
                 throw new IOException("Unexpected code " + response);
@@ -50,8 +48,9 @@ public class SearchTrackInteractor implements SearchTrackInputBoundary{
                 System.out.println("SearchTrack - code = 400");
             }
 
-            JSONObject responseBody = new JSONObject(response.body().string());
-            JSONArray items = responseBody.getJSONObject("tracks").getJSONArray("items");
+            ResponseBody responseBody = response.body();
+            JSONObject body = new JSONObject(responseBody.string());
+            JSONArray items = body.getJSONObject("tracks").getJSONArray("items");
 
             // The array list that will store the results of the search
             ArrayList<String> result = new ArrayList<>();
