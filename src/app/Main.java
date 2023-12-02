@@ -22,7 +22,7 @@ public class Main {
         // Create Token
         Token.main(new String[]{""});
         // The main application window.
-        JFrame application = new JFrame(" Music16 ");
+        JFrame application = new JFrame("Music16");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         CardLayout cardLayout = new CardLayout();

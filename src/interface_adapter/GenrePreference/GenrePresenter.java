@@ -2,6 +2,7 @@ package interface_adapter.GenrePreference;
 
 import interface_adapter.ViewManagerModel;
 import interface_adapter.GenrePreference.GenreViewModel;
+import interface_adapter.signup.SignupState;
 import interface_adapter.signup.SignupViewModel;
 import use_case.addGenrePreference.addGenrePreferenceOutputBoundary;
 import use_case.addGenrePreference.addGenrePreferenceOutputData;
@@ -30,7 +31,7 @@ public class GenrePresenter
     @Override
     public void prepareAddFailView(String error) {
         GenreState GenreState = genreViewModel.getState();
-        GenreState.setGenreError(error);
+        GenreState.setAddGenreError(error);
         genreViewModel.firePropertyChanged();
     }
 
@@ -45,7 +46,7 @@ public class GenrePresenter
     @Override
     public void prepareDeleteFailView(String error) {
         GenreState GenreState = genreViewModel.getState();
-        GenreState.setGenreError(error);
+        GenreState.setDeleteGenreError(error);
         genreViewModel.firePropertyChanged();
     }
 
