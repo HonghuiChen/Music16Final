@@ -46,23 +46,23 @@ class LoginUseCaseFactoryTest {
         assertNotNull(loginController, "LoginController should not be null");
     }
 
-        private LoginController invokeCreateLoginUseCase() {
-        try {
-            // Get the Class object
-            Class<?> factoryClass = Class.forName("app.LoginUseCaseFactory");
+    private LoginController invokeCreateLoginUseCase() {
+    try {
+        // Get the Class object
+        Class<?> factoryClass = Class.forName("app.LoginUseCaseFactory");
 
-            // Get the Method object for the private method
-            Method createLoginUseCaseMethod = factoryClass.getDeclaredMethod("createLoginUseCase",
-                    ViewManagerModel.class, LoginViewModel.class, HomeScreenViewModel.class, LoginUserDataAccessInterface.class);
+        // Get the Method object for the private method
+        Method createLoginUseCaseMethod = factoryClass.getDeclaredMethod("createLoginUseCase",
+                ViewManagerModel.class, LoginViewModel.class, HomeScreenViewModel.class, LoginUserDataAccessInterface.class);
 
-            // Make the method accessible
-            createLoginUseCaseMethod.setAccessible(true);
-            return (LoginController) createLoginUseCaseMethod.invoke(
-                    null, viewManagerModel, loginViewModel, homeScreenViewModel, userDataAccessObject);
-        } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-            throw new RuntimeException(e);
-        }
-        }
+        // Make the method accessible
+        createLoginUseCaseMethod.setAccessible(true);
+        return (LoginController) createLoginUseCaseMethod.invoke(
+                null, viewManagerModel, loginViewModel, homeScreenViewModel, userDataAccessObject);
+    } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+        throw new RuntimeException(e);
+    }
+    }
     @Test
     void testCreateLoginUseCaseUsingReflection() {
         try {
