@@ -26,6 +26,8 @@ public class GenreView extends JPanel implements ActionListener, PropertyChangeL
     final JButton delete;
     final JButton cancel;
     private final GenreController GenreController;
+    public final String GENRE_LABEL =
+            "Enter your preferred genre, or the genre you want to delete from your preferences";
 
     public GenreView(GenreViewModel genreViewModel, GenreController controller) {
 
@@ -33,7 +35,7 @@ public class GenreView extends JPanel implements ActionListener, PropertyChangeL
         this.genreViewModel = genreViewModel;
         this.genreViewModel.addPropertyChangeListener(this);
 
-        JLabel title = new JLabel("Add Genre Preference Screen");
+        JLabel title = new JLabel(GENRE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         LabelTextPanel usernameInfo = new LabelTextPanel(

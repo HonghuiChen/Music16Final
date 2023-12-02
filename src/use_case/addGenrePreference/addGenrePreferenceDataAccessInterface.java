@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 public interface addGenrePreferenceDataAccessInterface {
     boolean haveGenre(String username, String genre);
 
-    public User get(String username);
+    User get(String username);
 
     String readCurrUser(String fname) throws FileNotFoundException;
 }

@@ -17,6 +17,7 @@ import use_case.SearchArtist.SearchArtistInteractor;
 import use_case.SearchArtist.SearchArtistOutputBoundary;
 import use_case.SearchTrack.SearchTrackInputBoundary;
 import use_case.SearchTrack.SearchTrackInteractor;
+import use_case.SearchTrack.SearchTrackOutputBoundary;
 import use_case.addGenrePreference.addGenrePreferenceDataAccessInterface;
 import use_case.addGenrePreference.addGenrePreferenceInputBoundary;
 import use_case.addGenrePreference.addGenrePreferenceInteractor;
@@ -47,15 +48,18 @@ public class HomeScreenUseCaseFactory {
             deleteGenrePreferenceDataAccessInterface deleteGenreDataAccessObject) {
 
         try {
-            SearchTrackController searchTrackController = createSearchTrackController(viewManagerModel, loginViewModel, homeScreenViewModel);
+            SearchTrackController searchTrackController = createSearchTrackController(viewManagerModel,
+                    loginViewModel, homeScreenViewModel);
+            System.out.println("Search Track Controller created");
             SearchArtistController searchArtistController = createSearchArtistUseCase(viewManagerModel, homeScreenViewModel);
+            System.out.println("Search Artist Controller created");
             LogoutController logoutController = createLogoutController(viewManagerModel, loginViewModel, homeScreenViewModel);
+            System.out.println("Logout Controller created");
             GenreController genreController = createGenreUseCase(viewManagerModel, genreViewModel, addGenreDataAccessObject, deleteGenreDataAccessObject);
             return new HomeScreenView(homeScreenViewModel, searchTrackController, searchArtistController, logoutController, genreController);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "HS Factory Error: " + e.getMessage());
         }
-
         return null;
     }
 
@@ -65,7 +69,7 @@ public class HomeScreenUseCaseFactory {
             HomeScreenViewModel homeScreenViewModel) throws IOException {
 
         // Notice how we pass this method's parameters to the Presenter.
-        HomeScreenPresenter searchTrackOutputBoundary = new HomeScreenPresenter(viewManagerModel, homeScreenViewModel, loginViewModel);
+        SearchTrackOutputBoundary searchTrackOutputBoundary = new HomeScreenPresenter(viewManagerModel, homeScreenViewModel, loginViewModel);
 
         SearchTrackInputBoundary searchTrackInteractor = new SearchTrackInteractor(searchTrackOutputBoundary);
 
@@ -75,13 +79,12 @@ public class HomeScreenUseCaseFactory {
     private static LogoutController createLogoutController(
             ViewManagerModel viewManagerModel,
             LoginViewModel loginViewModel,
-            HomeScreenViewModel loggedInViewModel) {
+            HomeScreenViewModel homeScreenViewModel) {
 
         // Notice how we pass this method's parameters to the Presenter.
-        LogoutOutputBoundary logoutOutputBoundary = new LogoutPresenter(loginViewModel, loggedInViewModel, viewManagerModel);
+        LogoutOutputBoundary logoutOutputBoundary = new LogoutPresenter(loginViewModel, homeScreenViewModel, viewManagerModel);
 
-        LogoutInputBoundary logoutInteractor = new LogoutInteractor(
-                logoutOutputBoundary);
+        LogoutInputBoundary logoutInteractor = new LogoutInteractor(logoutOutputBoundary);
 
         return new LogoutController(logoutInteractor);
     }

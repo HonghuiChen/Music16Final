@@ -7,4 +7,3 @@ public interface LikeTracksDataAccessInterface {
     String readCurrUser(String fname);
     User get(String username);
 }
-

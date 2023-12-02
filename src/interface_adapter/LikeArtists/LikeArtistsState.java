@@ -1,7 +1,5 @@
 package interface_adapter.LikeArtists;
 
-import entity.User;
-
 public class LikeArtistsState {
     private String artist = "";
     private String likeArtistsError = null;
