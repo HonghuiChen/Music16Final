@@ -32,9 +32,9 @@ public class User {
     }
 
 
-    public ArrayList<String> getFavoriteSongs(){ return FavoriteSongs;} //TODO need to double check if this is correct
+    public ArrayList<String> getFavoriteSongs(){ return FavoriteSongs;}
 
-    public ArrayList<String> getFavoriteArist(){ return FavoriteArtist;}
+    public ArrayList<String> getFavoriteArtist(){ return FavoriteArtist;}
 
     public ArrayList<String> getGenrePreference() { return genrePreference; }
 

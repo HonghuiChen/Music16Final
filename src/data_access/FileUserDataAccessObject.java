@@ -129,13 +129,13 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
 
     public boolean existsByTracks(String username, String song){
         User user = get(username);
-        ArrayList<String> songs = user.getFavoriteSongs();  //TODO fix this
+        ArrayList<String> songs = user.getFavoriteSongs();
         return songs.contains(song);
     }
 
     public boolean existsByArtists(String username, String artist){
         User user = get(username);
-        ArrayList<String> artists = user.getFavoriteArist();
+        ArrayList<String> artists = user.getFavoriteArtist();
         return artists.contains(artist);
     }
   

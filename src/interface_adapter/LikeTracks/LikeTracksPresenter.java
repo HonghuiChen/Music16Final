@@ -1,9 +1,6 @@
 package interface_adapter.LikeTracks;
 
-import interface_adapter.LikeArtists.LikeArtistsViewModel;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.LikeTracks.LikeTracksViewModel;
-import use_case.LikeArtists.LikeArtistsOutputBoundary;
 import use_case.LikeTracks.LikeTracksOutputBoundary;
 import use_case.LikeTracks.LikeTracksOutputData;
 

@@ -1,5 +1,6 @@
 package use_case.LikeTracks;
 
+
 public class LikeTracksOutputData {
     private final String song;
     private boolean useCaseFailed;

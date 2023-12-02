@@ -16,10 +16,8 @@ public class LikeTracksState {
     public void likeTrackError(String likeTrackError){ this.likeTrackError = likeTrackError;}
     public void likeTrack(String track) {this.track = track;}
     public void unlikeTrack(String track) {this.track = null;}
-    
+
 
 
 
 }
-
-
