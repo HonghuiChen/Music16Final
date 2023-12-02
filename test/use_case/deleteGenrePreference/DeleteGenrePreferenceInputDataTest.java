@@ -4,7 +4,7 @@ import use_case.deleteGenrePreference.deleteGenrePreferenceInputData;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class deleteGenrePreferenceInputDataTest {
+public class DeleteGenrePreferenceInputDataTest {
     deleteGenrePreferenceInputData deleteGenreInputData = new deleteGenrePreferenceInputData("genre");
     @Test
     void getGenreTest() {
