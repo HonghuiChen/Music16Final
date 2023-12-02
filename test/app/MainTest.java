@@ -1,3 +1,5 @@
+package app;
+
 import app.Main;
 import data_access.FileUserDataAccessObject;
 import org.junit.jupiter.api.Test;
