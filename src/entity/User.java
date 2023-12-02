@@ -32,9 +32,9 @@ public class User {
     }
 
 
- //   public ArrayList<Song> getFavoriteSongs(){ return FavoriteSongs;}
+    public ArrayList<String> getFavoriteSongs(){ return FavoriteSongs;}
 
-   // public ArrayList<String> getFavoriteArist(){ return FavoriteArist;}
+    public ArrayList<String> getFavoriteArtist(){ return FavoriteArtist;}
 
     public ArrayList<String> getGenrePreference() { return genrePreference; }
 
