@@ -47,7 +47,7 @@ public class LikeTracksView extends JPanel implements ActionListener, PropertyCh
                 }
         );
         this.add(title);
-        this.add(songInfo); // ?
+//        this.add(songInfo); //TODO need fix
         this.add(buttons);
     }
     /**

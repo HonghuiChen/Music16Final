@@ -15,7 +15,7 @@ public class LikeTracksInteractor implements LikeTracksInputBoundary{
     @Override
     public void like(LikeTracksInputData likeTracksInputData) {
         String username = likeTracksDataAccessObject.readCurrUser("currentUser.txt");
-        if (likeTracksDataAccessObject.existsByTracks(username, LikeTracksInputData.getSong())) {
+        if (likeTracksDataAccessObject.existsByTracks(username, likeTracksInputData.getSong())) {
             likePresenter.prepareFailView("You already liked this song");
         } else {
             User user = likeTracksDataAccessObject.get(likeTracksInputData.getSong());

@@ -5,7 +5,7 @@ public class LikeTracksInputData {
     public LikeTracksInputData(String song) {
         this.song = song;
     }
-    static String getSong(){
+    public String getSong(){
         return song;
-    }
+    } //TODO Fixed
 }
