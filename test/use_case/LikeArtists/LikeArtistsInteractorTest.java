@@ -1,7 +1,9 @@
 package use_case.LikeArtists;
 
+import entity.User;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import use_case.LikeTracks.LikeTracksDataAccessInterface;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,7 +16,23 @@ class LikeArtistsInteractorTest{
     void successTest() throws IOException{
         LikeArtistsInputData input = new LikeArtistsInputData("Tulus");
 
-        LikeArtistsOutputBoundary successPresenter = new LikeArtistsOutputBoundary {
+        LikeArtistsDataAccessInterface data = new LikeArtistsDataAccessInterface() {
+            @Override
+            public boolean existsByArtists(String username, String song) {
+                return false;
+            }
+
+            @Override
+            public String readCurrUser(String fname) {
+                return null;
+            }
+
+            @Override
+            public User get(String username) {
+                return null;
+            }
+        };
+        LikeArtistsOutputBoundary successPresenter = new LikeArtistsOutputBoundary (){
             @Override
             public void prepareLikeSuccessView(LikeArtistsOutputData artist){
                 assertEquals("Tulus", artist.getArtists());
@@ -29,8 +47,8 @@ class LikeArtistsInteractorTest{
             public void prepareFailView(String error){
                 fail("Use case failure is unexpected.");
             }
-        }
-        LikeArtistsInteractor interactor = new LikeArtistsInteractor(successPresenter);
+        };
+        LikeArtistsInteractor interactor = new LikeArtistsInteractor(data, successPresenter);
         interactor.like(input);
         interactor.unlike(input);
 
