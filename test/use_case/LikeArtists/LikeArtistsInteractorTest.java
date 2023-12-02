@@ -1,12 +1,9 @@
 package use_case.LikeArtists;
 
 import entity.User;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import use_case.LikeTracks.LikeTracksDataAccessInterface;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
