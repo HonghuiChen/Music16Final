@@ -36,7 +36,7 @@ class FileUserDataAccessObjectTest {
         when(user.getPassword()).thenReturn("testPassword");
         when(user.getCreationTime()).thenReturn(LocalDateTime.now());
         when(user.getFavoriteSongs()).thenReturn(new ArrayList<>());
-        when(user.getFavoriteArist()).thenReturn(new ArrayList<>());
+        when(user.getFavoriteArtist()).thenReturn(new ArrayList<>());
         when(user.getGenrePreference()).thenReturn(new ArrayList<>());
         // Add more mock setups as needed
     }
