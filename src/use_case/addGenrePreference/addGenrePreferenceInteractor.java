@@ -40,4 +40,9 @@ public class addGenrePreferenceInteractor implements addGenrePreferenceInputBoun
     public void switchView() {
         addGenrePresenter.switchView();
     }
+
+    @Override
+    public void cancel() {
+        addGenrePresenter.cancel();
+    }
 }

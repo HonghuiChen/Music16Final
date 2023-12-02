@@ -56,5 +56,11 @@ public class GenrePresenter
         this.viewManagerModel.setActiveView(genreViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }
+
+    @Override
+    public void cancel() {
+        this.viewManagerModel.setActiveView("Home Screen");
+        this.viewManagerModel.firePropertyChanged();
+    }
 }
 

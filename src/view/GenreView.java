@@ -81,6 +81,16 @@ public class GenreView extends JPanel implements ActionListener, PropertyChangeL
                 }
         );
 
+        cancel.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(cancel)) {
+                            GenreController.cancel();
+                        }
+                    }
+                }
+        );
+
         genreInputField.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
