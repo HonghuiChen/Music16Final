@@ -6,7 +6,6 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class GenreViewModel extends ViewModel {
-    public final String TITLE_LABEL = "Genre Preference View";
 
     public static final String ADD_BUTTON_LABEL = "Add";
     public static final String DELETE_BUTTON_LABEL = "Delete";
