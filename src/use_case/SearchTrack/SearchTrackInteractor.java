@@ -62,11 +62,9 @@ public class SearchTrackInteractor implements SearchTrackInputBoundary{
             SearchTrackOutputData outputData = new SearchTrackOutputData(result);
             homeScreenPresenter.prepareSuccessView(outputData);
         } catch (IOException e) {
-            e.printStackTrace();
             // Handle network errors or unsuccessful response
             homeScreenPresenter.prepareFailView("Network error");
         } catch (JSONException e) {
-            e.printStackTrace();
             // Handle JSON parsing errors
             homeScreenPresenter.prepareFailView("JSON parsing error");
         }
