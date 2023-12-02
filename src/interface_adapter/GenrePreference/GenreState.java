@@ -2,11 +2,13 @@ package interface_adapter.GenrePreference;
 
 public class GenreState {
     private String genre = "";
-    private String genreError = null;
+    private String addGenreError = null;
+    private String deleteGenreError = null;
 
     public GenreState(interface_adapter.GenrePreference.GenreState copy) {
         genre = copy.genre;
-        genreError = copy.genreError;
+        addGenreError = copy.addGenreError;
+        deleteGenreError = copy.deleteGenreError;
     }
     public GenreState() {}
 
@@ -14,16 +16,25 @@ public class GenreState {
         return genre;
     }
 
-    public String getGenreError() {
-        return genreError;
+    public String getAddGenreError() {
+        return addGenreError;
+    }
+
+    public String getDeleteGenreError() {
+        return deleteGenreError;
     }
 
     public void setGenre(String genre) {
         this.genre = genre;
     }
 
-    public void setGenreError(String genreError) {
-        this.genreError = genreError;
+    public void setAddGenreError(String addError) {
+        this.addGenreError = addError;
     }
+
+    public void setDeleteGenreError(String deleteError) {
+        this.deleteGenreError = deleteError;
+    }
+
 
 }
