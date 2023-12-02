@@ -31,7 +31,7 @@ public class GenrePresenter
     @Override
     public void prepareAddFailView(String error) {
         GenreState GenreState = genreViewModel.getState();
-        GenreState.setGenreError(error);
+        GenreState.setAddGenreError(error);
         genreViewModel.firePropertyChanged();
     }
 
@@ -46,7 +46,7 @@ public class GenrePresenter
     @Override
     public void prepareDeleteFailView(String error) {
         GenreState GenreState = genreViewModel.getState();
-        GenreState.setGenreError(error);
+        GenreState.setDeleteGenreError(error);
         genreViewModel.firePropertyChanged();
     }
 
