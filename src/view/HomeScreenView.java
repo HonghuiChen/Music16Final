@@ -44,7 +44,8 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
      */
 
     public HomeScreenView(HomeScreenViewModel homeScreenViewModel, SearchTrackController searchTrackController,
-                          SearchArtistController searchArtistController, LogoutController logoutController, GenreController genreController) {
+                          SearchArtistController searchArtistController, LogoutController logoutController,
+                          GenreController genreController) {
         this.homeScreenViewModel = homeScreenViewModel;
         this.genreController = genreController;
         this.homeScreenViewModel.addPropertyChangeListener(this);
