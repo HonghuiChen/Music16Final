@@ -50,7 +50,6 @@ public class LikeArtistsView extends JPanel implements ActionListener, PropertyC
                 }
         );
         this.add(title);
-        this.add(artistInfo); //?
         this.add(buttons);
     }
 
