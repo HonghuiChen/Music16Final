@@ -1,5 +1,6 @@
 package view;
 
+import interface_adapter.GenrePreference.GenreState;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginState;
 import interface_adapter.login.LoginViewModel;
@@ -125,13 +126,25 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        LoginState state = (LoginState) evt.getNewValue();
-        setFields(state);
+//        LoginState state = (LoginState) evt.getNewValue();
+//        setFields(state);
+        if (evt.getPropertyName().equals("state")) {
+            LoginState state = (LoginState) evt.getNewValue();
+            //Check if the clear button is clicked
+            if (state.getUsernameError() != null) {
+                JOptionPane.showMessageDialog(this, state.getUsernameError());
+            } else if (state.getPasswordError() != null) {
+                JOptionPane.showMessageDialog(this, state.getPasswordError());
+            } else {
+                JOptionPane.showMessageDialog(this, "Login successful.");
+            }
+        }
+
     }
 
-    private void setFields(LoginState state) {
-        usernameInputField.setText(state.getUsername());
-        passwordInputField.setText(state.getPassword());
-    }
+//    private void setFields(LoginState state) {
+//        usernameInputField.setText(state.getUsername());
+//        passwordInputField.setText(state.getPassword());
+//    }
 
 }
