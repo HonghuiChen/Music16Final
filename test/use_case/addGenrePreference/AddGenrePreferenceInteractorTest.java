@@ -74,5 +74,6 @@ public class AddGenrePreferenceInteractorTest {
         verify(outputBoundaryMock, times(0)).prepareAddSuccessView(any(addGenrePreferenceOutputData.class));
         verify(outputBoundaryMock, times(0)).switchView();
     }
+
     }
 

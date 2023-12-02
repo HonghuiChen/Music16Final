@@ -11,9 +11,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.ArrayList;
 
+// SRP Example : This class' responsibility is only calling API to get Available/Valid Genres.
 public class getGenre {
     private static final String API_URL = "https://api.spotify.com/v1/recommendations/available-genre-seeds";
-    private static String API_TOKEN = "BQB0-a7cYBcC4HuEUris_8xtjKVyxkgXcb7kfOTm-5uehLVVIbXIgtFj2Tf6xAi11DvbihbCJ57yZDtIh1q90ZzqfDi4SxOQ_aaWXH58lI-K4BNW7JU";
+    private static String API_TOKEN;
     private static ArrayList<String> availableGenres;
 
     static {
