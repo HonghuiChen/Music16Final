@@ -25,35 +25,22 @@ public class getGenre {
         }
     }
     public static void initAvailableGenres() {
-        // Create an HTTP client
         HttpClient httpClient = HttpClient.newHttpClient();
 
-        // Build the request with the access token in the Authorization header
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(API_URL))
                 .header("Authorization", API_TOKEN)
                 .build();
 
         try {
-            // Send the request and get the response
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
-            // Check if the request was successful (status code 200)
             if (response.statusCode() == 200) {
-                // Get the response body
                 String responseBody = response.body();
 
-                // Parse the JSON response and store information in an ArrayList
                 availableGenres = parseAvailableGenres(responseBody);
 
-                // Print the genre seeds
-                System.out.println("Available Genres:");
-                for (String genre : availableGenres) {
-                    System.out.println(genre);
-                }
-
             } else {
-                // Print an error message if the request was not successful
                 System.err.println("Error: " + response.statusCode() + ", " + response.body());
             }
 
@@ -65,11 +52,9 @@ public class getGenre {
     private static ArrayList<String> parseAvailableGenres(String responseBody) {
         ArrayList<String> availableGenres = new ArrayList<>();
 
-        // Parse the JSON response
         JSONObject jsonObject = new JSONObject(responseBody);
         JSONArray genresArray = jsonObject.getJSONArray("genres");
 
-        // Extract information about available genre seeds
         for (int i = 0; i < genresArray.length(); i++) {
             String genre = genresArray.getString(i);
             availableGenres.add(genre);
