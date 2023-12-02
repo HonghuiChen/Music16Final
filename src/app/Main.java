@@ -57,7 +57,8 @@ public class Main {
         LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, homeScreenViewModel, userDataAccessObject);
         views.add(loginView, loginView.viewName);
 
-        HomeScreenView homeScreenView = HomeScreenUseCaseFactory.create(viewManagerModel, loginViewModel, homeScreenViewModel, genreViewModel, userDataAccessObject, userDataAccessObject);
+        HomeScreenView homeScreenView = HomeScreenUseCaseFactory.create(viewManagerModel, loginViewModel,
+                homeScreenViewModel, genreViewModel, userDataAccessObject, userDataAccessObject);
         views.add(homeScreenView, homeScreenView.viewName);
 
         GenreView genreView = GenreUseCaseFactory.create(viewManagerModel, genreViewModel, userDataAccessObject);
