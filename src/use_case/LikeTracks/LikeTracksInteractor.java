@@ -2,7 +2,7 @@ package use_case.LikeTracks;
 
 import entity.User;
 
-public class LikeTracksInteractor implements LikeTracksInputBoundary{
+public class LikeTracksInteractor implements LikeTracksInputBoundary {
     final LikeTracksDataAccessInterface likeTracksDataAccessObject;
     final LikeTracksOutputBoundary likePresenter;
 
