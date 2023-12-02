@@ -24,8 +24,9 @@ public class GenrePresenter
     public void prepareAddSuccessView(addGenrePreferenceOutputData response){
         GenreState GenreState = genreViewModel.getState();
         GenreState.setGenre(response.getGenre());
-        this.viewManagerModel.setActiveView(genreViewModel.getViewName());
-        this.viewManagerModel.firePropertyChanged();
+//        this.viewManagerModel.setActiveView(genreViewModel.getViewName());
+//        this.viewManagerModel.firePropertyChanged();
+        genreViewModel.firePropertyChanged();
     }
 
     @Override
@@ -39,8 +40,9 @@ public class GenrePresenter
     public void prepareDeleteSuccessView(deleteGenrePreferenceOutputData response){
         GenreState GenreState = genreViewModel.getState();
         GenreState.setGenre(response.getGenre());
-        this.viewManagerModel.setActiveView(genreViewModel.getViewName());
-        this.viewManagerModel.firePropertyChanged();
+//        this.viewManagerModel.setActiveView(genreViewModel.getViewName());
+//        this.viewManagerModel.firePropertyChanged();
+        genreViewModel.firePropertyChanged();
     }
 
     @Override
