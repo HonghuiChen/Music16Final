@@ -22,7 +22,7 @@ public class Main {
         // Create Token
         Token.main(new String[]{""});
         // The main application window.
-        JFrame application = new JFrame(" Music16 ");
+        JFrame application = new JFrame("Music16");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         CardLayout cardLayout = new CardLayout();
@@ -57,7 +57,8 @@ public class Main {
         LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, homeScreenViewModel, userDataAccessObject);
         views.add(loginView, loginView.viewName);
 
-        HomeScreenView homeScreenView = HomeScreenUseCaseFactory.create(viewManagerModel, loginViewModel, homeScreenViewModel, genreViewModel, userDataAccessObject, userDataAccessObject);
+        HomeScreenView homeScreenView = HomeScreenUseCaseFactory.create(viewManagerModel, loginViewModel,
+                homeScreenViewModel, genreViewModel, userDataAccessObject, userDataAccessObject);
         views.add(homeScreenView, homeScreenView.viewName);
 
         GenreView genreView = GenreUseCaseFactory.create(viewManagerModel, genreViewModel, userDataAccessObject);

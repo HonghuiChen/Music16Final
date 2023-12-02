@@ -58,7 +58,7 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
         JLabel usernameInfo = new JLabel("Currently logged in: ");
         username = new JLabel();
         logOutButton = new JButton(homeScreenViewModel.LOGOUT_BUTTON_LABEL);
-        genrePreferenceButton = new JButton("Change Preference");
+        genrePreferenceButton = new JButton("Genre Preference");
 
         // Initialize components
         searchInputField = new JTextField(20);
@@ -82,7 +82,7 @@ public class HomeScreenView extends JPanel implements ActionListener, PropertyCh
         genrePreferenceButton.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
-                        if (Objects.equals(evt.getActionCommand(), "Change Preference")) {
+                        if (Objects.equals(evt.getActionCommand(), "Genre Preference")) {
                             genreController.switchView();
                         }
                     }
