@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.FileNotFoundException;
 
 public class GenreView extends JPanel implements ActionListener, PropertyChangeListener {
 
@@ -52,7 +53,11 @@ public class GenreView extends JPanel implements ActionListener, PropertyChangeL
                         if (evt.getSource().equals(add)) {
                             GenreState currentState = genreViewModel.getState();
 
-                            GenreController.add(currentState.getGenre());
+                            try {
+                                GenreController.add(currentState.getGenre());
+                            } catch (FileNotFoundException e) {
+                                throw new RuntimeException(e);
+                            }
                         }
                     }
                 }
@@ -64,7 +69,11 @@ public class GenreView extends JPanel implements ActionListener, PropertyChangeL
                         if (evt.getSource().equals(delete)) {
                             GenreState currentState = genreViewModel.getState();
 
-                            GenreController.delete(currentState.getGenre());
+                            try {
+                                GenreController.delete(currentState.getGenre());
+                            } catch (FileNotFoundException e) {
+                                throw new RuntimeException(e);
+                            }
                         }
                     }
                 }
