@@ -3,6 +3,7 @@ package view;
 import interface_adapter.GenrePreference.GenreController;
 import interface_adapter.GenrePreference.GenreState;
 import interface_adapter.GenrePreference.GenreViewModel;
+import interface_adapter.signup.SignupState;
 
 import javax.swing.*;
 import java.awt.*;
@@ -81,6 +82,16 @@ public class GenreView extends JPanel implements ActionListener, PropertyChangeL
                 }
         );
 
+        cancel.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(cancel)) {
+                            GenreController.cancel();
+                        }
+                    }
+                }
+        );
+
         genreInputField.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
@@ -113,14 +124,32 @@ public class GenreView extends JPanel implements ActionListener, PropertyChangeL
         System.out.println("Click " + evt.getActionCommand());
     }
 
+//    @Override
+//    public void propertyChange(PropertyChangeEvent evt) {
+//        GenreState state = (GenreState) evt.getNewValue();
+//        setFields(state);
+//    }
+
+//    private void setFields(GenreState state) {
+//        genreInputField.setText(state.getGenre());
+//    }
+
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        GenreState state = (GenreState) evt.getNewValue();
-        setFields(state);
-    }
-
-    private void setFields(GenreState state) {
-        genreInputField.setText(state.getGenre());
+        if (evt.getPropertyName().equals("state")) {
+            GenreState state = (GenreState) evt.getNewValue();
+            //Check if the clear button is clicked
+            if (state.getAddGenreError() != null) {
+                JOptionPane.showMessageDialog(this, state.getAddGenreError());
+                state.setAddGenreError(null);
+                System.out.print("f");
+            } else if (state.getDeleteGenreError() != null) {
+                JOptionPane.showMessageDialog(this, state.getDeleteGenreError());
+                state.setDeleteGenreError(null);
+            } else {
+                JOptionPane.showMessageDialog(this, "Preference change successful.");
+            }
+        }
     }
 
 }

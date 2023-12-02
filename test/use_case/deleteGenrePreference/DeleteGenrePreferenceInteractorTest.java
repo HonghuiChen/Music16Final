@@ -1,3 +1,5 @@
+package use_case.deleteGenrePreference;
+
 import entity.User;
 import org.junit.jupiter.api.Test;
 import use_case.deleteGenrePreference.*;

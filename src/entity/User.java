@@ -48,7 +48,7 @@ public class User {
 
     public void deleteGenrePreference(String genre) {
         if (!genrePreference.isEmpty()) {
-            if (!genrePreference.contains(genre)) {
+            if (genrePreference.contains(genre)) {
                 genrePreference.remove(genre);
             }
         }

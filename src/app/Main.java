@@ -68,7 +68,9 @@ public class Main {
         viewManagerModel.setActiveView(loginView.viewName);
         viewManagerModel.firePropertyChanged();
 
-        application.pack();
+//        application.pack();
+        application.setSize(400, 300);
+        application.setLocationRelativeTo(null);
         application.setVisible(true);
     }
 }

@@ -3,51 +3,65 @@ package use_case.LikeArtists;
 import entity.User;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.*;
 
 class LikeArtistsInteractorTest{
-
     @Test
-    void successTest() throws IOException{
-        LikeArtistsInputData input = new LikeArtistsInputData("Tulus");
+    void successTest() throws FileNotFoundException {
+        User userMock = mock(User.class);
+        LikeArtistsDataAccessInterface MockData = mock(LikeArtistsDataAccessInterface.class);
+        LikeArtistsOutputBoundary MockOutput = mock(LikeArtistsOutputBoundary.class);
 
-        LikeArtistsDataAccessInterface data = new LikeArtistsDataAccessInterface() {
-            @Override
-            public boolean existsByArtists(String username, String song) {
-                return false;
-            }
+        LikeArtistsInteractor interactor = new LikeArtistsInteractor(MockData, MockOutput);
 
-            @Override
-            public String readCurrUser(String fname) {
-                return null;
-            }
+        when(MockData.readCurrUser("currentUser.txt")).thenReturn("testUser");
+        LocalDateTime mockDateTime = LocalDateTime.of(2015, Month.JULY, 29, 19, 30, 40);
+        when(MockData.get("testUser")).thenReturn(new User("testUser", "1234", mockDateTime));
+        when(MockData.existsByArtists("testuser", "Ed Sheeran")).thenReturn(false);
+        ArrayList<String> artists = new ArrayList<>();
+        artists.add("Ed Sheeran");
+        when(userMock.getFavoriteArtist()).thenReturn(artists);
 
-            @Override
-            public User get(String username) {
-                return null;
-            }
-        };
-        LikeArtistsOutputBoundary successPresenter = new LikeArtistsOutputBoundary (){
-            @Override
-            public void prepareLikeSuccessView(LikeArtistsOutputData artist){
-                assertEquals("Tulus", artist.getArtists());
-            }
+        LikeArtistsInputData input = new LikeArtistsInputData("Ed Sheeran");
 
-            @Override
-            public void prepareUnlikeSuccessView(LikeArtistsOutputData artist){
-                assertEquals("Tulus", artist.getArtists());
-            }
-
-            @Override
-            public void prepareFailView(String error){
-                fail("Use case failure is unexpected.");
-            }
-        };
-        LikeArtistsInteractor interactor = new LikeArtistsInteractor(data, successPresenter);
         interactor.like(input);
         interactor.unlike(input);
 
+        verify(MockOutput).prepareLikeSuccessView(any(LikeArtistsOutputData.class));
+        verify(MockOutput).prepareUnlikeSuccessView(any(LikeArtistsOutputData.class));
+        verify(MockOutput, times(0)).prepareFailView(anyString());
+
     }
-}
+
+    @Test
+    void failTest() throws FileNotFoundException {
+        User userMock = mock(User.class);
+        LikeArtistsDataAccessInterface MockData = mock(LikeArtistsDataAccessInterface.class);
+        LikeArtistsOutputBoundary MockOutput = mock(LikeArtistsOutputBoundary.class);
+
+        LikeArtistsInteractor interactor = new LikeArtistsInteractor(MockData, MockOutput);
+
+        when(MockData.readCurrUser("currentUser.txt")).thenReturn("testUser");
+        LocalDateTime mockDateTime = LocalDateTime.of(2015, Month.JULY, 29, 19, 30, 40);
+        when(MockData.get("testUser")).thenReturn(new User("testUser", "1234", mockDateTime));
+        when(MockData.existsByArtists("testUser", "Ed Sheeran")).thenReturn(true);
+        ArrayList<String> artists = new ArrayList<>();
+        artists.add("Ed Sheeran");
+        when(userMock.getFavoriteArtist()).thenReturn(artists);
+
+        LikeArtistsInputData input = new LikeArtistsInputData("Ed Sheeran");
+
+        interactor.like(input);
+
+        verify(MockOutput).prepareFailView("You already liked this artist");
+        verify(MockOutput, times(0)).prepareLikeSuccessView(any(LikeArtistsOutputData.class));
+
+    }
+    }

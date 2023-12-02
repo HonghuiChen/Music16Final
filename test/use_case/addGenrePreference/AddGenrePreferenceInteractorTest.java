@@ -1,3 +1,5 @@
+package use_case.addGenrePreference;
+
 import entity.User;
 import org.junit.jupiter.api.Test;
 import use_case.addGenrePreference.*;

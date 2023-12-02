@@ -24,8 +24,7 @@ public class addGenrePreferenceInteractor implements addGenrePreferenceInputBoun
         ArrayList<String> availableGenres = getGenre.getAvailableGenres();
         if ( ! availableGenres.contains(addgenrePreferenceInputData.getGenre())) {
             addGenrePresenter.prepareAddFailView("This is not a valid genre.");
-        }
-        if (addGenrePreferenceDataAccessObject.haveGenre(username, addgenrePreferenceInputData.getGenre())) {
+        }else if (addGenrePreferenceDataAccessObject.haveGenre(username, addgenrePreferenceInputData.getGenre())) {
             addGenrePresenter.prepareAddFailView("Genre already inputted.");
         } else {
             String genre = addgenrePreferenceInputData.getGenre();
@@ -39,5 +38,10 @@ public class addGenrePreferenceInteractor implements addGenrePreferenceInputBoun
     @Override
     public void switchView() {
         addGenrePresenter.switchView();
+    }
+
+    @Override
+    public void cancel() {
+        addGenrePresenter.cancel();
     }
 }

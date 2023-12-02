@@ -1,8 +1,10 @@
 package use_case.deleteGenrePreference;
 
 import entity.User;
+import use_case.addGenrePreference.getGenre;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 public class deleteGenrePreferenceInteractor implements deleteGenrePreferenceInputBoundary {
     final deleteGenrePreferenceDataAccessInterface deleteGenrePreferenceDataAccessObject;
@@ -17,7 +19,11 @@ public class deleteGenrePreferenceInteractor implements deleteGenrePreferenceInp
     @Override
     public void execute(deleteGenrePreferenceInputData deletegenrePreferenceInputData) throws FileNotFoundException {
         String username = deleteGenrePreferenceDataAccessObject.readCurrUser("currentUser.txt");
-        if (!deleteGenrePreferenceDataAccessObject.haveGenre(username, deletegenrePreferenceInputData.getGenre())) {
+        getGenre.initAvailableGenres();
+        ArrayList<String> availableGenres = getGenre.getAvailableGenres();
+        if ( ! availableGenres.contains(deletegenrePreferenceInputData.getGenre())) {
+            deleteGenrePresenter.prepareDeleteFailView("This is not a valid genre.");
+        } else if (!deleteGenrePreferenceDataAccessObject.haveGenre(username, deletegenrePreferenceInputData.getGenre())) {
             deleteGenrePresenter.prepareDeleteFailView("Genre is not in your preferences.");
         } else {
             String genre = deletegenrePreferenceInputData.getGenre();

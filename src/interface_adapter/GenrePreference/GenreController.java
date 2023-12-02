@@ -29,6 +29,11 @@ public class GenreController {
         deleteGenrePreferenceInteractor.execute(deleteGenrePreferenceInputData);
     }
 
-    public void switchView() {addGenrePreferenceInteractor.switchView();
+    public void switchView() {
+        addGenrePreferenceInteractor.switchView();
+    }
+
+    public void cancel() {
+        addGenrePreferenceInteractor.cancel();
     }
 }
