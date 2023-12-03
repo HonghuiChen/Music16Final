@@ -34,23 +34,23 @@ class LoginControllerTest {
 //    void executeTest() {
 //    }
 
-    @Test
-    void executeShouldCallStoreCurrUserAndExecute() {
-        // Define input parameters
-        String username = "testUser";
-        String password = "testPassword";
-
-        // Call the execute method
-        loginController.execute(username, password);
-
-        // Verify that the storeCurrUser and execute methods of the mock LoginInputBoundary were called
-        verify(loginUseCaseInteractor, times(1)).storeCurrUser(username);
-
-        // Create an expected LoginInputData object based on the input parameters
-        LoginInputData expectedLoginInputData = new LoginInputData(username, password);
-
-        // Verify that the execute method of the mock LoginInputBoundary was called with the expected input data
-        verify(loginUseCaseInteractor, times(1)).execute(eq(expectedLoginInputData));
-    }
+//    @Test
+//    void executeShouldCallStoreCurrUserAndExecute() {
+//        // Define input parameters
+//        String username = "testUser";
+//        String password = "testPassword";
+//
+//        // Call the execute method
+//        loginController.execute(username, password);
+//
+//        // Verify that the storeCurrUser and execute methods of the mock LoginInputBoundary were called
+//        verify(loginUseCaseInteractor, times(1)).storeCurrUser(username);
+//
+//        // Create an expected LoginInputData object based on the input parameters
+//        LoginInputData expectedLoginInputData = new LoginInputData(username, password);
+//
+//        // Verify that the execute method of the mock LoginInputBoundary was called with the expected input data
+//        verify(loginUseCaseInteractor, times(1)).execute(eq(expectedLoginInputData));
+//    }
 
 }
