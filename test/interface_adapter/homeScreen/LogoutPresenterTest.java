@@ -1,17 +1,13 @@
-package use_case.logout;
+package interface_adapter.homeScreen;
 
 import interface_adapter.ViewManagerModel;
-import interface_adapter.homeScreen.HomeScreenState;
-import interface_adapter.homeScreen.HomeScreenViewModel;
-import interface_adapter.homeScreen.LogoutPresenter;
 import interface_adapter.login.LoginState;
 import interface_adapter.login.LoginViewModel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import use_case.logout.LogoutOutputBoundary;
 
 import java.util.Objects;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class LogoutPresenterTest {
 

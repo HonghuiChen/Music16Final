@@ -13,4 +13,8 @@ public class addGenrePreferenceOutputData {
     public String getGenre() {
         return genre;
     }
+
+    public boolean isUseCaseFailed() {
+        return useCaseFailed;
+    }
 }

@@ -164,6 +164,8 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
             //Check if the clear button is clicked
             if (state.getUsernameError() != null) {
                 JOptionPane.showMessageDialog(this, state.getUsernameError());
+            } else {
+                JOptionPane.showMessageDialog(this, "Signup Successful.");
             }
         }
     }
