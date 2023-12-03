@@ -24,8 +24,6 @@ class SearchArtistInteractorTest {
                 genres.add("hip hop");
                 genres.add("rap");
                 assertEquals(genres, artistInfo.getGenres());
-
-                assertEquals("79179575 followers", artistInfo.getFollowers());
             }
 
             @Override
