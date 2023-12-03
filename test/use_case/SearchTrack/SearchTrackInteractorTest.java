@@ -13,10 +13,30 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.fail;
 
 class SearchTrackInteractorTest {
+
     @BeforeEach
     void setUp() throws IOException {
         Token.main(new String[]{""});
     }
+
+//    TODO: Give up testing for IOException and JSONException
+//    @Test
+//    void testIOExceptionSearch() throws IOException {
+//        // Mock IOException scenario
+//        when(new OkHttpClient().newBuilder()).thenReturn(new OkHttpClient.Builder(client));
+//        when(new Request.Builder()).thenReturn(new Request.Builder(request));
+//        when(client.newCall(request).execute()).thenReturn(response);
+//        when(response.isSuccessful()).thenThrow(new IOException("Network error"));
+//        when(response.body()).thenReturn(null);
+//        when(response.code()).thenReturn(400);
+//        when(response.message()).thenReturn("Bad request");
+//
+//        // Execute search
+//        SearchTrackInputData searchTrackInputData = new SearchTrackInputData("Evangeline");
+//        SearchTrackInteractor searchTrackInteractor = new SearchTrackInteractor(new HomeScreenPresenter(new ViewManagerModel(), new HomeScreenViewModel(), new LoginViewModel()));
+//        //Assert that IOException is thrown
+//        assertThrows(IOException.class, () -> searchTrackInteractor.search(searchTrackInputData));
+//    }
 
     @Test
     void testSuccess() throws IOException, JSONException {

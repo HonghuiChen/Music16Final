@@ -1,12 +1,8 @@
-package use_case.Signup;
+package use_case.signup;
+
 import entity.User;
 import entity.UserFactory;
 import org.junit.jupiter.api.Test;
-import use_case.signup.SignupInputData;
-import use_case.signup.SignupInteractor;
-import use_case.signup.SignupOutputBoundary;
-import use_case.signup.SignupUserDataAccessInterface;
-import use_case.signup.SignupOutputData;
 
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -79,5 +75,37 @@ public class SignupInteractorTest {
         verify(outputBoundaryMock, never()).prepareSuccessView(any(SignupOutputData.class));
         verify(outputBoundaryMock, never()).cancel();
         verify(dataAccessMock, never()).save(any(User.class));
+    }
+
+    @Test
+    void testBlankUsername() {
+        SignupUserDataAccessInterface dataAccessMock = mock(SignupUserDataAccessInterface.class);
+        SignupOutputBoundary outputBoundaryMock = mock(SignupOutputBoundary.class);
+        UserFactory userFactoryMock = mock(UserFactory.class);
+
+        SignupInteractor interactor = new SignupInteractor(dataAccessMock, outputBoundaryMock, userFactoryMock);
+
+        when(dataAccessMock.existsByName(anyString())).thenReturn(false);
+
+        SignupInputData inputData = new SignupInputData("", "", "");
+
+        interactor.execute(inputData);
+
+        verify(outputBoundaryMock).prepareFailView("Username or password cannot be blank.");
+        verify(outputBoundaryMock, never()).prepareSuccessView(any(SignupOutputData.class));
+        verify(outputBoundaryMock, never()).cancel();
+        verify(dataAccessMock, never()).save(any(User.class));
+    }
+    @Test
+    void testSwitchView(){
+        SignupUserDataAccessInterface dataAccessMock = mock(SignupUserDataAccessInterface.class);
+        SignupOutputBoundary outputBoundaryMock = mock(SignupOutputBoundary.class);
+        UserFactory userFactoryMock = mock(UserFactory.class);
+        SignupInputBoundary signupInputBoundary = new SignupInteractor(dataAccessMock, outputBoundaryMock, userFactoryMock);
+
+        signupInputBoundary.switchView();
+        verify(outputBoundaryMock).cancel();
+
+
     }
 }
