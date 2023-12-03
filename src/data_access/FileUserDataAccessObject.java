@@ -28,7 +28,7 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
 
     private final Map<String, User> accounts = new HashMap<>();
 
-    private UserFactory userFactory;
+    private UserFactory userFactory; //TODO why do we have an userFactory here?
 
     public FileUserDataAccessObject(String csvPath, UserFactory userFactory) throws IOException {
         this.userFactory = userFactory;
@@ -113,7 +113,7 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
             reader = new BufferedReader(new FileReader(fname));
             return reader.readLine();
         } catch (IOException e) {
-            throw new FileNotFoundException();
+            throw new FileNotFoundException("File not found");
         }
     }
 
