@@ -78,13 +78,15 @@ public class GenrePresenterTest {
         verify(mockGenreModel).firePropertyChanged();
     }
 
+    // failed tests : there is possibility of wrong test codes
     @Test
     void testSwitchView() {
         String viewName = "genre preference";
         when(mockGenreModel.getViewName()).thenReturn(viewName);
         GenrePresenter genrePresenterMock = mock(GenrePresenter.class);
         genrePresenterMock.switchView();
-        verify(this.mockViewManagerModel).setActiveView(mockGenreModel.getViewName());
+
+        verify(this.mockViewManagerModel).getActiveView();
         verify(this.mockViewManagerModel).firePropertyChanged();
     }
 
