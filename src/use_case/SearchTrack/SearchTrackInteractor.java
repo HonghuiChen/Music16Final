@@ -27,7 +27,7 @@ public class SearchTrackInteractor implements SearchTrackInputBoundary{
         this.homeScreenPresenter = homeScreenPresenter;
     }
 
-    public void search(SearchTrackInputData inputData) throws IOException, JSONException {
+    public void search(SearchTrackInputData inputData) throws IOException {
         if (inputData.getQuery().equals("")) {
             homeScreenPresenter.prepareFailView("Query cannot be null");
             return;
@@ -42,10 +42,8 @@ public class SearchTrackInteractor implements SearchTrackInputBoundary{
                     .build();
             Response response = client.newCall(request).execute();
 
-            if (!response.isSuccessful()) try {
-                throw new IOException("Unexpected code " + response);
-            } catch (IOException ex) {
-                System.out.println("SearchTrack - code = 400");
+            if (!response.isSuccessful()) {
+                homeScreenPresenter.prepareFailView("Unsuccessful Response");
             }
 
             ResponseBody responseBody = response.body();
@@ -62,11 +60,9 @@ public class SearchTrackInteractor implements SearchTrackInputBoundary{
             SearchTrackOutputData outputData = new SearchTrackOutputData(result);
             homeScreenPresenter.prepareSuccessView(outputData);
         } catch (IOException e) {
-            e.printStackTrace();
             // Handle network errors or unsuccessful response
             homeScreenPresenter.prepareFailView("Network error");
         } catch (JSONException e) {
-            e.printStackTrace();
             // Handle JSON parsing errors
             homeScreenPresenter.prepareFailView("JSON parsing error");
         }
