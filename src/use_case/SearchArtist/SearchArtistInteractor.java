@@ -1,6 +1,8 @@
 package use_case.SearchArtist;
 
 import app.api.Token;
+import interface_adapter.SearchArtist.SearchArtistPresenter;
+import interface_adapter.homeScreen.HomeScreenViewModel;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -29,6 +31,12 @@ public class SearchArtistInteractor implements SearchArtistInputBoundary{
 
     public SearchArtistInteractor(SearchArtistOutputBoundary searchArtistOutputBoundary) {
         this.searchArtistPresenter = searchArtistOutputBoundary;
+    }
+
+    // For testing
+    public SearchArtistInteractor() {
+        HomeScreenViewModel homeScreenViewModel = new HomeScreenViewModel();
+        this.searchArtistPresenter = new SearchArtistPresenter(homeScreenViewModel);
     }
 
 

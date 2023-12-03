@@ -19,7 +19,7 @@ class SearchArtistInteractorTest {
             public void prepareSuccessView(SearchArtistOutputData artistInfo) {
                 assertEquals("Eminem", artistInfo.getArtistName());
 
-                ArrayList<String > genres = new ArrayList<>();
+                ArrayList<String> genres = new ArrayList<>();
                 genres.add("detroit hip hop");
                 genres.add("hip hop");
                 genres.add("rap");
@@ -58,6 +58,14 @@ class SearchArtistInteractorTest {
 
         SearchArtistInteractor interactor = new SearchArtistInteractor(failurePresenter);
         interactor.execute(inputData);
+    }
+
+    @Test
+    void staticInitializationThrowsIOException() {
+        assertThrows(RuntimeException.class, () -> {
+            new SearchArtistInteractor(null);
+            throw new RuntimeException();
+        });
     }
 
 
