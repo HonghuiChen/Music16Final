@@ -83,16 +83,16 @@ public class GenrePresenterTest {
     void testSwitchView() {
         String viewName = "genre preference";
         when(mockGenreModel.getViewName()).thenReturn(viewName);
-        GenrePresenter genrePresenterMock = mock(GenrePresenter.class);
+        GenrePresenter genrePresenterMock = new GenrePresenter(mockViewManagerModel, mockGenreModel);
         genrePresenterMock.switchView();
 
-        verify(this.mockViewManagerModel).getActiveView();
+        verify(this.mockViewManagerModel).setActiveView(anyString());
         verify(this.mockViewManagerModel).firePropertyChanged();
     }
 
     @Test
     void testCancel() {
-        GenrePresenter genrePresenterMock = mock(GenrePresenter.class);
+        GenrePresenter genrePresenterMock = new GenrePresenter(mockViewManagerModel, mockGenreModel);
         genrePresenterMock.cancel();
         verify(this.mockViewManagerModel).setActiveView("Home Screen");
         verify(this.mockViewManagerModel).firePropertyChanged();
