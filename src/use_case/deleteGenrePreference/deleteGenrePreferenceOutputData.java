@@ -12,4 +12,7 @@ public class deleteGenrePreferenceOutputData {
     public String getGenre() {
         return genre;
     }
-}
+
+    public boolean isUseCaseFailed() {
+        return useCaseFailed;
+}}

@@ -3,6 +3,7 @@ package entity;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -41,6 +42,20 @@ class UserTest {
     @Test
     void testGetGenrePreference() {
         User user = new User("username", "password", LocalDateTime.now());
-        assertEquals(null, user.getGenrePreference(), "getGenrePreference should return the correct genre preference");
+        ArrayList<String> genrePreferred = new ArrayList<>();
+        assertEquals(genrePreferred, user.getGenrePreference(), "getGenrePreference should return the correct genre preference");
     }
+
+    @Test
+    void testgetFavoriteSongs(){
+        User user = new User("username", "password", LocalDateTime.now());
+        assertEquals(null, user.getFavoriteSongs(), "getFavoriteSongs should return the correct favorite songs");
+    }
+
+    @Test
+    void testgetFavoriteArtists(){
+        User user = new User("username", "password", LocalDateTime.now());
+        assertEquals(null, user.getFavoriteArtist(), "getFavoriteArtist should return the correct favorite artists");
+    }
+
 }

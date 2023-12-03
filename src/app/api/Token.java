@@ -37,7 +37,7 @@ public class Token {
 
                 // Use Jackson to parse the JSON response and extract access_token
                 ObjectMapper mapper = new ObjectMapper();
-                Map<String, Object> map = mapper.readValue(responseBody, Map.class);
+                Map map = mapper.readValue(responseBody, Map.class);
                 String token = (String) map.get("access_token");
 
                 // Save the token to a file

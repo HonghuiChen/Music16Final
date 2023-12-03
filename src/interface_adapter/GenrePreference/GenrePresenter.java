@@ -2,8 +2,6 @@ package interface_adapter.GenrePreference;
 
 import interface_adapter.ViewManagerModel;
 import interface_adapter.GenrePreference.GenreViewModel;
-import interface_adapter.signup.SignupState;
-import interface_adapter.signup.SignupViewModel;
 import use_case.addGenrePreference.addGenrePreferenceOutputBoundary;
 import use_case.addGenrePreference.addGenrePreferenceOutputData;
 import use_case.deleteGenrePreference.deleteGenrePreferenceOutputBoundary;
@@ -40,8 +38,6 @@ public class GenrePresenter
     public void prepareDeleteSuccessView(deleteGenrePreferenceOutputData response){
         GenreState GenreState = genreViewModel.getState();
         GenreState.setGenre(response.getGenre());
-//        this.viewManagerModel.setActiveView(genreViewModel.getViewName());
-//        this.viewManagerModel.firePropertyChanged();
         genreViewModel.firePropertyChanged();
     }
 

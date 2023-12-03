@@ -1,11 +1,14 @@
 package use_case.deleteGenrePreference;
 
+import app.api.Token;
 import entity.User;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import use_case.deleteGenrePreference.*;
 
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.Month;
 
@@ -13,6 +16,11 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.mockito.Mockito.*;
 
 public class DeleteGenrePreferenceInteractorTest {
+
+    @BeforeEach
+    void setUp() {
+        Token.main(new String[]{""});
+    }
 
     @Test
     void successTest() throws FileNotFoundException {
