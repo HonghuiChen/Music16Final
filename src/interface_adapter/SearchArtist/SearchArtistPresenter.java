@@ -20,6 +20,10 @@ public class SearchArtistPresenter implements SearchArtistOutputBoundary {
         this.homeScreenViewModel = homeScreenViewModel;
     }
 
+    public SearchArtistPresenter(HomeScreenViewModel homeScreenViewModel) {
+        this.homeScreenViewModel = homeScreenViewModel;
+    }
+
 
     @Override
     public void prepareSuccessView(SearchArtistOutputData artistInfo) {

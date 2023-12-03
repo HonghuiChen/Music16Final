@@ -7,7 +7,7 @@ public class SearchArtistInputData {
         this.query = query;
     }
 
-    String getQuery(){
+    public String getQuery(){
         return query;
     }
 }
