@@ -29,5 +29,16 @@ public class LikeArtistsStateTest {
         assertNull(state.getLikeArtistsError());
     }
 
+    @Test
+    void testCopyConstructor(){
+        LikeArtistsState original = new LikeArtistsState();
+        original.likeArtist("NIKI");
+        original.likeArtistError(null);
+
+        LikeArtistsState copy = new LikeArtistsState(original);
+        assertEquals("NIKI", copy.getArtists());
+        assertNull(copy.getLikeArtistsError());
+    }
+
 
 }

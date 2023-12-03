@@ -42,12 +42,10 @@ public class LikeArtistsPresenterTest {
        assert Objects.equals(likeArtistsViewModel.getState().getLikeArtistsError(), null);
     }
 
-//    @Test
-//    void FailTest(){
-//        likeArtistsPresenter.prepareFailView("You already liked this artist");
-//        assert Objects.equals(viewManagerModel.getActiveView(), "Like");
-//        assert Objects.equals(likeArtistsViewModel.getState().getArtists(), "Coldplay");
-//        assert Objects.equals(likeArtistsViewModel.getState().getLikeArtistsError(), "Coldplay");
-//    }
+    @Test
+    void FailTest(){
+        likeArtistsPresenter.prepareFailView("You already liked this song");
+        assert Objects.equals(likeArtistsViewModel.getState().getLikeArtistsError(), "You already liked this song");
+    }
 
 }

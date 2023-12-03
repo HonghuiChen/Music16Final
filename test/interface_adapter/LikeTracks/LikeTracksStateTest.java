@@ -28,6 +28,17 @@ public class LikeTracksStateTest {
         state.likeTrackError(null);
         assertNull(state.getLikeTrackError());
     }
+    @Test
+    void testCopyConstructor(){
+        LikeTracksState original = new LikeTracksState();
+        original.likeTrack("Lucky");
+        original.likeTrackError(null);
+
+        LikeTracksState copy = new LikeTracksState(original);
+        assertEquals("Lucky", copy.getTrack());
+        assertNull(copy.getLikeTrackError());
+    }
+
 
 
 }
