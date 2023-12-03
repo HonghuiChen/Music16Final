@@ -42,7 +42,8 @@ class UserTest {
     @Test
     void testGetGenrePreference() {
         User user = new User("username", "password", LocalDateTime.now());
-        assertEquals(null, user.getGenrePreference(), "getGenrePreference should return the correct genre preference");
+        ArrayList<String> genrePreferred = new ArrayList<>();
+        assertEquals(genrePreferred, user.getGenrePreference(), "getGenrePreference should return the correct genre preference");
     }
 
     @Test
