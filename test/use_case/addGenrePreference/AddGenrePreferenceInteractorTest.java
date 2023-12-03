@@ -104,7 +104,6 @@ public class AddGenrePreferenceInteractorTest {
     void testSwitchView() {
         addGenrePreferenceDataAccessInterface dataAccessMock = mock(addGenrePreferenceDataAccessInterface.class);
         addGenrePreferenceOutputBoundary outputBoundaryMock = mock(addGenrePreferenceOutputBoundary.class);
-        GenrePresenter genrePresenterMock = mock(GenrePresenter.class);
 
         addGenrePreferenceInteractor interactor =
                 new addGenrePreferenceInteractor(dataAccessMock, outputBoundaryMock);
