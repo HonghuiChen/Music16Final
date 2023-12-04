@@ -88,3 +88,8 @@ users would be able to follow and connect with their friends.
 
 ## Criteria for final project
 - Albert: Log in view (basic)
+
+## Latest updates in our project:
+- Finished the rest of the test case (app, data access, interface adapter, entity, and use case)
+- Finished all of the codes, but are not able to finish the UI for LikeTracks and LikeArtists
+- Finished the preesentation slides
