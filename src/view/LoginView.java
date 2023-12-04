@@ -13,6 +13,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.Objects;
 
 public class LoginView extends JPanel implements ActionListener, PropertyChangeListener {
 
@@ -126,25 +127,28 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-//        LoginState state = (LoginState) evt.getNewValue();
-//        setFields(state);
+        LoginState state = (LoginState) evt.getNewValue();
+        setFields(state);
         if (evt.getPropertyName().equals("state")) {
-            LoginState state = (LoginState) evt.getNewValue();
             //Check if the clear button is clicked
             if (state.getUsernameError() != null) {
                 JOptionPane.showMessageDialog(this, state.getUsernameError());
+                state.setUsernameError(null);
+                loginViewModel.setState(state);
             } else if (state.getPasswordError() != null) {
                 JOptionPane.showMessageDialog(this, state.getPasswordError());
-            } else {
+                state.setPasswordError(null);
+                loginViewModel.setState(state);
+            } else if (!Objects.equals(state.getPassword(), "")){
                 JOptionPane.showMessageDialog(this, "Login successful.");
             }
         }
 
     }
 
-//    private void setFields(LoginState state) {
-//        usernameInputField.setText(state.getUsername());
-//        passwordInputField.setText(state.getPassword());
-//    }
+    private void setFields(LoginState state) {
+        usernameInputField.setText(state.getUsername());
+        passwordInputField.setText(state.getPassword());
+    }
 
 }
